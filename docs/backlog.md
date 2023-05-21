@@ -7,59 +7,9 @@
 |10/05/2023|0.1|Construção do Backlog|Gabriel, Felipe, Júlia, Manoel e Vinícius|
 |11/05/2023|0.2|Alterações na pontuação do Backlog|Júlia|
 |11/05/2023|0.3|Alterações na descrição da pontuação do Backlog|Júlia|
+|21/05/2023|0.4|Alteração na organização das tabelas|Júlia|
 
-## 1. Temas
-
-|Tema|Descrição|
-|----|---------|
-|TH01|Gerenciamento de usuário|
-|TH02|Gerenciamento de operários|
-|TH03|Gerenciamento de cursos|
-
-## 2. Épicos
-
-|Tema|Épico|Descrição|
-|----|-----|---------|
-|TH01|EP01|Autenticação de usuário na plataforma|
-|TH02|EP02|Cadastro de operários|
-|TH02|EP03|Visualização de dados de operários|
-|TH02|EP04|Gerenciamento de informações sobre os funcionários|
-|TH03|EP05|Cadastro de cursos|
-|TH03|EP06|Visualização de dados dos cursos|
-|TH03|EP07|Gerenciamento de informações sobre os cursos|
-
-## 3. Histórias de usuário
-
-|Tema|Épico|História de Usuário|Descrição|Pontuação|
-|----|-----|-------------------|---------|---------|
-|TH01|EP01|US01|Eu, como usuário, gostaria de realizar o login para acessar as funcionalidades da aplicação.|2,6|
-|TH01|EP01|US02|Eu, como usuário, gostaria de poder recuperar e alterar minha senha caso eu perca o meu acesso.|2|
-|TH01|EP01|US03|Eu, como usuário, quero ser capaz de realizar o logout no aplicativo para que eu possa encerrar meu acesso.|1|
-|TH02|EP02|US04|Eu, como usuário, quero poder cadastrar um novo operário.|2,6|
-|TH02|EP02|US05|Eu, como usuário, quero poder excluir um operário do sistema.|1,6|
-|TH02|EP02|US06|Eu, como usuário, gostaria de atualizar o cadastro de um operário caso tenha uma informação nova ou com necessidade de alteração.|2|
-|TH02|EP02|US07|Eu, como usuário, gostaria de poder adicionar um curso novo ao operário para manter os registros de cursos atualizados.|2,6|
-|TH02|EP02|US08|Eu, como usuário, gostaria de poder excluir um curso do operário para manter os registros corretos.|2,6|
-|TH02|EP03|US09|Eu, como usuário, gostaria de selecionar o operário de acordo com sua localização, para poder visualizar o funcionário mais próximo do local da obra.|2,3|
-|TH02|EP03|US10|Eu, como usuário, gostaria de poder definir os funcionários de acordo com suas habilidades e competências, para ter segurança dos operários que estão indo para determinada obra.|2,6|
-|TH02|EP03|US11|Eu, como usuário, gostaria de poder visualizar uma lista com todos os operários da empresa.|2,3|
-|TH02|EP03|US012|Eu, como usuário, gostaria de ser capaz de selecionar um operário específico da lista para visualizar suas informações detalhadas.|2,6|
-|TH02|EP03|US013|Eu, como usuário, gostaria de observar todos os cursos e preparações realizados pelo operário para saber se ele atende os requisitos para determinada função.|2|
-|TH02|EP03|US014|Eu, como usuário, quero poder pesquisar um operário por nome ou CPF para encontrar informações específicas sobre ele.|2,6|
-|TH02|EP04|US015|Eu, como usuário, gostaria de enviar avisos sobre escalas e sobre a necessidade de realização de determinado curso no e-mail do funcionário, para obter maior transparência de comunicação.|2,6|
-|TH02|EP04|US016|Eu, como usuário, gostaria de ser notificado quando um curso de determinado funcionário está prestes a expirar para poder avisar o operário da necessidade de realizar um novo curso.|1,6|
-|TH03|EP04|US017|Eu, como usuário, gostaria de poder editar informações sobre um curso para manter os dados atualizados e corretos.|2,6|
-|TH03|EP05|US018|Eu, como usuário, gostaria de ser capaz de selecionar um curso específico realizado por um operário para visualizar as suas informações detalhadas.|2,3|
-|TH03|EP05|US019|Eu, como usuário, quero poder pesquisar por nome do curso para encontrar informações específicas.|2,3|
-|TH03|EP07|US020|Eu, como usuário, gostaria de poder validar se o curso informado pelo funcionário é valido, para manter a confiabilidade e certeza da capacitação.|2,3|
-|TH02|EP04|US021|Eu, como usuário, gostaria gerenciar o banco de horas de cada operário, para saber se no final do mês determinado operário ficou devendo horas ou possui horas extras.|1,6|
-
-
-
-
-*A pontuação aqui descrita foi estabelecida considerando critérios de viabilidade, valor de negócio e complexidade. Para seu cálculo foram distribuidos valores de 1 a 3 para os critérios acima descritos, a pontuação final foi calculada através de uma média simples.
-
-### Personas
+## Personas
 
 - Usuário: pessoa com função de gerenciar os operários e os cursos feitos por eles.
 
@@ -76,6 +26,130 @@
 |RNF07|Desempenho|A aplicação deve garantir que a conexão com o banco de dados apresente o tempo de resposta igual ou inferior a 1000 ms.|
 |RNF08|Requisitos de implementação|A aplicação deve seguir regras para garantir que os dados inseridos no banco de dados estejam corretos e válidos. Isso pode envolver restrições de tipo de dados, validação de formato, faixas de valores aceitáveis e verificação de integridade referencial. |
 
+## Requisitos funcionais
+
+<table>
+    <thead>
+        <tr>
+            <th>Tema</th>
+            <th>Épico</th>
+            <th>User Story</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan="5">TH01 - Gerenciamento de usuário</td>
+            <td rowspan="3">EP01 - Autenticação de usuário na plataforma</td>
+            <td>US01 - Eu, como usuário, gostaria de realizar o login para acessar as funcionalidades da aplicação.</td>
+        </tr>
+        <tr>
+            <td>US02 - Eu, como usuário, gostaria de recuperar e alterar minha senha, para caso eu perca o meu acesso.</td>
+        </tr>
+        <tr>
+            <td>US03 - Eu, como usuário, gostaria de realizar o logout no aplicativo para que eu possa encerrar meu acesso.</td>
+        </tr>
+        <tr>
+            <td rowspan="2">EP02 - Receber/enviar avisos</td>
+            <td>US04 - Eu, como usuário, gostaria de enviar avisos sobre escalas e sobre a necessidade de realização de determinado curso no e-mail do funcionário, para obter maior transparência de comunicação.</td>
+        </tr>
+        <tr>
+            <td>Eu, como usuário, gostaria de ser notificado quando um curso de determinado funcionário está prestes a expirar para poder avisar o operário da necessidade de realizar um novo curso</td>
+        </tr>
+        <tr>
+            <td rowspan="15">TH02 - Gerenciamento de operários</td>
+            <td rowspan="5">EP03 - Cadastro de operários/de dados de operário</td>
+            <td>US06 - Eu, como usuário, gostaria de cadastrar um novo operário para ter todos os operários da empresa cadastrados no sistema.</td>
+        </tr>
+        <tr>
+            <td>US07 - Eu, como usuário, gostaria de excluir um operário do sistema para caso ele saia da empresa.</td>
+        </tr>
+        <tr>
+            <td>US08 - Eu, como usuário, gostaria de atualizar o cadastro de um operário caso tenha uma informação nova ou com necessidade de alteração.</td>
+        </tr>
+        <tr>
+            <td>US09 - Eu, como usuário, gostaria de definir os funcionários de acordo com suas habilidades e competências, para ter certeza da qualificação dos operários que estão indo para determinada obra.</td>
+        </tr>
+        <tr>
+            <td>US10 - Eu, como usuário, gostaria de gerenciar o banco de horas de cada operário, para saber se no final do mês determinado operário ficou devendo horas ou possui horas extras.</td>
+        </tr>
+        <tr>
+            <td rowspan="4">EP04 - Visualização de dados de operários</td>
+            <td> US11 - Eu, como usuário, gostaria de visualizar uma lista com todos os operários da empresa para conseguir realizar uma melhor gestão de equipe.</td>
+        </tr>
+        <tr>
+            <td>US12 - Eu, como usuário, gostaria de selecionar um operário específico da lista para visualizar suas informações detalhadas para tomar as melhores decisões para a equipe</td>
+        </tr>
+        <tr>
+            <td>US13 - Eu, como usuário, gostaria de visualizar todos os cursos e preparações realizados pelo operário para saber se ele atende os requisitos para determinada função.</td>
+        </tr>
+        <tr>
+            <td>US14 - Eu, como usuário, gostaria de pesquisar um operário por nome ou CPF para encontrar informações específicas sobre ele.</td>
+        </tr>
+        <tr>
+            <td rowspan="4">EP05 - Cadastro de cursos do operário</td>
+            <td>US15 - Eu, como usuário, gostaria de adicionar um curso novo ao operário para manter os seus registros de cursos atualizados.</td>
+        </tr>
+        <tr>
+            <td>US16 - Eu, como usuário, gostaria de excluir um curso do operário para manter os registros corretos.</td>
+        </tr>
+        <tr>
+            <td>US17 - Eu, como usuário, gostaria de editar informações sobre um curso para manter os dados atualizados e corretos.</td>
+        </tr>
+        <tr>
+            <td>US18 - Eu, como usuário, gostaria de anexar um certificado do curso realizado, para poder fazer a sua validação</td>
+        </tr>
+        <tr>
+            <td rowspan="2">EP06 - Visualização de dados dos cursos do operário</td>
+            <td>US19 - Eu, como usuário, gostaria de selecionar um curso específico realizado por um operário para visualizar as suas informações detalhadas.</td>
+        </tr>
+        <tr>
+            <td>US20 - Eu, como usuário, gostaria de pesquisar por nome do curso para encontrar informações específicas.</td>
+        </tr>
+    </tbody>
+</table>
+
+## Priorização de histórias de usuário
+
+|US|Nome|Valor de Negócio|Viabilidade|Criticidade|Total|
+|--|----|----------------|-----------|-----------|-----|
+|US18|Anexar certificado|3|3|3|9|
+|US05|Notificar expiração|3|3|3|9|
+|US01|Login|3|3|2|8|
+|US02|Recuperar/alterar senha|2|3|2|7|
+|US06|Cadastrar operário|3|3|1|7|
+|US08|Atualizar cadastro de operário|3|3|1|7|
+|US15|Adicionar curso|3|3|1|7|
+|US09|Definir operário por competência|3|3|1|7|
+|US11|Visualizar lista de operários|3|3|1|7|
+|US12|Visualizar informações de operário|3|3|1|7|
+|US13|Visualizar cursos feitos pelo operário|3|3|1|7|
+|US04|Enviar avisos|3|2|2|7|
+|US17|Editar informações sobre curso|3|3|1|7|
+|US19|Visualizar informações de um curso|3|3|1|7|
+
+*Foram distribuidos valores de 1 a 3 para os critérios acima descritos e a pontuação final foi calculada através de uma média simples.
+
 ## Mínimo Produto Viável 1
 
+|US|Descrição|
+|--|---------|
+|US01|Eu, como usuário, gostaria de realizar o login para acessar as funcionalidades da aplicação.|
+|US02|Eu, como usuário, gostaria de recuperar e alterar minha senha, para caso eu perca o meu acesso.|
+|US06|Eu, como usuário, gostaria de cadastrar um novo operário para ter todos os operários da empresa cadastrados no sistema.|
+|US11|Eu, como usuário, gostaria de visualizar uma lista com todos os operários da empresa para conseguir realizar uma melhor gestão de equipe.|
+|US12|Eu, como usuário, gostaria de selecionar um operário específico da lista para visualizar suas informações detalhadas para tomar as melhores decisões para a equipe.|
+|US15|Eu, como usuário, gostaria de adicionar um curso novo ao operário para manter os seus registros de cursos atualizados.|
+|US13|Eu, como usuário, gostaria de visualizar todos os cursos e preparações realizados pelo operário para saber se ele atende os requisitos para determinada função.|
+
 ## Mínimo Produto Viável 2
+
+|US|Descrição|
+|--|---------|
+|US18|Eu, como usuário, gostaria de anexar um certificado do curso realizado, para poder fazer a sua validação.|
+|US04|Eu, como usuário, gostaria de enviar avisos sobre escalas e sobre a necessidade de realização de determinado curso no e-mail do funcionário, para obter maior transparência de comunicação.|
+|US09|Eu, como usuário, gostaria de definir os funcionários de acordo com suas habilidades e competências, para ter certeza da qualificação dos operários que estão indo para determinada obra.|
+|US05|Eu, como usuário, gostaria de ser notificado quando um curso de determinado funcionário está prestes a expirar para poder avisar o operário da necessidade de realizar um novo curso.|
+|US08|Eu, como usuário, gostaria de atualizar o cadastro de um operário caso tenha uma informação nova ou com necessidade de alteração.|
+|US17|Eu, como usuário, gostaria de editar informações sobre um curso para manter os dados atualizados e corretos.|
+|US19|Eu, como usuário, gostaria de selecionar um curso específico realizado por um operário para visualizar as suas informações detalhadas.|
+

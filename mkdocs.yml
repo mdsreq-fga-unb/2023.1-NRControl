@@ -13,7 +13,12 @@ nav:
     - Visão de produto: product.md  
     - Visão de projeto: project.md
     - Processos de desenvolvimento de software: process.md
-    - Lições aprendidas: lessons.md
-  - Backlog do Produto: backlog.md
+  - Requisitos do produto: 
+    - Definições: definitions.md
+    - Critérios de aceitação: acceptance.md
+    - Backlog: backlog.md
   - Arquitetura: architecture.md
-  - Entregas: release.md
+  - Sprints: sprints.md
+  - Workflow: workflow.md
+  - Padrões de interface: uipattern.md
+  - Lições aprendidas: lessons.md

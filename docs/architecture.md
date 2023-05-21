@@ -1,5 +1,7 @@
 # Arquitetura do projeto
 
+## Histórico de revisão
+
 |Data|Versão|Descrição|Autor(es)|
 |----|------|---------|---------|
 |11/05/2023|0.1|Descrição da escolha de arquitetura e tipo arquitetural|Gabriel e Júlia|
@@ -10,7 +12,7 @@ Entre os motivos para a seleção desse tipo de arquitetura estão:
 
 - Modularidade e reutilização de código: cada camada promove pode ser testada e desenvolvida de forma independente.
 - Separação de responsabilidades: ajuda a organizar o código de forma clara e a manter a lógica de negócios isolada da interface do usuário e do acesso a dados.
-- Facilita a manutenção e escabilidade.
+- Facilita a manutenção e escalabilidade.
 
 ## Estilo arquitetural: Model View Controller(MVC)
 

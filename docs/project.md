@@ -1,5 +1,12 @@
 # Visão geral do projeto
 
+## Histórico de revisão
+|Data|Versão|Descrição|Autor(es)|
+|----|------|---------|---------|
+|19/04/2023|0.1|Descrição do projeto|Gabriel, Felipe, Júlia, Manoel e Vinícius|
+|07/05/2023|0.2|Melhorias na descrição do projeto a partir das issues apresentadas no github pelo professor|Gabriel, Felipe, Júlia, Manoel e Vinícius|
+|21/05/2023|0.3|Atualização das entregas das Sprints|Júlia|
+
 ## Organização do projeto
 
 |Papel|Atribuições|Responsável|Participantes|
@@ -15,7 +22,7 @@
 |----|----|----|----|
 |Sprint 1|Definição do produto e do problema e criação do GitPages|06/04/23|20/04/23|
 |Sprint 2|Definição dos requisitos|21/04/23|04/05/23|
-|Sprint 3|Produto(entrega)|05/05/23|19/05/23|
+|Sprint 3|Backlog do produto, MVPs, critérios de aceitação, padrões de interface, arquitetura e workflow|05/05/23|19/05/23|
 |Sprint 4|Produto(entrega)|20/05/23|03/06/23|
 |Sprint 5|Produto(entrega)|17/06/23|01/07/23|
 |Sprint 6|Produto(entrega)|02/07/23|16/07/23|

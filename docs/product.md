@@ -1,10 +1,12 @@
 # Visão geral do produto 
 
 ## Histórico de revisão
+
 |Data|Versão|Descrição|Autor(es)|
 |----|------|---------|---------|
-|19/04/2023|0.1|Descrição de produto e projeto|Gabriel, Felipe, Júlia, Manoel e Vinícius|
-|07/05/2023|0.2|Melhorias na descrição de produto e projeto a partir das issues apresentadas no github pelo professor|Gabriel, Felipe, Júlia, Manoel e Vinícius|
+|19/04/2023|0.1|Descrição do produto|Gabriel, Felipe, Júlia, Manoel e Vinícius|
+|07/05/2023|0.2|Melhorias na descrição do produto a partir das issues apresentadas no github pelo professor|Gabriel, Felipe, Júlia, Manoel e Vinícius|
+|18/05/2023|0.3|Atualização de tecnologia a ser utilizada|Júlia|
 
 ## Problema
 O problema principal é a dificuldade dos funcionários em se manterem atualizados quanto às Normas Regulamentadoras. Abaixo temos o Diagrama de Ishikawa que foi utilizado para identificar as possíveis causas do problema:
@@ -34,4 +36,4 @@ Em nosso projeto, utilizaremos as seguintes tecnologias para desenvolver a aplic
 - Javascript: desenvolvimento da lógica do back-end;
 - React: interfaces gráficas de usuário;
 - MySQL: banco de dados;
-- Selenium: Testes Automatizados.
+- Github actions: Testes Automatizados.

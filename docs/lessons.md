@@ -1,0 +1,8 @@
+# Lições aprendidas
+
+## Unidade 1
+As lições aprendidas pelo grupo no decorrer da unidade foram diversas. Demos início ao nosso aprendizado de trabalho em equipe e interação entre nós mesmos, desde como o grupo trabalha como um todo até o melhor ambiente que encontramos para conduzir as nossas reuniões (no caso o Microsoft Teams) . Obviamente, ainda há o que melhorar e estamos trabalhando cada vez mais encontrando pontos para melhorar isso. O principal a se melhorar é a  pouca comunicação que a equipe demonstra. No geral, os membros da equipe falam pouco, e esse é um ponto a ser trabalhado para as próximas unidades. As principais dificuldades encontradas pela equipe na unidade foram:
+
+- Dificuldade de interação com a nova equipe: Nunca é fácil ter um engajamento forte dentro de uma equipe totalmente nova onde praticamente ninguém se conhece, então obviamente essa foi uma dificuldade que apareceu no início da unidade, mas que tende a gradativamente se dissipar;
+- Definir um produto e cliente: A princípio a equipe demonstrou uma dificuldade em definir um produto, visto que o primeiro produto idealizado pela equipe foi rejeitado pelo potencial cliente. Além disso, a disponibilidade do cliente durante o projeto foi bastante questionada, o que levou a equipe a ir atrás de um novo cliente e a definir um novo produto;
+- Definir uma plataforma padrão para os encontros da equipe: No início da unidade a equipe transitou bastante entre o Google Meets e o Microsoft Teams. Por um lado tinha a simplicidade atrativa do Meets, mas por outro tinha toda a praticidade oferecida pelo Teams. No final a equipe decidiu pelo Teams dado o ambiente que ele oferece.

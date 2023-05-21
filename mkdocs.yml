@@ -1,0 +1,19 @@
+site_name: NR Control
+
+theme:
+    name: material
+    palette:
+      primary: black
+      accent: deep purple
+      
+
+nav:
+  - Home: index.md
+  - Visão do produto e projeto:
+    - Visão de produto: product.md  
+    - Visão de projeto: project.md
+    - Processos de desenvolvimento de software: process.md
+    - Lições aprendidas: lessons.md
+  - Backlog do Produto: backlog.md
+  - Arquitetura: architecture.md
+  - Entregas: release.md

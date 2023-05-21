@@ -126,6 +126,12 @@
 |US04|Enviar avisos|3|2|2|7|
 |US17|Editar informações sobre curso|3|3|1|7|
 |US19|Visualizar informações de um curso|3|3|1|7|
+|US07|Excluir operário|2|3|1|6|
+|US16|Excluir curso|2|3|1|6|
+|US14|Pesquisar operário por nome ou CPF|2|3|1|6|
+|US20|Pesquisar curso por nome|2|3|1|6|
+|US10|Gerenciar banco de horas|2|2|2|6|
+|US03|Logout|1|3|1|5|
 
 *Foram distribuidos valores de 1 a 3 para os critérios acima descritos e a pontuação final foi calculada através de uma média simples.
 

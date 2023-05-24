@@ -26,7 +26,7 @@ app.post("/login", (req, res) => {
   const sentloginUserName = req.body.LoginUserName;
   const sentLoginPassword = req.body.LoginPassword;
 
-  const SQL = "SELECT * FROM Login WHERE username = ? &&  senha = ?";
+  const SQL = "SELECT * FROM Login WHERE email = ? &&  senha = ?";
 
   const Values = [sentloginUserName, sentLoginPassword];
 

@@ -31,8 +31,8 @@ const Login = () => {
         <div>
           <label>Usuário</label>
           <input
-            type="text"
-            id="username"
+            type="email"
+            id="email"
             onChange={(e) => {
               setLoginUserName(e.target.value);
             }}

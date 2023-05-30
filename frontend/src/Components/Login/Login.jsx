@@ -1,26 +1,27 @@
 import { useState } from "react";
 import React from "react";
-import Axios from "axios";
+import axios from "axios";
 import "./Login.css";
 import "../../App.css";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const [loginUserName, setLoginUserName] = useState("");
-  const [loginPassword, setLoginPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const navigateTo = useNavigate();
 
   const loginUser = (e) => {
     e.preventDefault();
-    Axios.post("http://localhost:3005/login", {
-      LoginUserName: loginUserName,
-      LoginPassword: loginPassword,
-    }).then((response) => {
-      console.log();
-
-      if (response.data.message || loginUserName == "" || loginPassword == "") {
-        alert("Usuario ou senha incorretos");
-      } else navigateTo("/home");
+    const data = { email: email, password: password };
+    axios.post("http://localhost:3005/auth/login", data).then((response) => {
+      if (response.data.error) {
+        alert(response.data.error);
+      } else {
+        sessionStorage.setItem("acessToken", response.data);
+        navigateTo("/home");
+      }
+      console.log(response.data);
+      console.log(response.status);
     });
   };
 
@@ -34,7 +35,7 @@ const Login = () => {
             type="email"
             id="email"
             onChange={(e) => {
-              setLoginUserName(e.target.value);
+              setEmail(e.target.value);
             }}
           />
         </div>
@@ -45,7 +46,7 @@ const Login = () => {
             type="password"
             id="password"
             onChange={(e) => {
-              setLoginPassword(e.target.value);
+              setPassword(e.target.value);
             }}
           />
         </div>

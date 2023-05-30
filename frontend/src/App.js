@@ -3,6 +3,8 @@ import capa from "./assets/certo.png";
 import logo from "./assets/logo.png";
 import {Formik, Form, Field, ErrorMessage} from "formik";
 import * as yup from "yup";
+import YupPassword from 'yup-password';
+YupPassword(yup);
 
 //import React, { useState, useEffect } from "react";
 
@@ -14,7 +16,7 @@ function App() {
   
   const validationLogin = yup.object().shape({
     email: yup.string().email("Email inválido").required("O email é obrigatório"),
-    password: yup.string().min(8, "A senha deve ter pelo menos 8 caracteres").required("A senha é obrigatória"),
+    password: yup.string().min(8, "A senha deve conter pelo menos 8 caracteres").minSymbols(1, "A senha deve conter ao menos um símbolo").minNumbers(1, "A senha deve conter ao menos um número").required("A senha é obrigatória"),
   });
   
   return (
@@ -42,7 +44,7 @@ function App() {
                 />
               </div>
               <div className="form-group">
-                <Field name="password" className="form-field" placeholder="Senha"/>
+                <Field type="password" name="password" className="form-field" placeholder="Senha"/>
                 <ErrorMessage
                   component="span"
                   name="password"

@@ -1,12 +1,14 @@
 import "./App.css";
 import capa from "./assets/certo.png";
 import logo from "./assets/logo.png";
-
-//import React, { useState, useEffect } from "react";
+import { AiOutlineSend } from "react-icons/ai";
+import React, { useState, useEffect } from "react";
 
 function App() {
-  //const [email, setEmail] = useState();
-  //const [password, setPassword] = useState();
+  const [inputVisible, setInputVisible] = useState(false);
+  const HandleClick = () => {
+    setInputVisible(true);
+  };
 
   return (
     <div className="main-login">
@@ -30,11 +32,25 @@ function App() {
               placeholder="Informe o email"
             ></input>
             <label for="senha">Senha</label>
+
             <input
               type="password"
               name="senha"
               placeholder="Informe a senha"
             ></input>
+            <a href="#" className="recuperar" onClick={HandleClick}>
+              Recuperar senha
+            </a>
+            {inputVisible && (
+              <input
+                type="text"
+                name="recuperar senha"
+                placeholder="Informe o email"
+                className="input-recuperar"
+              ></input>
+            )}
+            {inputVisible && <AiOutlineSend className="icones" />}
+
             <button className="btn-login"> Login</button>
           </div>
         </div>

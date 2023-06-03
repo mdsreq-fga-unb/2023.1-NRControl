@@ -1,33 +1,25 @@
 import "./App.css";
 import Home from "./Components/Home/Home";
 import Login from "./Components/Login/Login";
-
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: (
-      <div>
-        <Login />
-      </div>
-    ),
-  },
-  {
-    path: "/home",
-    element: (
-      <div>
-        <Home />
-      </div>
-    ),
-  },
-]);
+import PasswordReset from "./Components/PasswordReset/PasswordReset";
+import Senha from "./Components/Senha/Senha";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <div>
-      <RouterProvider router={router} />
-    </div>
+    <Router>
+      <div>
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/forgot-password" element={<Senha />} />
+          <Route
+            path="/api/password-reset/:id/:token"
+            element={<PasswordReset />}
+          />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

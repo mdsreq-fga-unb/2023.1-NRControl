@@ -23,6 +23,17 @@ module.exports = (sequelize, DataTypes) => {
         len: [8, Infinity],
       },
     },
+
+    userId: {
+      type: DataTypes.INTEGER,
+      unique: true,
+    },
+    token: {
+      type: DataTypes.STRING,
+    },
+    tokenExpiration: {
+      type: DataTypes.DATE,
+    },
   });
 
   return Users;

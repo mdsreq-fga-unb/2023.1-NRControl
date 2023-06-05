@@ -5,11 +5,13 @@ import { GiPadlock } from "react-icons/gi";
 function Password() {
   return (
     <div className="main-page">
-      <div className="header">
-        <img src={logo} alt="logo" className="sonda" />
-        <h1>
-          Sonda <br></br>Engenharia
-        </h1>
+      <div className="sonda">
+        <img src={logo} alt="logo" />
+        <div className="img-titulo">
+          <h1>
+            Sonda <br></br>Engenharia
+          </h1>
+        </div>
       </div>
 
       <div className="center-box">

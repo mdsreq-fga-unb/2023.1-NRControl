@@ -36,7 +36,9 @@ function LoginPage() {
         </h1>
         <img src={capa} alt="equipe" className="img" />
       </div>
-      <img src={logo} alt="logo" className="sonda" />
+      <div className="sonda">
+        <img src={logo} alt="logo" />
+      </div>
 
       <div className="right-login">
         <div className="card-login">

@@ -2,7 +2,12 @@ import "./Home.css";
 import React from "react";
 import logo from "./../../assets/images/logo.png";
 import { useNavigate } from "react-router-dom";
-import { BsFillPersonPlusFill, BsFillPersonLinesFill } from "react-icons/bs";
+import {
+  BsFillPersonPlusFill,
+  BsFillPersonDashFill,
+  BsPersonBadge,
+  BsPersonFillGear,
+} from "react-icons/bs";
 
 function HomePage() {
   const navigate = useNavigate();
@@ -21,8 +26,37 @@ function HomePage() {
         <div className="sidebar">
           <div className="icons-sidebar">
             <BsFillPersonPlusFill onClick={goToRegister} />
-            <BsFillPersonLinesFill />
+            <BsFillPersonDashFill />
+            <BsPersonFillGear />
+            <BsPersonBadge />
           </div>
+        </div>
+      </div>
+      <div className="main-card">
+        <h1> Operários</h1>
+        <div className="Tabela">
+          <table>
+            <tr>
+              <td>Nome</td>
+              <td>CPF</td>
+            </tr>
+            <tr>
+              <td>TESTE</td>
+              <td>123.456.789.00</td>
+            </tr>
+            <tr>
+              <td>TESTE</td>
+              <td>123.456.789.00</td>
+            </tr>
+            <tr>
+              <td>TESTE</td>
+              <td>123.456.789.00</td>
+            </tr>
+            <tr>
+              <td>TESTE</td>
+              <td>123.456.789.00</td>
+            </tr>
+          </table>
         </div>
       </div>
     </div>

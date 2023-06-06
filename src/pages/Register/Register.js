@@ -1,7 +1,6 @@
 import "./Register.css";
 import React from "react";
 import logo from "./../../assets/images/logo.png";
-import { BsFillPersonLinesFill } from "react-icons/bs";
 import InputMask from "react-input-mask";
 import { useNavigate } from "react-router-dom";
 
@@ -21,9 +20,7 @@ function RegisterWorker() {
           </h1>
         </div>
         <div className="sidebar">
-          <div className="icons-sidebar">
-            <BsFillPersonLinesFill />
-          </div>
+          <div className="icons-sidebar"></div>
         </div>
       </div>
 

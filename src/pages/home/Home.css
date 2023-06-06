@@ -13,11 +13,46 @@
   display: flex;
 }
 
-.icons-sidebar {
-  width: 10vw;
-  height: 20vw;
+.main-card {
+  width: 65vw;
+  height: 75vh;
+  padding: 30px 35px;
+  background: #4c1d06;
+  border-radius: 20px;
+  box-shadow: 0px 10px 40px #020100;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+table,
+th,
+td {
+  border: 3px solid black;
+  border-collapse: collapse;
+  width: 100%;
+  padding: 5px 2px 5px 2px;
   text-align: center;
-  padding: 20px;
+}
+td {
+  color: #f85605;
+  font-weight: 400;
+  font-size: 2vw;
+}
+
+.main-card > h1 {
+  text-align: center;
+  color: #f85605;
+  font-weight: 400;
+  font-size: 3vw;
+  margin-bottom: 20px;
+}
+
+.icons-sidebar {
+  width: 35%;
+  height: 45%;
+  margin: 80px;
+
   font-size: 110px;
   color: #f85605;
   cursor: pointer;

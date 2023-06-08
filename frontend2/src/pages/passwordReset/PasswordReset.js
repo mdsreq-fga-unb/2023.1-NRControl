@@ -32,6 +32,16 @@ const PasswordReset = () => {
     e.preventDefault();
     try {
       setError("");
+
+      const complexityRegex =
+        /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+      if (!complexityRegex.test(password)) {
+        setError(
+          "A senha deve conter pelo menos 8 caracteres, incluindo símbolos, números, letras minúsculas e maiúsculas."
+        );
+        return;
+      }
+
       const { data } = await axios.post(url, { password, sentToken });
       setMsg(data.message);
       setPassword("");

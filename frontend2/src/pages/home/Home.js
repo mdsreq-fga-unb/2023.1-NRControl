@@ -1,50 +1,107 @@
 import "./Home.css";
 import React from "react";
-import logo from "./../../assets/images/logo.png";
-import InputMask from "react-input-mask";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import axios from "axios";
 
 function HomePage() {
+  const initialValues = {
+    name: "",
+    cpf: "",
+    email: "",
+    address: "",
+    phonenumber: "",
+    birthday: "",
+    admissiondate: "",
+    asodate: "",
+  };
+
+  const validationSchema = Yup.object().shape({
+    name: Yup.string().required("O nome é obrigatório"),
+    cpf: Yup.string().required("O CPF é obrigatório"),
+    email: Yup.string().email("Email inválido").required("O email é obrigatório"),
+    address: Yup.string().required("O endereço é obrigatório"),
+    phonenumber: Yup.string().required("O telefone é obrigatório"),
+    birthday: Yup.date().required("A data de nascimennto é obrigatória"),
+    admissiondate: Yup.date().required("A data de admissão é obrigatória"),
+    asodate: Yup.date().required("A data de ASO é obrigatória")
+  });
+
+  const onSubmit = (data) => {
+    axios.post("http://localhost:3005/registration", data).then((response) => {
+      console.log("IT WORKED");
+    });
+  };
+
   return (
-    <div className="page">
-      <div className="header">
-        <img src={logo} alt="logo" className="sonda" />
-        <h1>
-          Sonda <br></br>Engenharia
-        </h1>
-      </div>
-      <div className="container">
-        <h1>Cadastrar Funcionário</h1>
-        <div className="box-main">
-          <div className="left-card">
-            <InputMask mask="999.999.999-99" placeholder="CPF" />
-            <input type="text" placeholder="Nome completo" />
-            <input type="email" placeholder="Email" />
-            <input type="text" placeholder="Endereço" />
-          </div>
-          <div className="right-card">
-            <InputMask
-              mask="(99)99999-9999"
-              type="text"
-              placeholder="Telefone"
-            />
-            <label for="Data" className="Date_nas">
-              Data de Nascimento
-            </label>
-            <input type="date" />
-            <label for="Data" className="Date_add">
-              Data de Admissão
-            </label>
-            <input type="date" placeholder="Data de Admissão" />
-            <label for="Data" className="Date_Aso">
-              Data de ASO
-            </label>
-            <input type="date" placeholder="Data de ASO" />
-          </div>
-        </div>
-        <button className="cadastrar">Cadastrar</button>
-      </div>
+    <div className="createPostPage">
+      <Formik
+        initialValues={initialValues}
+        onSubmit={onSubmit}
+        validationSchema={validationSchema}
+      >
+        <Form className="formContainer">
+          <label>Nome completo: </label>
+          <ErrorMessage name="name" component="span" />
+          <Field
+            id="inputCreatePost"
+            name="name"
+            placeholder="Nome completo"
+          />
+          <label>CPF: </label>
+          <ErrorMessage name="cpf" component="span" />
+          <Field
+            id="inputCreatePost"
+            name="cpf"
+            placeholder="CPF"
+          />
+          <label>Email: </label>
+          <ErrorMessage name="email" component="span" />
+          <Field
+            id="inputCreatePost"
+            name="email"
+            placeholder="Email"
+          />
+          <label>Endereço: </label>
+          <ErrorMessage name="address" component="span" />
+          <Field
+            id="inputCreatePost"
+            name="address"
+            placeholder="Endereço"
+          />
+          <label>Telefone: </label>
+          <ErrorMessage name="phonenumber" component="span" />
+          <Field
+            id="inputCreatePost"
+            name="phonenumber"
+            placeholder="Telefone"
+          />
+          <label>Data de nascimento: </label>
+          <ErrorMessage name="birthday" component="span" />
+          <Field
+            id="inputCreatePost"
+            name="birthday"
+            placeholder="Data de nascimento"
+          />
+          <label>Data de admissão: </label>
+          <ErrorMessage name="admissiondate" component="span" />
+          <Field
+            id="inputCreatePost"
+            name="admissiondate"
+            placeholder="Data de admissão"
+          />
+          <label>Data de ASO: </label>
+          <ErrorMessage name="asodate" component="span" />
+          <Field
+            id="inputCreatePost"
+            name="asodate"
+            placeholder="Data de ASO"
+          />
+          <button type="submit">Cadastrar</button>
+        </Form>
+      </Formik>
     </div>
-  );
+  )
 }
 
 export default HomePage;

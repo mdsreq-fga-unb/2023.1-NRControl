@@ -27,12 +27,6 @@ function List() {
             <div className="post">
                 <div className="name">{value.name}</div>
                 <div className="cpf">{value.cpf}</div>
-                <div className="email">{value.email}</div>
-                <div className="address">{value.address}</div>
-                <div className="phonenumber">{value.phonenumber}</div>
-                <div className="birthday">{value.birthday}</div>
-                <div className="admissiondate">{value.admissiondate}</div>
-                <div className="asodate">{value.asodate}</div>
             </div>
             );
             })}

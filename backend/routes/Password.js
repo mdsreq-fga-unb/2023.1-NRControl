@@ -12,7 +12,6 @@ const Joi = require("joi");
 const passwordComplexity = require("joi-password-complexity");
 const sendgridTransport = require("nodemailer-sendgrid-transport");
 const expirationDate = new Date();
-expirationDate.setMinutes(expirationDate.getMinutes() + 15);
 
 const sendEmail = async (email, subject, text) => {
   try {
@@ -58,7 +57,7 @@ router.post("/", async (req, res) => {
 
       const token = buffer.toString("hex");
       const expirationDate = new Date();
-      expirationDate.setMinutes(expirationDate.getMinutes() + 15, 0, 0);
+      expirationDate.setMinutes(expirationDate.getMinutes() + 5, 0, 0);
 
       user.token = token;
       user.tokenExpiration = expirationDate;
@@ -98,12 +97,14 @@ router.get("/:id/:token", async (req, res) => {
     const user = await Users.findOne({ _id: req.params.id });
     if (!user) return res.status(400).send({ message: "Link Inválido" });
 
-    const token = await Users.findOne({
-      userId: user.id,
-      token: req.params.token,
-      tokenExpiration: { $gte: new Date() },
-    });
-    if (!token) return res.status(400).send({ message: "Link inválido" });
+    if (user.token !== req.params.token) {
+      return res.status(400).send({ message: "Link inválido" });
+    }
+
+    const currentTime = new Date().getTime();
+    if (user.tokenExpiration.getTime() < currentTime) {
+      return res.status(400).send({ message: "Link expirado" });
+    }
 
     res.status(200).send("URL Válida");
   } catch (error) {

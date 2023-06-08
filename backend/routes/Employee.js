@@ -4,7 +4,7 @@ const { Employee } = require("../models");
 const { validateToken } = require("../middlewares/auth");
 
 router.get("/", async (req, res) => {
-  const listOfEmployees = await Employees.findAll();
+  const listOfEmployees = await Employee.findAll();
   res.json(listOfEmployees);
 });
 

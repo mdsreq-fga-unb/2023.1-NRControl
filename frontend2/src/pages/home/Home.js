@@ -49,7 +49,7 @@ const HomePage = () => {
     }
 
     axios
-      .post("http://localhost:3005/registration", data, {
+      .post("http://localhost:3005/register", data, {
         headers: {
           Authorization: "Bearer " + accessToken,
         },

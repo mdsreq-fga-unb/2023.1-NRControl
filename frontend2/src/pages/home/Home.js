@@ -4,9 +4,21 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import {
+  BsFillPersonDashFill,
+  BsPersonBadge,
+  BsPersonFillGear,
+  BsFillPersonPlusFill,
+} from "react-icons/bs";
+import logo from "./../../assets/images/logo.png";
 
 const HomePage = () => {
   const navigateTo = useNavigate();
+
+  const navigate = useNavigate();
+  const goToRegister = () => {
+    navigate("/register");
+  };
 
   useEffect(() => {
     const accessToken = sessionStorage.getItem("accessToken");
@@ -63,56 +75,87 @@ const HomePage = () => {
   };
 
   return (
-    <div className="createPostPage">
-      <Formik
-        initialValues={initialValues}
-        onSubmit={onSubmit}
-        validationSchema={validationSchema}
-      >
-        <Form className="formContainer">
-          <label>Nome completo: </label>
-          <ErrorMessage name="name" component="span" />
-          <Field id="inputCreatePost" name="name" placeholder="Nome completo" />
-          <label>CPF: </label>
-          <ErrorMessage name="cpf" component="span" />
-          <Field id="inputCreatePost" name="cpf" placeholder="CPF" />
-          <label>Email: </label>
-          <ErrorMessage name="email" component="span" />
-          <Field id="inputCreatePost" name="email" placeholder="Email" />
-          <label>Endereço: </label>
-          <ErrorMessage name="address" component="span" />
-          <Field id="inputCreatePost" name="address" placeholder="Endereço" />
-          <label>Telefone: </label>
-          <ErrorMessage name="phonenumber" component="span" />
-          <Field
-            id="inputCreatePost"
-            name="phonenumber"
-            placeholder="Telefone"
-          />
-          <label>Data de nascimento: </label>
-          <ErrorMessage name="birthday" component="span" />
-          <Field
-            id="inputCreatePost"
-            name="birthday"
-            placeholder="Data de nascimento"
-          />
-          <label>Data de admissão: </label>
-          <ErrorMessage name="admissiondate" component="span" />
-          <Field
-            id="inputCreatePost"
-            name="admissiondate"
-            placeholder="Data de admissão"
-          />
-          <label>Data de ASO: </label>
-          <ErrorMessage name="asodate" component="span" />
-          <Field
-            id="inputCreatePost"
-            name="asodate"
-            placeholder="Data de ASO"
-          />
-          <button type="submit">Cadastrar</button>
-        </Form>
-      </Formik>
+    <div className="page">
+      <div className="header">
+        <img src={logo} alt="logo" className="sonda" />
+        <h1>
+          Sonda <br /> Engenharia
+        </h1>
+        <div className="sidebar">
+          <div className="icons-sidebar">
+            <BsFillPersonPlusFill onClick={goToRegister} />
+            <BsFillPersonDashFill />
+            <BsPersonFillGear />
+            <BsPersonBadge />
+          </div>
+        </div>
+      </div>
+      <div className="container">
+        <h1> Cadastrar Funcionário</h1>
+        <div className="createPostPage">
+          <Formik
+            initialValues={initialValues}
+            onSubmit={onSubmit}
+            validationSchema={validationSchema}
+          >
+            <Form className="formContainer">
+              <div className="left-card">
+                <Field
+                  id="inputCreatePost"
+                  name="name"
+                  placeholder="Nome completo"
+                />
+                <ErrorMessage name="name" component="span" />
+
+                <Field id="inputCreatePost" name="cpf" placeholder="CPF" />
+                <ErrorMessage name="cpf" component="span" />
+
+                <Field id="inputCreatePost" name="email" placeholder="Email" />
+                <ErrorMessage name="email" component="span" />
+
+                <Field
+                  id="inputCreatePost"
+                  name="address"
+                  placeholder="Endereço"
+                />
+                <ErrorMessage name="address" component="span" />
+              </div>
+              <div className="right-card">
+                <Field
+                  id="inputCreatePost"
+                  name="phonenumber"
+                  placeholder="Telefone"
+                />
+                <ErrorMessage name="phonenumber" component="span" />
+
+                <Field
+                  id="inputCreatePost"
+                  name="birthday"
+                  placeholder="Data de nascimento"
+                />
+                <ErrorMessage name="birthday" component="span" />
+
+                <Field
+                  id="inputCreatePost"
+                  name="admissiondate"
+                  placeholder="Data de admissão"
+                />
+                <ErrorMessage name="admissiondate" component="span" />
+
+                <Field
+                  id="inputCreatePost"
+                  name="asodate"
+                  placeholder="Data de ASO"
+                />
+                <ErrorMessage name="asodate" component="span" />
+              </div>
+            </Form>
+          </Formik>
+        </div>
+        <button type="submit" className="cadastrar">
+          Cadastrar
+        </button>
+      </div>
     </div>
   );
 };

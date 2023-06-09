@@ -1,0 +1,60 @@
+.page-container {
+  background-color: #463026;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content-container {
+  width: 50%;
+}
+
+.table {
+  border: 1px solid black;
+  border-collapse: collapse;
+  width: 100%;
+  text-align: center;
+}
+
+.table tr {
+  border-bottom: 1px solid black;
+  background-color: #f85605;
+  color: white;
+}
+
+.table tr th,
+.table tr td {
+  padding: 5px;
+}
+
+.form {
+  margin-bottom: 10;
+}
+
+.form form input {
+  width: 43.5%;
+  padding: 5px;
+}
+
+.form form button {
+  width: 10%;
+  padding: 5px;
+  cursor: pointer;
+  background-color: red;
+  color: white;
+}
+
+.table {
+  table-layout: fixed;
+  width: 100%;
+}
+
+.curso-column {
+  word-break: break-word;
+}
+
+.table-container {
+  max-height: 400px;
+  overflow-y: auto;
+}

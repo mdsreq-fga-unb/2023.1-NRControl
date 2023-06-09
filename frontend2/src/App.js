@@ -5,6 +5,7 @@ import HomePage from "./pages/home/Home";
 import List from "./pages/List/List";
 import Password from "./pages/password/password";
 import PasswordReset from "./pages/passwordReset/PasswordReset";
+import Cursos from "./pages/Curso/Curso";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/home" element={<HomePage />} />
         <Route path="/employees" element={<List />} />
         <Route path="/senha" element={<Password />} />
+        <Route path="/cursos" element={<Cursos />} />
         <Route
           path="/api/password-reset/:id/:token"
           element={<PasswordReset />}

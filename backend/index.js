@@ -14,7 +14,7 @@ app.use(cors());
 
 app.use("/auth", userRoute);
 app.use("/api/password-reset", passwordRoute);
-app.use("/register", employeeRoute);
+app.use("/employeeinfo", employeeRoute);
 app.use("/funcionario", funcionarioRoute);
 
 database.sequelize.sync().then(() => {

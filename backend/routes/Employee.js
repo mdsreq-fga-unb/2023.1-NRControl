@@ -8,6 +8,12 @@ router.get("/", async (req, res) => {
   res.json(listOfEmployees);
 });
 
+router.get('/byId/:id', async (req, res) => {
+  const id = req.params.id;
+  const employee = await Employee.findByPk(id);
+  res.json(employee);
+});
+
 router.post("/", async (req, res) => {
   const employees = req.body;
   await Employee.create(employees);

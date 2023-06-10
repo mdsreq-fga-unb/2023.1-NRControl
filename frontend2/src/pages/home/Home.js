@@ -32,11 +32,13 @@ function Home() {
 
   return (
     <div>
+    <h1>Funcionários</h1>
       {listOfEmployees.map((value, key) => {
         return (
-          <div className="card">
-            <div className="name">{value.name}</div>
-            <div className="cpf">{value.cpf}</div>
+          <div className="card" onClick={() => {navigateTo(`/employee/${value.id}`);}}>
+            <div className="name">Nome: {value.name}</div>
+            <div className="cpf">CPF: {value.cpf}</div>
+            <br/>
           </div>
         );
       })}

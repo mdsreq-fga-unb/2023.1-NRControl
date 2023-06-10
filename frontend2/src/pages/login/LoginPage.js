@@ -95,7 +95,7 @@ function LoginPage() {
                   className="form-error"
                 />
               </div>
-              <a href="/senha" className="recuperar">
+              <a href="/recuperarsenha" className="recuperar">
                 Recuperar senha
               </a>
 

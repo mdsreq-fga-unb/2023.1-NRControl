@@ -25,7 +25,7 @@ function LoginPage() {
           alert(response.data.error);
         } else {
           sessionStorage.setItem("accessToken", response.data);
-          navigateTo("/Home");
+          navigateTo("/employees");
         }
       })
       .catch((error) => {

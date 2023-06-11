@@ -1,5 +1,4 @@
 import "./password.css";
-import logo from "./../../assets/images/logo.png";
 import { GiPadlock } from "react-icons/gi";
 import { useState } from "react";
 import axios from "axios";
@@ -31,7 +30,6 @@ function Password() {
   return (
     <div className="main-page">
       <div className="header">
-        <img src={logo} alt="logo" className="sonda" />
         <h1>
           Sonda <br></br>Engenharia
         </h1>

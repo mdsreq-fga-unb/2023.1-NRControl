@@ -32,6 +32,7 @@ function EmployeePage() {
           Data de admissão: {employeeObject.admissiondate}
         </div>
         <div className="asodate">Data de ASO: {employeeObject.asodate}</div>
+        <button>Cursos</button>
       </div>
     </div>
   );

@@ -9,11 +9,14 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  const { name, curso } = req.body;
+  const { name, curso, info, conclusiondate, expirationdate } = req.body;
 
   Cursos.create({
     name: name,
     curso: curso,
+    info: info,
+    conclusiondate: conclusiondate,
+    expirationdate: expirationdate,
   })
     .then((curso) => {
       res.status(201).json(curso);

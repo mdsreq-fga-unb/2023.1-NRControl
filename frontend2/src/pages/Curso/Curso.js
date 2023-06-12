@@ -96,17 +96,17 @@ const Curso = () => {
               placeholder="Insira o código curso do funcionário"
               onChange={(e) => setCurso(e.target.value)}
             />
-                        <input
+            <input
               type="text"
               placeholder="Insira as inforamações do curso"
               onChange={(e) => setInfo(e.target.value)}
             />
-                        <input
+            <input
               type="text"
               placeholder="Insira a data de conclusão do curso"
               onChange={(e) => setConclusionDate(e.target.value)}
             />
-                        <input
+            <input
               type="text"
               placeholder="Insira a data de expiração do curso"
               onChange={(e) => setExpirationDate(e.target.value)}
@@ -120,7 +120,10 @@ const Curso = () => {
               <tr>
                 <th>ID</th>
                 <th>Funcionário</th>
-                <th className="curso-column">Curso</th>
+                <th>Info</th>
+                <th>Data de Conclusão</th>
+                <th>Data de Expiração</th>
+                {/* <th className="curso-column">Curso</th> */}
                 <th>Modificar</th>
               </tr>
             </thead>
@@ -130,6 +133,9 @@ const Curso = () => {
                   <tr key={index}>
                     <td>{user.id}</td>
                     <td>{user.name}</td>
+                    <td>{user.info}</td>
+                    <td>{user.conclusiondate}</td>
+                    <td>{user.expirationdate}</td>
                     <td className="curso-column">
                       {formatarTópicos(user.curso)}
                     </td>

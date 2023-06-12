@@ -6,6 +6,7 @@
 |----|------|---------|---------|
 |17/05/2023|0.1|Criação do documento|Gabriel e Vinícius|
 |21/05/2023|0.2|Descrição das sprints realizadas|Júlia|
+|12/06/2023|0.3|Atualização da descrição das sprints|Vinícius|
 
 ## Sprint 1(06/04/2023-20/04/2023)
 
@@ -64,3 +65,24 @@ Assim como na Sprint 1, não utilizamos Integração Contínua, Padrões de codi
 Assim como na Sprint 1 e 2, não utilizamos Integração Contínua, Padrões de codificação, Refatoração e Programação em pares e testes unitários, visto que não entramos na etapa de desenvolvimento do código do projeto.
 
 
+## Sprint 4(30/05/23-13/06/23)
+
+### SCRUM
+
+
+|Cerimônia|Data|Descrição|Partipantes|
+|---------|----|---------|-----------|
+|Sprint planning|30/05/23|A equipe se reuniu para definir o escopo da entrega da sprint e a disponibilidade de cada membro. Foi definido que o nosso escopo corresponderia a todo o MVP1.|Gabriel, Felipe, Júlia, Manoel e Vinícius|
+|Daily Scrum|30/05/23-13/06/23|Foram feitos diariamente feedbacks, nas plataformas de comunicação(Teams e WhatsApp)|Gabriel, Felipe, Júlia, Manoel e Vinícius|
+|Sprint review|12/06/2023|PENDENTE|Gabriel, Felipe, Júlia, Manoel, Vinícius e Olenice(Product Owner)|
+|Sprint retrospective|13/06/2023|A reunião que corresponde à retrospectiva será realizada na terça-feira (dia 13/06) com todos os membros da equipe presentes.|Gabriel, Felipe, Júlia, Manoel e Vinícius|
+
+### XP
+
+- Metáfora: foi utilizado a Metáfora para a comunicação com o cliente acerca do projeto e das funcionalidades emplantadas.
+
+- Integração Contínua: foi utilizado a Integração contínua no decorrer da sprint. Cada história de usuário teve seu back-end e front-end imediatamente integrados assim que terminados.
+
+- Testes Unitários: os testes unitários foram devidamente realizados para atender a Definition of Done de cada história.
+
+- Padrões de Codificação, Refatoração, e Programação em Pares: foram usados em conjunto nos horários de aula e em outros horários que atendessem o cronograma das duplas.

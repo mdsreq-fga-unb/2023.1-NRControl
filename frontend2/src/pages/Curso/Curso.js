@@ -7,6 +7,9 @@ const Curso = () => {
   const navigateTo = useNavigate();
   const [users, setUsers] = useState([]);
   const [name, setName] = useState("");
+  const [info, setInfo] = useState("");
+  const [conclusiondate, setConclusionDate] = useState("");
+  const [expirationdate, setExpirationDate] = useState("");
   const [curso, setCurso] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [usersPerPage] = useState(10);
@@ -34,12 +37,18 @@ const Curso = () => {
         id: id,
         name: name,
         curso: curso,
+        info: info,
+        conclusiondate: conclusiondate,
+        expirationdate: expirationdate,
       })
       .then((response) => {
         if (response.status === 201) {
           setUsers([...users, response.data]);
           setName("");
           setCurso("");
+          setInfo("");
+          setConclusionDate("");
+          setExpirationDate("");
         } else {
           console.log("Ocorreu um erro ao adicionar o usuário.");
         }
@@ -84,8 +93,23 @@ const Curso = () => {
             />
             <input
               type="text"
-              placeholder="Insira/atualize o curso do funcionário"
+              placeholder="Insira o código curso do funcionário"
               onChange={(e) => setCurso(e.target.value)}
+            />
+                        <input
+              type="text"
+              placeholder="Insira as inforamações do curso"
+              onChange={(e) => setInfo(e.target.value)}
+            />
+                        <input
+              type="text"
+              placeholder="Insira a data de conclusão do curso"
+              onChange={(e) => setConclusionDate(e.target.value)}
+            />
+                        <input
+              type="text"
+              placeholder="Insira a data de expiração do curso"
+              onChange={(e) => setExpirationDate(e.target.value)}
             />
             <button>Adicionar</button>
           </form>

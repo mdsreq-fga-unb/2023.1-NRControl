@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { Employee } = require("../models");
+const { Employee, Cursos } = require("../models");
 
 router.get("/", async (req, res) => {
   try {
@@ -32,6 +32,21 @@ router.post("/", async (req, res) => {
     res.status(201).json(createdEmployee);
   } catch (error) {
     res.status(500).json({ error: "Falha ao criar funcionário." });
+  }
+});
+
+router.get("/compareNames", async (req, res) => {
+  try {
+    const employees = await Employee.findAll();
+    const cursos = await Cursos.findAll();
+
+    const matchedCourses = cursos.filter(employee =>
+      cursos.some(curso => curso.name === employee.name)
+    );
+
+    res.json(matchedCourses);
+  } catch (error) {
+    res.status(500).json({ error: "Falha ao comparar nomes." });
   }
 });
 

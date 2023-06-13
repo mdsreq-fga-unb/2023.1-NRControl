@@ -94,10 +94,14 @@ router.post("/", async (req, res) => {
 
 router.get("/:id/:token", async (req, res) => {
   try {
-    const user = await Users.findOne({ _id: req.params.id });
-    if (!user) return res.status(400).send({ message: "Link Inválido" });
+    const user = await Users.findOne({
+      where: {
+        id: req.params.id,
+        token: req.params.token.toString(),
+      },
+    });
 
-    if (user.token !== req.params.token) {
+    if (!user) {
       return res.status(400).send({ message: "Link inválido" });
     }
 
@@ -118,7 +122,7 @@ router.post("/:id/:token", async (req, res) => {
 
   try {
     const user = await Users.findOne({
-      token: sentToken.toString(),
+      where: { token: sentToken.toString() },
     });
 
     if (!user) {

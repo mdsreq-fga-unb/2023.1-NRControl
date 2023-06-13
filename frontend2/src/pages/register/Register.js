@@ -1,14 +1,11 @@
-import "./Register.css";
 import React, { useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import {
-  BsFillPersonDashFill,
-  BsPersonVcard,
-  BsFillPersonPlusFill,
-} from "react-icons/bs";
+import { BsFillPersonDashFill, BsPersonVcard, BsFillPersonPlusFill } from "react-icons/bs";
+import "./Register.css";
+import InputMask from 'react-input-mask';
 
 const Register = () => {
   const navigateTo = useNavigate();
@@ -16,6 +13,7 @@ const Register = () => {
   const goToEmployees = () => {
     navigateTo("/employees");
   };
+
   const goToCursos = () => {
     navigateTo("/cursos");
   };
@@ -41,15 +39,17 @@ const Register = () => {
 
   const validationSchema = Yup.object().shape({
     name: Yup.string().required("O nome é obrigatório"),
-    cpf: Yup.string().required("O CPF é obrigatório"),
-    email: Yup.string()
-      .email("Email inválido")
-      .required("O email é obrigatório"),
+    cpf: Yup.string()
+      .matches(/^\d{3}\.\d{3}\.\d{3}-\d{2}$/, "CPF inválido")
+      .required("Campo obrigatório"),
+    email: Yup.string().email("Email inválido").required("O email é obrigatório"),
     address: Yup.string().required("O endereço é obrigatório"),
-    phonenumber: Yup.string().required("O telefone é obrigatório"),
-    birthday: Yup.date().required("A data de nascimennto é obrigatória"),
-    admissiondate: Yup.date().required("A data de admissão é obrigatória"),
-    asodate: Yup.date().required("A data de ASO é obrigatória"),
+    phonenumber: Yup.string()
+      .matches(/^\(\d{2}\) \d{5}-\d{4}$/, "Número de telefone inválido")
+      .required("O telefone é obrigatório"),
+    birthday: Yup.date().max(new Date(), "A data de nascimento não pode ser futura").required("A data de nascimento é obrigatória"),
+    admissiondate: Yup.date().max(new Date(), "A data de admissão não pode ser futura").required("A data de admissão é obrigatória"),
+    asodate: Yup.date().max(new Date(), "A data de ASO não pode ser futura").required("A data de ASO é obrigatória"),
   });
 
   const onSubmit = (data) => {
@@ -105,10 +105,20 @@ const Register = () => {
                 />
                 <ErrorMessage name="name" component="span" />
 
-                <Field id="inputCreatePost" name="cpf" placeholder="CPF" />
+                <Field
+                  id="inputCreatePost"
+                  name="cpf"
+                  placeholder="CPF"
+                  as={InputMask}
+                  mask="999.999.999-99"
+                />
                 <ErrorMessage name="cpf" component="span" />
 
-                <Field id="inputCreatePost" name="email" placeholder="Email" />
+                <Field
+                  id="inputCreatePost"
+                  name="email"
+                  placeholder="Email"
+                />
                 <ErrorMessage name="email" component="span" />
 
                 <Field
@@ -124,6 +134,8 @@ const Register = () => {
                   id="inputCreatePost"
                   name="phonenumber"
                   placeholder="Telefone"
+                  as={InputMask}
+                  mask="(99) 99999-9999"
                 />
                 <ErrorMessage name="phonenumber" component="span" />
 
@@ -131,6 +143,8 @@ const Register = () => {
                   id="inputCreatePost"
                   name="birthday"
                   placeholder="Data de nascimento"
+                  as={InputMask}
+                  mask="99/99/9999"
                 />
                 <ErrorMessage name="birthday" component="span" />
 
@@ -138,6 +152,8 @@ const Register = () => {
                   id="inputCreatePost"
                   name="admissiondate"
                   placeholder="Data de admissão"
+                  as={InputMask}
+                  mask="99/99/9999"
                 />
                 <ErrorMessage name="admissiondate" component="span" />
 
@@ -145,6 +161,8 @@ const Register = () => {
                   id="inputCreatePost"
                   name="asodate"
                   placeholder="Data de ASO"
+                  as={InputMask}
+                  mask="99/99/9999"
                 />
                 <ErrorMessage name="asodate" component="span" />
               </div>

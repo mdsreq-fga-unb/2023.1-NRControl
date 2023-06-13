@@ -8,11 +8,9 @@ function EmployeePage() {
 
   useEffect(() => {
     if (id) {
-      axios
-        .get(`http://localhost:3005/comparenames/${id}`)
-        .then((response) => {
-          setFilteredCursos(response.data);
-        });
+      axios.get(`http://localhost:3005/comparenames/${id}`).then((response) => {
+        setFilteredCursos(response.data);
+      });
     }
   }, [id]);
 
@@ -20,11 +18,11 @@ function EmployeePage() {
     <div className="postPage">
       <h1>Funcionário</h1>
       <div className="post" id="individual">
-      <ul>
-        {filteredCursos.map((curso) => (
-          <li key={curso.id}>{curso.nome}</li>
-        ))}
-      </ul>
+        <ul>
+          {filteredCursos.map((curso) => (
+            <li key={curso.id}>{curso.nome}</li>
+          ))}
+        </ul>
       </div>
     </div>
   );

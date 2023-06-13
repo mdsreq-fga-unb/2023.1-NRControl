@@ -2,11 +2,11 @@ const express = require("express");
 const mysql = require("mysql");
 const cors = require("cors");
 const app = express();
-const database = require("./models");
-const userRoute = require("./routes/User");
-const passwordRoute = require("./routes/Password");
-const employeeRoute = require("./routes/Employee");
-const funcionarioRoute = require("./routes/Cursos");
+const database = require("./models/schemas");
+const userRoute = require("./views/routes/User");
+const passwordRoute = require("./views/routes/Password");
+const employeeRoute = require("./views/routes/Employee");
+const funcionarioRoute = require("./views/routes/Cursos");
 require("dotenv").config();
 
 app.use(express.json());

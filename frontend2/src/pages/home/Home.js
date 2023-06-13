@@ -1,13 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./Home.css";
-import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  BsFillPersonDashFill,
-  BsPersonVcard,
-  BsFillPersonPlusFill,
-} from "react-icons/bs";
+import { BsFillPersonPlusFill } from "react-icons/bs";
 import { MdAssignmentAdd } from "react-icons/md";
 
 function Home() {
@@ -19,6 +14,11 @@ function Home() {
     navigateTo("/cursos");
   };
 
+  const [listOfEmployees, setListOfEmployees] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [employeesPerPage] = useState(10);
+
+  
   useEffect(() => {
     const accessToken = sessionStorage.getItem("accessToken");
 
@@ -27,7 +27,6 @@ function Home() {
     }
   }, [navigateTo]);
 
-  const [listOfEmployees, setListOfEmployees] = useState([]);
   useEffect(() => {
     axios.get("http://localhost:3005/employeeinfo").then((response) => {
       const sortedEmployees = response.data.sort((a, b) =>
@@ -37,6 +36,23 @@ function Home() {
     });
   }, []);
 
+  const indexOfLastEmployee = currentPage * employeesPerPage;
+  const indexOfFirstEmployee = indexOfLastEmployee - employeesPerPage;
+  const currentEmployees = listOfEmployees.slice(
+    indexOfFirstEmployee,
+    indexOfLastEmployee
+  );
+
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  const pageNumbers = Math.ceil(listOfEmployees.length / employeesPerPage);
+  const pages = [];
+  for (let i = 1; i <= pageNumbers; i++) {
+    pages.push(i);
+  }
+
   return (
     <div className="main">
       <div className="header">
@@ -45,9 +61,7 @@ function Home() {
         </h1>
         <div className="icons-sidebar">
           <BsFillPersonPlusFill onClick={goToRegister} />
-          <BsFillPersonDashFill />
-          <BsPersonVcard onClick={goToCursos} />
-          <MdAssignmentAdd />
+          <MdAssignmentAdd onClick={goToCursos} />
         </div>
       </div>
       <div className="box">
@@ -62,7 +76,7 @@ function Home() {
                 </tr>
               </thead>
               <tbody>
-                {listOfEmployees.map((value, key) => (
+                {currentEmployees.map((value, key) => (
                   <tr
                     key={key}
                     onClick={() => navigateTo(`/employee/${value.id}`)}
@@ -78,6 +92,17 @@ function Home() {
               </tbody>
             </table>
           </div>
+        </div>
+        <div className="pagination">
+          {pages.map((pageNumber) => (
+            <button
+              key={pageNumber}
+              onClick={() => paginate(pageNumber)}
+              className={currentPage === pageNumber ? "active" : ""}
+            >
+              {pageNumber}
+            </button>
+          ))}
         </div>
       </div>
     </div>

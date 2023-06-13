@@ -1,17 +1,15 @@
-const express = require("express");
-const router = express.Router();
-const { Employee, Cursos } = require("../models");
+const { Employee, Cursos } = require("../models/schemas");
 
-router.get("/", async (req, res) => {
+exports.getEmployees = async (req, res) => {
   try {
     const listOfEmployees = await Employee.findAll();
     res.json(listOfEmployees);
   } catch (error) {
     res.status(500).json({ error: "Falha ao obter lista de funcionários." });
   }
-});
+};
 
-router.get("/byId/:id", async (req, res) => {
+exports.getEmployeeById = async (req, res) => {
   const id = req.params.id;
   try {
     const employee = await Employee.findByPk(id);
@@ -23,9 +21,9 @@ router.get("/byId/:id", async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: "Falha ao obter funcionário." });
   }
-});
+};
 
-router.post("/", async (req, res) => {
+exports.createEmployee = async (req, res) => {
   const employees = req.body;
   try {
     const createdEmployee = await Employee.create(employees);
@@ -33,9 +31,9 @@ router.post("/", async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: "Falha ao criar funcionário." });
   }
-});
+};
 
-router.get("/compareNames", async (req, res) => {
+exports.compareNames = async (req, res) => {
   try {
     const employees = await Employee.findAll();
     const cursos = await Cursos.findAll();
@@ -48,6 +46,4 @@ router.get("/compareNames", async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: "Falha ao comparar nomes." });
   }
-});
-
-module.exports = router;
+};

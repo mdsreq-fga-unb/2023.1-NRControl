@@ -94,27 +94,27 @@ const Curso = () => {
           <form onSubmit={enviarDados}>
             <input
               type="text"
-              placeholder="Insira o nome do funcionário"
+              placeholder="Nome do funcionário"
               onChange={(e) => setName(e.target.value)}
             />
             <input
               type="text"
-              placeholder="Insira o código curso do funcionário"
+              placeholder="Código do curso"
               onChange={(e) => setCurso(e.target.value)}
             />
             <input
               type="text"
-              placeholder="Insira as inforamações do curso"
+              placeholder="Informações do curso"
               onChange={(e) => setInfo(e.target.value)}
             />
             <input
               type="text"
-              placeholder="Insira a data de conclusão do curso"
+              placeholder="Data de conclusão do curso"
               onChange={(e) => setConclusionDate(e.target.value)}
             />
             <input
               type="text"
-              placeholder="Insira a data de expiração do curso"
+              placeholder="Data de expiração do curso"
               onChange={(e) => setExpirationDate(e.target.value)}
             />
             <button className="btn-adicionar">Adicionar</button>
@@ -126,11 +126,10 @@ const Curso = () => {
               <tr>
                 <th>ID</th>
                 <th>Funcionário</th>
+                <th>Código do curso</th>
                 <th>Info</th>
                 <th>Data de Conclusão</th>
                 <th>Data de Expiração</th>
-                {/* <th className="curso-column">Curso</th> */}
-                <th>Modificar</th>
               </tr>
             </thead>
             <tbody>
@@ -139,15 +138,12 @@ const Curso = () => {
                   <tr key={index}>
                     <td>{user.id}</td>
                     <td>{user.name}</td>
-                    <td>{user.info}</td>
-                    <td>{user.conclusiondate}</td>
-                    <td>{user.expirationdate}</td>
                     <td className="curso-column">
                       {formatarTópicos(user.curso)}
                     </td>
-                    <td>
-                      <button className="btn-editar">Editar</button>
-                    </td>
+                    <td>{user.info}</td>
+                    <td>{user.conclusiondate}</td>
+                    <td>{user.expirationdate}</td>  
                   </tr>
                 );
               })}

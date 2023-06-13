@@ -9,8 +9,6 @@ function EmployeePage() {
 
   let { id } = useParams();
   const [employeeObject, setEmployeeObject] = useState({});
-  const [showCursos, setShowCursos] = useState([]);
-  const [cursos, setCursos] = useState([]);
   const goToEmployees = () => {
     navigateTo("/employees");
   };
@@ -32,21 +30,6 @@ function EmployeePage() {
         });
     }
   }, [id]);
-
-  const mostrarCursos = () => {
-    axios
-      .get(`http://localhost:3005/funcionario?name=${employeeObject.name}`)
-      .then((response) => {
-        const cursosDoFuncionario = response.data.filter(
-          (curso) => curso.name === employeeObject.name
-        );
-        setCursos(cursosDoFuncionario.map((curso) => curso.info));
-        setShowCursos(true);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
 
   return (
     <div className="postPage">

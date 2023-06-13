@@ -6,7 +6,7 @@ import "./employeeCourses.css";
 function EmployeeCourses() {
   const navigateTo = useNavigate();
   const { id } = useParams();
-  const [employeeObject, setEmployeeObject] = useState({});
+  const [setEmployeeObject] = useState({});
   const [cursos, setCursos] = useState([]);
 
   const goToEmployees = () => {

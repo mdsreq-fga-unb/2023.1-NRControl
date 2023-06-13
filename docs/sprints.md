@@ -86,3 +86,9 @@ Assim como na Sprint 1 e 2, não utilizamos Integração Contínua, Padrões de 
 - Testes Unitários: os testes unitários foram devidamente realizados para atender a Definition of Done de cada história.
 
 - Padrões de Codificação, Refatoração, e Programação em Pares: foram usados em conjunto nos horários de aula e em outros horários que atendessem o cronograma das duplas.
+
+#### Entrega da sprint 4
+
+```bash
+https://sonda-engenharia.vercel.app
+```

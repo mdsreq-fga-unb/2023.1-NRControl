@@ -7,6 +7,7 @@
 |19/04/2023|0.1|Inclusão do documento da unidade 1|Vinícius|
 |07/05/2023|0.2|Inclusão do vídeo da unidade 1|Júlia|
 |17/05/2023|0.3|Inclusão do documento e do vídeo da unidade 2|Júlia e Vinícius|
+|13/06/2023|0.4|Inclusão do documento e do vídeo da unidade 3|Júlia e Vinícius|
 
 ## Unidade 1
 As lições aprendidas pelo grupo no decorrer da unidade foram diversas. Demos início ao nosso aprendizado de trabalho em equipe e interação entre nós mesmos, desde como o grupo trabalha como um todo até o melhor ambiente que encontramos para conduzir as nossas reuniões (no caso o Microsoft Teams) . Obviamente, ainda há o que melhorar e estamos trabalhando cada vez mais encontrando pontos para melhorar isso. O principal a se melhorar é a  pouca comunicação que a equipe demonstra. No geral, os membros da equipe falam pouco, e esse é um ponto a ser trabalhado para as próximas unidades. As principais dificuldades encontradas pela equipe na unidade foram:
@@ -34,4 +35,19 @@ As lições aprendidas pelo grupo no decorrer da unidade foram:
 ### Apresentação da unidade 2
 <figure class="video_container">
     <iframe width="560" height="315" src="https://www.youtube.com/embed/g413mRIlVYU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</figure>
+
+## Unidade 3
+
+As lições aprendidas pelo grupo no decorrer da unidade foram:
+
+- Tecnologia: o desenvolvimento foi e está sendo um grande desafio, mas disso o grupo pôde adquirir um conhecimento maior sobre as tecnologias utilizadas;
+- Interação: a programação em duplas contribuiu para melhorar ainda mais a interação entre os membros do grupo.
+
+<br>Os problemas enfrentados durante a unidade foram todos relacionados ao cronograma. O calendário de provas dos membros do grupo chocou com uma das semanas da sprint, fazendo com que a atenção de todo o grupo ficasse dividida entre a entrega e as suas provas.
+<br>
+
+### Apresentação da unidade 3
+<figure class="video_container">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/_QtY9dv6DEM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 </figure>

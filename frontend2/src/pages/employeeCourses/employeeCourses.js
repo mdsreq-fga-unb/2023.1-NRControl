@@ -14,6 +14,14 @@ function EmployeeCourses() {
   };
 
   useEffect(() => {
+    const accessToken = sessionStorage.getItem("accessToken");
+
+    if (!accessToken) {
+      navigateTo("/");
+    }
+  }, [navigateTo]);
+
+  useEffect(() => {
     if (id) {
       axios
         .get(`http://localhost:3005/employeeinfo/byId/${id}`)

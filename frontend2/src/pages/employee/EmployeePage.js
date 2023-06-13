@@ -1,16 +1,19 @@
+import "./EmployeePage.css";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 function EmployeePage() {
-
   const navigateTo = useNavigate();
 
   let { id } = useParams();
   const [employeeObject, setEmployeeObject] = useState({});
   const [showCursos, setShowCursos] = useState([]);
   const [cursos, setCursos] = useState([]);
+  const goToEmployees = () => {
+    navigateTo("/employees");
+  };
 
   useEffect(() => {
     if (id) {
@@ -39,8 +42,13 @@ function EmployeePage() {
 
   return (
     <div className="postPage">
-      <h1>Funcionário</h1>
+      <div className="header">
+        <h1 onClick={goToEmployees}>
+          Sonda <br /> Engenharia
+        </h1>
+      </div>
       <div className="post" id="individual">
+        <h1>Funcionário</h1>
         <div className="name">Nome: {employeeObject.name}</div>
         <div className="cpf">CPF: {employeeObject.cpf}</div>
         <div className="email">Email: {employeeObject.email}</div>
@@ -56,7 +64,15 @@ function EmployeePage() {
         </div>
         <div className="asodate">Data de ASO: {employeeObject.asodate}</div>
         <div>
-        <button onClick={() => navigateTo(`/cursosdooperario/${id}`)}>Cursos</button>
+          <div className="box-bnt ">
+            {" "}
+            <button
+              className="bnt-cursos"
+              onClick={() => navigateTo(`/cursosdooperario/${id}`)}
+            >
+              Cursos
+            </button>
+          </div>
         </div>
       </div>
     </div>

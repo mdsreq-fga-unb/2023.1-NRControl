@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
+import "./employeeCourses.css";
 
 function EmployeeCourses() {
   const navigateTo = useNavigate();
@@ -8,9 +9,14 @@ function EmployeeCourses() {
   const [employeeObject, setEmployeeObject] = useState({});
   const [cursos, setCursos] = useState([]);
 
+  const goToEmployees = () => {
+    navigateTo("/employees");
+  };
+
   useEffect(() => {
     if (id) {
-      axios.get(`http://localhost:3005/employeeinfo/byId/${id}`)
+      axios
+        .get(`http://localhost:3005/employeeinfo/byId/${id}`)
         .then((response) => {
           setEmployeeObject(response.data);
           mostrarCursos(response.data.name);
@@ -34,40 +40,46 @@ function EmployeeCourses() {
         console.log(error);
       });
   };
-  
 
   return (
     <div>
-      <h2>Cursos do Funcionário</h2>
-      <div className="tabel">
-        <table>
-          <thead>
-            <tr>
-              <th>Curso</th>
-              <th>Informações</th>
-              <th>Data de conclusão</th>
-              <th>Data de expiração</th>
-            </tr>
-          </thead>
-          <tbody>
-            {cursos.map((curso, key) => (
-              <tr key={key}>
-                <td>
-                  <div className="name">{curso.curso}</div>
-                </td>
-                <td>
-                  <div className="info">{curso.info}</div>
-                </td>
-                <td>
-                  <div className="conclusiondate">{curso.conclusiondate}</div>
-                </td>
-                <td>
-                  <div className="expirationdate">{curso.expirationdate}</div>
-                </td>
+      <div className="main-tabel">
+        <div className="tabel-employees">
+          <div className="header" onClick={goToEmployees}>
+            <h1>
+              Sonda <br /> Engenharia
+            </h1>
+          </div>
+          <h2>Cursos do Funcionário</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Curso</th>
+                <th>Informações</th>
+                <th>Data de conclusão</th>
+                <th>Data de expiração</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {cursos.map((curso, key) => (
+                <tr key={key}>
+                  <td>
+                    <div className="name">{curso.curso}</div>
+                  </td>
+                  <td>
+                    <div className="info">{curso.info}</div>
+                  </td>
+                  <td>
+                    <div className="conclusiondate">{curso.conclusiondate}</div>
+                  </td>
+                  <td>
+                    <div className="expirationdate">{curso.expirationdate}</div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

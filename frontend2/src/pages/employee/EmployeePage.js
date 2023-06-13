@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import "./EmployeePage.css";
 
 function EmployeePage() {
   let { id } = useParams();
@@ -35,8 +36,13 @@ function EmployeePage() {
 
   return (
     <div className="postPage">
-      <h1>Funcionário</h1>
+      <div className="header">
+        <h1>
+          Sonda <br /> Engenharia
+        </h1>
+      </div>
       <div className="post" id="individual">
+        <h1>Funcionário</h1>
         <div className="name">Nome: {employeeObject.name}</div>
         <div className="cpf">CPF: {employeeObject.cpf}</div>
         <div className="email">Email: {employeeObject.email}</div>
@@ -51,7 +57,11 @@ function EmployeePage() {
           Data de admissão: {employeeObject.admissiondate}
         </div>
         <div className="asodate">Data de ASO: {employeeObject.asodate}</div>
-        <button onClick={mostrarCursos}>Cursos</button>
+        <div className="box-bnt">
+          <button onClick={mostrarCursos} className="bnt-cursos">
+            Cursos
+          </button>
+        </div>
       </div>
       {showCursos && (
         <div className="cursos">

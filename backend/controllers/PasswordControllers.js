@@ -1,17 +1,9 @@
-const express = require("express");
-const router = express.Router();
-require("dotenv").config();
-const { Users } = require("../models");
-const { Token } = require("../models");
+const { Users } = require("../models/schemas");
 const bcrypt = require("bcrypt");
-const { sign } = require("jsonwebtoken");
-const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
 const nodemailer = require("nodemailer");
 const Joi = require("joi");
-const passwordComplexity = require("joi-password-complexity");
 const sendgridTransport = require("nodemailer-sendgrid-transport");
-const expirationDate = new Date();
 
 const sendEmail = async (email, subject, text) => {
   try {
@@ -34,7 +26,7 @@ const sendEmail = async (email, subject, text) => {
   }
 };
 
-router.post("/", async (req, res) => {
+exports.resetPasswordRequest = async (req, res) => {
   try {
     const emailSchema = Joi.object({
       email: Joi.string().email().required().label("Email"),
@@ -90,9 +82,9 @@ router.post("/", async (req, res) => {
   } catch (error) {
     res.status(500).send({ message: "Internal Server Error" });
   }
-});
+};
 
-router.get("/:id/:token", async (req, res) => {
+exports.validateResetPasswordUrl = async (req, res) => {
   try {
     const user = await Users.findOne({
       where: {
@@ -114,9 +106,9 @@ router.get("/:id/:token", async (req, res) => {
   } catch (error) {
     res.status(500).send({ message: "Internal Server Error" });
   }
-});
+};
 
-router.post("/:id/:token", async (req, res) => {
+exports.resetPassword = async (req, res) => {
   const newPassword = req.body.password;
   const sentToken = req.params.token;
 
@@ -147,6 +139,4 @@ router.post("/:id/:token", async (req, res) => {
     console.log(err);
     res.status(500).json({ error: "Internal Server Error" });
   }
-});
-
-module.exports = router;
+};

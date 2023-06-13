@@ -1,14 +1,12 @@
-const express = require("express");
-const router = express.Router();
-const { Cursos } = require("../models");
+const { Cursos } = require("../models/schemas");
 
-router.get("/", (req, res) => {
+exports.getCursos = (req, res) => {
   Cursos.findAll()
-    .then((users) => res.json(users))
+    .then((cursos) => res.json(cursos))
     .catch((err) => res.json(err));
-});
+};
 
-router.post("/", (req, res) => {
+exports.createCurso = (req, res) => {
   const { name, curso, info, conclusiondate, expirationdate } = req.body;
 
   Cursos.create({
@@ -24,6 +22,4 @@ router.post("/", (req, res) => {
     .catch((err) => {
       res.status(500).json(err);
     });
-});
-
-module.exports = router;
+};

@@ -145,12 +145,12 @@ const Register = () => {
                 />
                 <ErrorMessage name="asodate" component="span" />
               </div>
+              <button type="submit" className="cadastrar">
+                Cadastrar
+              </button>
             </Form>
           </Formik>
         </div>
-        <button type="submit" className="cadastrar">
-          Cadastrar
-        </button>
       </div>
     </div>
   );

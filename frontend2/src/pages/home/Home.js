@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   BsFillPersonDashFill,
-  BsPersonFillGear,
+  BsPersonVcard,
   BsFillPersonPlusFill,
 } from "react-icons/bs";
 
@@ -13,6 +13,9 @@ function Home() {
   const navigateTo = useNavigate();
   const goToRegister = () => {
     navigateTo("/register");
+  };
+  const goToCursos = () => {
+    navigateTo("/cursos");
   };
 
   useEffect(() => {
@@ -42,7 +45,7 @@ function Home() {
         <div className="icons-sidebar">
           <BsFillPersonPlusFill onClick={goToRegister} />
           <BsFillPersonDashFill />
-          <BsPersonFillGear />
+          <BsPersonVcard onClick={goToCursos} />
         </div>
       </div>
       <div className="box">

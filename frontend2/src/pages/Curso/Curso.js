@@ -13,6 +13,9 @@ const Curso = () => {
   const [curso, setCurso] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [usersPerPage] = useState(10);
+  const goToEmployees = () => {
+    navigateTo("/employees");
+  };
 
   useEffect(() => {
     const accessToken = sessionStorage.getItem("accessToken");
@@ -84,6 +87,9 @@ const Curso = () => {
   return (
     <div className="page-container">
       <div className="content-container">
+        <div className="header">
+          <h1 onClick={goToEmployees}>Sonda Engenharia</h1>
+        </div>
         <div className="form">
           <form onSubmit={enviarDados}>
             <input
@@ -111,7 +117,7 @@ const Curso = () => {
               placeholder="Insira a data de expiração do curso"
               onChange={(e) => setExpirationDate(e.target.value)}
             />
-            <button>Adicionar</button>
+            <button className="btn-adicionar">Adicionar</button>
           </form>
         </div>
         <div className="table-container">
@@ -124,7 +130,7 @@ const Curso = () => {
                 <th>Data de Conclusão</th>
                 <th>Data de Expiração</th>
                 {/* <th className="curso-column">Curso</th> */}
-                <th>Código</th>
+                <th>Modificar</th>
               </tr>
             </thead>
             <tbody>
@@ -140,7 +146,7 @@ const Curso = () => {
                       {formatarTópicos(user.curso)}
                     </td>
                     <td>
-                      <button>Editar</button>
+                      <button className="btn-editar">Editar</button>
                     </td>
                   </tr>
                 );

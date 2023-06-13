@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import "./EmployeePage.css";
+import { useNavigate } from "react-router-dom";
 
 function EmployeePage() {
+
+  const navigateTo = useNavigate();
+
   let { id } = useParams();
   const [employeeObject, setEmployeeObject] = useState({});
-  const [showCursos, setShowCursos] = useState(false);
+  const [showCursos, setShowCursos] = useState([]);
   const [cursos, setCursos] = useState([]);
 
   useEffect(() => {
@@ -36,13 +39,8 @@ function EmployeePage() {
 
   return (
     <div className="postPage">
-      <div className="header">
-        <h1>
-          Sonda <br /> Engenharia
-        </h1>
-      </div>
+      <h1>Funcionário</h1>
       <div className="post" id="individual">
-        <h1>Funcionário</h1>
         <div className="name">Nome: {employeeObject.name}</div>
         <div className="cpf">CPF: {employeeObject.cpf}</div>
         <div className="email">Email: {employeeObject.email}</div>
@@ -57,22 +55,10 @@ function EmployeePage() {
           Data de admissão: {employeeObject.admissiondate}
         </div>
         <div className="asodate">Data de ASO: {employeeObject.asodate}</div>
-        <div className="box-bnt">
-          <button onClick={mostrarCursos} className="bnt-cursos">
-            Cursos
-          </button>
+        <div>
+        <button onClick={() => navigateTo(`/cursosdooperario/${id}`)}>Cursos</button>
         </div>
       </div>
-      {showCursos && (
-        <div className="cursos">
-          <h2>Cursos do Funcionário</h2>
-          <ul>
-            {cursos.map((curso, index) => (
-              <li key={index}>{curso}</li>
-            ))}
-          </ul>
-        </div>
-      )}
     </div>
   );
 }

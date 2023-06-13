@@ -9,8 +9,8 @@ function EmployeePage() {
 
   let { id } = useParams();
   const [employeeObject, setEmployeeObject] = useState({});
-  const [setShowCursos] = useState([]);
-  const [setCursos] = useState([]);
+  const [showCursos, setShowCursos] = useState([]);
+  const [cursos, setCursos] = useState([]);
   const goToEmployees = () => {
     navigateTo("/employees");
   };

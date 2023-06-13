@@ -5,6 +5,8 @@ import axios from "axios";
 function EmployeePage() {
   let { id } = useParams();
   const [employeeObject, setEmployeeObject] = useState({});
+  const [showCursos, setShowCursos] = useState(false);
+  const [cursos, setCursos] = useState([]);
 
   useEffect(() => {
     if (id) {
@@ -16,15 +18,32 @@ function EmployeePage() {
     }
   }, [id]);
 
+  const mostrarCursos = () => {
+    axios
+      .get(`http://localhost:3005/funcionario?name=${employeeObject.name}`)
+      .then((response) => {
+        const cursosDoFuncionario = response.data.filter(
+          (curso) => curso.name === employeeObject.name
+        );
+        setCursos(cursosDoFuncionario.map((curso) => curso.info));
+        setShowCursos(true);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
-    <div classname="postPage">
-      <h1> Funcionário</h1>
+    <div className="postPage">
+      <h1>Funcionário</h1>
       <div className="post" id="individual">
         <div className="name">Nome: {employeeObject.name}</div>
         <div className="cpf">CPF: {employeeObject.cpf}</div>
         <div className="email">Email: {employeeObject.email}</div>
         <div className="address">Endereço: {employeeObject.address}</div>
-        <div className="phonenumber">Telefone{employeeObject.phonenumber}</div>
+        <div className="phonenumber">
+          Telefone: {employeeObject.phonenumber}
+        </div>
         <div className="birthday">
           Data de nascimento: {employeeObject.birthday}
         </div>
@@ -32,8 +51,18 @@ function EmployeePage() {
           Data de admissão: {employeeObject.admissiondate}
         </div>
         <div className="asodate">Data de ASO: {employeeObject.asodate}</div>
-        <button>Cursos</button>
+        <button onClick={mostrarCursos}>Cursos</button>
       </div>
+      {showCursos && (
+        <div className="cursos">
+          <h2>Cursos do Funcionário</h2>
+          <ul>
+            {cursos.map((curso, index) => (
+              <li key={index}>{curso}</li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 }

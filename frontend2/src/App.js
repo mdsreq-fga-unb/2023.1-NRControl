@@ -7,6 +7,7 @@ import Password from "./pages/password/password";
 import PasswordReset from "./pages/passwordReset/PasswordReset";
 import Cursos from "./pages/Curso/Curso";
 import EmployeePage from "./pages/employee/EmployeePage";
+import EmployeeCourses from "./pages/employeeCourses/employeeCourses";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/recuperarsenha" element={<Password />} />
         <Route path="/cursos" element={<Cursos />} />
+        <Route path="/cursosdooperario/:id" element={<EmployeeCourses/>} />
         <Route path="/employee/:id" element={<EmployeePage />} />
         <Route path="/api/password-reset/:id/:token" element={<PasswordReset />}
         />

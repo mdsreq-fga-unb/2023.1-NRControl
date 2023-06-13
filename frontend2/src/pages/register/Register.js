@@ -6,8 +6,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import {
   BsFillPersonDashFill,
-  BsPersonBadge,
-  BsPersonFillGear,
+  BsPersonVcard,
   BsFillPersonPlusFill,
 } from "react-icons/bs";
 
@@ -82,7 +81,7 @@ const Register = () => {
           <div className="icons-sidebar">
             <BsFillPersonPlusFill />
             <BsFillPersonDashFill />
-            <BsPersonFillGear />
+            <BsPersonVcard />
           </div>
         </div>
       </div>

@@ -16,6 +16,9 @@ const Register = () => {
   const goToEmployees = () => {
     navigateTo("/employees");
   };
+  const goToCursos = () => {
+    navigateTo("/cursos");
+  };
 
   useEffect(() => {
     const accessToken = sessionStorage.getItem("accessToken");
@@ -81,7 +84,7 @@ const Register = () => {
           <div className="icons-sidebar">
             <BsFillPersonPlusFill />
             <BsFillPersonDashFill />
-            <BsPersonVcard />
+            <BsPersonVcard onClick={goToCursos} />
           </div>
         </div>
       </div>
@@ -145,9 +148,11 @@ const Register = () => {
                 />
                 <ErrorMessage name="asodate" component="span" />
               </div>
-              <button type="submit" className="cadastrar">
-                Cadastrar
-              </button>
+              <div className="baixo">
+                <button type="submit" className="cadastrar">
+                  Cadastrar
+                </button>
+              </div>
             </Form>
           </Formik>
         </div>

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
@@ -6,8 +6,10 @@ import { useNavigate } from "react-router-dom";
 import { BsFillPersonDashFill, BsPersonVcard, BsFillPersonPlusFill } from "react-icons/bs";
 import "./Register.css";
 import InputMask from 'react-input-mask';
+import moment from "moment";
 
-const Register = () => {
+function Register() {
+  const [successMessage, setSuccessMessage] = useState("");
   const navigateTo = useNavigate();
 
   const goToEmployees = () => {
@@ -52,7 +54,7 @@ const Register = () => {
     asodate: Yup.date().max(new Date(), "A data de ASO não pode ser futura").required("A data de ASO é obrigatória"),
   });
 
-  const onSubmit = (data) => {
+  const onSubmit = (data, { resetForm }) => {
     const accessToken = sessionStorage.getItem("accessToken");
 
     if (!accessToken) {
@@ -60,14 +62,26 @@ const Register = () => {
       return;
     }
 
+    const formattedData = {
+      ...data,
+      birthday: moment(data.birthday).format("YYYY-MM-DD"),
+      admissiondate: moment(data.admissiondate).format("YYYY-MM-DD"),
+      asodate: moment(data.asodate).format("YYYY-MM-DD"),
+    };
+
     axios
-      .post("http://localhost:3005/employeeinfo", data, {
+      .post("http://localhost:3005/employeeinfo", formattedData, {
         headers: {
           Authorization: "Bearer " + accessToken,
         },
       })
       .then((response) => {
         console.log("IT WORKED");
+        setSuccessMessage("Funcionário cadastrado com sucesso!");
+        resetForm();
+        setTimeout(() => {
+          setSuccessMessage("");
+        }, 3000);
       })
       .catch((error) => {
         console.log(error);
@@ -105,13 +119,18 @@ const Register = () => {
                 />
                 <ErrorMessage name="name" component="span" />
 
-                <Field
-                  id="inputCreatePost"
-                  name="cpf"
-                  placeholder="CPF"
-                  as={InputMask}
-                  mask="999.999.999-99"
-                />
+                <Field name="cpf" placeholder="CPF">
+                  {({ field }) => (
+                    <InputMask
+                      id="inputCreatePost"
+                      placeholder="CPF"
+                      {...field}
+                      mask="999.999.999-99"
+                      type="text"
+                      maskChar=""
+                    />
+                  )}
+                </Field>
                 <ErrorMessage name="cpf" component="span" />
 
                 <Field
@@ -130,21 +149,25 @@ const Register = () => {
               </div>
 
               <div className="right-card">
-                <Field
-                  id="inputCreatePost"
-                  name="phonenumber"
-                  placeholder="Telefone"
-                  as={InputMask}
-                  mask="(99) 99999-9999"
-                />
+              <Field name="phonenumber" placeholder="Telefone">
+                  {({ field }) => (
+                    <InputMask
+                      id="inputCreatePost"
+                      placeholder="Telefone"
+                      {...field}
+                      mask="(99) 99999-9999"
+                      maskChar=""
+                    />
+                  )}
+                </Field>
                 <ErrorMessage name="phonenumber" component="span" />
 
                 <Field
                   id="inputCreatePost"
                   name="birthday"
                   placeholder="Data de nascimento"
-                  as={InputMask}
-                  mask="99/99/9999"
+                  type="date"
+                  autoComplete="off"
                 />
                 <ErrorMessage name="birthday" component="span" />
 
@@ -152,8 +175,8 @@ const Register = () => {
                   id="inputCreatePost"
                   name="admissiondate"
                   placeholder="Data de admissão"
-                  as={InputMask}
-                  mask="99/99/9999"
+                  type="date"
+                  autoComplete="off"
                 />
                 <ErrorMessage name="admissiondate" component="span" />
 
@@ -161,8 +184,8 @@ const Register = () => {
                   id="inputCreatePost"
                   name="asodate"
                   placeholder="Data de ASO"
-                  as={InputMask}
-                  mask="99/99/9999"
+                  type="date"
+                  autoComplete="off"
                 />
                 <ErrorMessage name="asodate" component="span" />
               </div>
@@ -174,9 +197,11 @@ const Register = () => {
             </Form>
           </Formik>
         </div>
+        {successMessage && <div className="success-message">{successMessage}</div>}
       </div>
     </div>
   );
 };
+
 
 export default Register;

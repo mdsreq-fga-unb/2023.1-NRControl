@@ -6,7 +6,6 @@ import "./employeeCourses.css";
 function EmployeeCourses() {
   const navigateTo = useNavigate();
   const { id } = useParams();
-  const [employeeObject, setEmployeeObject] = useState({});
   const [cursos, setCursos] = useState([]);
 
   const goToEmployees = () => {
@@ -26,7 +25,6 @@ function EmployeeCourses() {
       axios
         .get(`http://localhost:3005/employeeinfo/byId/${id}`)
         .then((response) => {
-          setEmployeeObject(response.data);
           mostrarCursos(response.data.name);
         })
         .catch((error) => {

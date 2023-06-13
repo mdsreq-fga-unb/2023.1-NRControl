@@ -8,6 +8,7 @@ import {
   BsPersonVcard,
   BsFillPersonPlusFill,
 } from "react-icons/bs";
+import { MdAssignmentAdd } from "react-icons/md";
 
 function Home() {
   const navigateTo = useNavigate();
@@ -46,6 +47,7 @@ function Home() {
           <BsFillPersonPlusFill onClick={goToRegister} />
           <BsFillPersonDashFill />
           <BsPersonVcard onClick={goToCursos} />
+          <MdAssignmentAdd />
         </div>
       </div>
       <div className="box">

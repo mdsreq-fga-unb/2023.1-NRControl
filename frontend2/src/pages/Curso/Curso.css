@@ -1,0 +1,120 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+}
+.page-container {
+  width: 100vw;
+  height: 100vh;
+  background: #200c02;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.table {
+  width: 90vw;
+  height: 75vh;
+  padding: 30px 35px;
+  background: #4c1d06;
+  border-radius: 20px;
+  box-shadow: 0px 10px 40px #020100;
+  align-self: center;
+}
+.btn-editar {
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-weight: 900;
+  color: #381503;
+  background: #f85605;
+  cursor: pointer;
+  box-shadow: 0px 10px 40px -12px #ec5306;
+}
+.btn-editar:hover {
+  color: #fafafa;
+  box-shadow: 10px 10px 20px 15px #050505;
+}
+.form {
+  width: 90vw;
+  padding: 30px;
+  margin: 20px 0px;
+  background: #4c1d06;
+  border-radius: 20px;
+  box-shadow: 0px 10px 40px #020100;
+}
+.form > form > input {
+  width: 17%;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 0px;
+  margin: 0px 10px;
+  background: #463026;
+  color: white;
+  font-size: 12pt;
+  box-shadow: 0px 10px 40px #020100;
+  outline: none;
+  box-sizing: border-box;
+}
+.btn-adicionar {
+  padding: 0.8%;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-weight: 900;
+  color: #381503;
+  background: #f85605;
+  cursor: pointer;
+  box-shadow: 0px 10px 40px -12px #ec5306;
+}
+.btn-adicionar:hover {
+  color: #fafafa;
+  box-shadow: 10px 10px 20px 15px #050505;
+}
+.pagination {
+  display: flex;
+}
+.active {
+  padding: 5px;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  font-weight: 900;
+  color: #381503;
+  background: #f85605;
+  cursor: pointer;
+  box-shadow: 0px 10px 40px -12px #ec5306;
+}
+th,
+td {
+  border: 2px solid #160903;
+  border-collapse: collapse;
+  padding: 5px 2px;
+}
+td {
+  width: 5%;
+}
+
+th {
+  text-align: center;
+  color: #0a0502;
+  font-weight: 400;
+  font-size: 2vw;
+}
+td {
+  text-align: center;
+  color: #f85605;
+  font-weight: 400;
+  font-size: 1.2vw;
+  cursor: pointer;
+}
+td:hover {
+  color: #020100;
+}

@@ -10,7 +10,7 @@ function EmployeePage() {
   let { id } = useParams();
   const [employeeObject, setEmployeeObject] = useState({});
   const [showCursos, setShowCursos] = useState([]);
-  const [cursos, setCursos] = useState([]);
+  const [setCursos] = useState([]);
   const goToEmployees = () => {
     navigateTo("/employees");
   };
@@ -33,7 +33,7 @@ function EmployeePage() {
     }
   }, [id]);
 
-  const mostrarCursos = () => {
+  const showCursos = () => {
     axios
       .get(`http://localhost:3005/funcionario?name=${employeeObject.name}`)
       .then((response) => {

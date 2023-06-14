@@ -49,14 +49,9 @@ function LoginPage() {
   return (
     <div className="main-login">
       <div className="left-login">
-        <h1>
-          Sonda <br />
-          Engenharia
-        </h1>
         <img src={capa} alt="equipe" className="img" />
+        <img src={logo} alt="logo" className="sonda" />
       </div>
-      <img src={logo} alt="logo" className="sonda" />
-
       <div className="right-login">
         <div className="card-login">
           <h1>Login</h1>

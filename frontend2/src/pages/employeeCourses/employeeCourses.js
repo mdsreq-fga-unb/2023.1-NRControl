@@ -49,8 +49,8 @@ function EmployeeCourses() {
 
   return (
     <div>
-      <div className="main-tabel">
-        <div className="tabel-employees">
+      <div className="main-table">
+        <div className="table-employees">
           <div className="header" onClick={goToEmployees}>
             <h1>
               Sonda <br /> Engenharia

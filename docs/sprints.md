@@ -102,5 +102,5 @@ Assim como na Sprint 1 e 2, não utilizamos Integração Contínua, Padrões de 
 #### Entrega da sprint 4
 
 ```bash
-https://sonda-engenharia.vercel.app
+http://sonda-engenharia-mds.vercel.app/
 ```

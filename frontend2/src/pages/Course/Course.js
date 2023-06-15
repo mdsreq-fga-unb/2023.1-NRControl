@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
-import "./Curso.css";
+import "./Course.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import InputMask from "react-input-mask";
+import logo from "./../../assets/images/logo.png";
 
-const Curso = () => {
+const Course = () => {
   const navigateTo = useNavigate();
   const [users, setUsers] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const usersPerPage = 10;
+  const usersPerPage = 8;
 
   const goToEmployees = () => {
     navigateTo("/employees");
@@ -26,18 +27,18 @@ const Curso = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3005/funcionario")
+      .get("http://localhost:3005/course")
       .then((response) => setUsers(response.data))
       .catch((err) => console.log(err));
   }, []);
 
-  const enviarDados = async (values, { resetForm }) => {
+  const sendData = async (values, { resetForm }) => {
     try {
       const id = users.length > 0 ? users[users.length - 1].id + 1 : 1;
-      const response = await axios.post("http://localhost:3005/funcionario", {
+      const response = await axios.post("http://localhost:3005/course", {
         id: id,
         name: values.name,
-        curso: values.curso,
+        course: values.course,
         info: values.info,
         conclusiondate: values.conclusiondate,
         expirationdate: values.expirationdate,
@@ -47,7 +48,7 @@ const Curso = () => {
         setUsers([...users, response.data]);
         resetForm();
       } else {
-        console.log("Ocorreu um erro ao adicionar o usuário.");
+        console.log("Ocorreu um erro ao adicionar o curso.");
       }
     } catch (error) {
       console.log(error);
@@ -56,7 +57,7 @@ const Curso = () => {
 
   const validationSchema = Yup.object().shape({
     name: Yup.string().required("O nome do funcionário é obrigatório"),
-    curso: Yup.string().required("O código do curso é obrigatório"),
+    course: Yup.string().required("O código do curso é obrigatório"),
     info: Yup.string().required("As informações do curso são obrigatórias"),
     conclusiondate: Yup.string()
       .max(new Date(), "A data de conclusão não pode ser futura")
@@ -68,16 +69,16 @@ const Curso = () => {
 
   const initialValues = {
     name: "",
-    curso: "",
+    course: "",
     info: "",
     conclusiondate: "",
     expirationdate: "",
   };
 
-  const formatarTópicos = (curso) => {
-    if (curso && curso.length > 0) {
-      return curso.split(",").map((topico, index) => (
-        <div key={index}>{topico}</div>
+  const topics = (course) => {
+    if (course && course.length > 0) {
+      return course.split(",").map((topics, index) => (
+        <div key={index}>{topics}</div>
       ));
     }
     return "";
@@ -97,29 +98,29 @@ const Curso = () => {
   return (
     <div className="page-container">
       <div className="content-container">
-        <div className="header">
-          <h1 onClick={goToEmployees}>Sonda Engenharia</h1>
-        </div>
+      <div className="logo" onClick={goToEmployees}>
+          <img src={logo} alt="SONDA Engenharia" className="sonda" />
+          </div>
         <div className="form">
           <Formik
             initialValues={initialValues}
-            onSubmit={enviarDados}
+            onSubmit={sendData}
             validationSchema={validationSchema}
           >
             <Form>
-              <Field type="text" name="name" placeholder="Nome do funcionário" />
+              <Field type="text" name="name" placeholder="  Nome do funcionário" />
               <ErrorMessage name="name" component="span" />
 
-              <Field type="text" name="curso" placeholder="Código do curso" />
-              <ErrorMessage name="curso" component="span" />
+              <Field type="text" name="course" placeholder="  Código do curso" />
+              <ErrorMessage name="course" component="span" />
 
-              <Field type="text" name="info" placeholder="Informações do curso" />
+              <Field type="text" name="info" placeholder="  Informações do curso" />
               <ErrorMessage name="info" component="span" />
 
               <Field
                 id="inputCreatePost"
                 name="conclusiondate"
-                placeholder="Data de conclusão"
+                placeholder="  Data de conclusão"
                 as={InputMask}
                 mask="99/99/9999"
               />
@@ -128,13 +129,13 @@ const Curso = () => {
               <Field
                 id="inputCreatePost"
                 name="expirationdate"
-                placeholder="Data de expiração"
+                placeholder=" Data de expiração"
                 as={InputMask}
                 mask="99/99/9999"
               />
               <ErrorMessage name="expirationdate" component="span" />
 
-              <button className="btn-adicionar" type="submit">
+              <button className="btn-add" type="submit">
                 Adicionar
               </button>
             </Form>
@@ -157,7 +158,7 @@ const Curso = () => {
                 <tr key={index}>
                   <td>{user.id}</td>
                   <td>{user.name}</td>
-                  <td className="curso-column">{formatarTópicos(user.curso)}</td>
+                  <td className="course-column">{topics(user.course)}</td>
                   <td>{user.info}</td>
                   <td>{user.conclusiondate}</td>
                   <td>{user.expirationdate}</td>
@@ -166,7 +167,7 @@ const Curso = () => {
             </tbody>
           </table>
         </div>
-        <div className="pagination">
+        <div className="pagination2">
           {pages.map((pageNumber) => (
             <button
               key={pageNumber}
@@ -182,4 +183,4 @@ const Curso = () => {
   );
 };
 
-export default Curso;
+export default Course;

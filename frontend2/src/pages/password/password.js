@@ -41,7 +41,7 @@ function Password() {
         </div>
         <div className="card-password">
           <h1>Recuperar a Senha</h1>
-          <p>Insira o email para enviamos a sua senha!</p>
+          <p>Insira o email para recuperar a sua senha!</p>
           <form onSubmit={enviarEmail}>
             <input
               type="email"

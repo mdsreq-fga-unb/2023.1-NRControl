@@ -22,8 +22,8 @@ exports.loginUser = async (req, res) => {
   if (!user) {
     res.json({ error: "Email não existe no banco de dados" });
   } else {
-    bcrypt.compare(password, user.password).then((validar) => {
-      if (!validar) {
+    bcrypt.compare(password, user.password).then((validate) => {
+      if (!validate) {
         res.json({ error: "Email e/ou Senha Incorreta" });
       } else {
         const token = sign(

@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import "./employeeCourses.css";
+import logo from "./../../assets/images/logo.png";
 
 function EmployeeCourses() {
   const navigateTo = useNavigate();
   const { id } = useParams();
-  const [cursos, setCursos] = useState([]);
+  const [courses, setCourses] = useState([]);
 
   const goToEmployees = () => {
     navigateTo("/employees");
@@ -25,7 +26,7 @@ function EmployeeCourses() {
       axios
         .get(`http://localhost:3005/employeeinfo/byId/${id}`)
         .then((response) => {
-          mostrarCursos(response.data.name);
+          showCourses(response.data.name);
         })
         .catch((error) => {
           console.log(error);
@@ -33,14 +34,14 @@ function EmployeeCourses() {
     }
   }, [id]);
 
-  const mostrarCursos = (name) => {
+  const showCourses = (name) => {
     axios
-      .get(`http://localhost:3005/funcionario?name=${name}`)
+      .get(`http://localhost:3005/course?name=${name}`)
       .then((response) => {
-        const cursosDoFuncionario = response.data.filter(
-          (curso) => curso.name === name
+        const employeeCourses = response.data.filter(
+          (course) => course.name === name
         );
-        setCursos(cursosDoFuncionario);
+        setCourses(employeeCourses);
       })
       .catch((error) => {
         console.log(error);
@@ -52,9 +53,9 @@ function EmployeeCourses() {
       <div className="main-table">
         <div className="table-employees">
           <div className="header" onClick={goToEmployees}>
-            <h1>
-              Sonda <br /> Engenharia
-            </h1>
+          <div className="logo" onClick={goToEmployees}>
+          <img src={logo} alt="SONDA Engenharia" className="sonda" />
+          </div>
           </div>
           <h2>Cursos do Funcionário</h2>
           <table>
@@ -67,19 +68,19 @@ function EmployeeCourses() {
               </tr>
             </thead>
             <tbody>
-              {cursos.map((curso, key) => (
+              {courses.map((course, key) => (
                 <tr key={key}>
                   <td>
-                    <div className="name">{curso.curso}</div>
+                    <div className="name">{course.course}</div>
                   </td>
                   <td>
-                    <div className="info">{curso.info}</div>
+                    <div className="info">{course.info}</div>
                   </td>
                   <td>
-                    <div className="conclusiondate">{curso.conclusiondate}</div>
+                    <div className="conclusiondate">{course.conclusiondate}</div>
                   </td>
                   <td>
-                    <div className="expirationdate">{curso.expirationdate}</div>
+                    <div className="expirationdate">{course.expirationdate}</div>
                   </td>
                 </tr>
               ))}

@@ -3,10 +3,11 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { BsFillPersonDashFill, BsPersonVcard, BsFillPersonPlusFill } from "react-icons/bs";
+import { BsFillPersonDashFill, BsPersonVcard } from "react-icons/bs";
 import "./Register.css";
 import InputMask from 'react-input-mask';
 import moment from "moment";
+import logo from "./../../assets/images/logo.png";
 
 function Register() {
   const [successMessage, setSuccessMessage] = useState("");
@@ -90,18 +91,17 @@ function Register() {
 
   return (
     <div className="page">
-      <div className="header">
-        <h1 onClick={goToEmployees}>
-          Sonda <br /> Engenharia
-        </h1>
-        <div className="sidebar">
-          <div className="icons-sidebar">
-            <BsFillPersonPlusFill />
-            <BsFillPersonDashFill />
-            <BsPersonVcard onClick={goToCursos} />
-          </div>
+    <div className="header">
+    <div className="logo" onClick={goToEmployees}>
+          <img src={logo} alt="SONDA Engenharia" className="sonda" />
+    </div>
+      <div className="sidebar">
+        <div className="icons-sidebar">
+          <BsFillPersonDashFill />
+          <BsPersonVcard onClick={goToCursos} />
         </div>
       </div>
+    </div>
       <div className="container">
         <h1> Cadastrar Funcionário</h1>
         <div className="createPostPage">

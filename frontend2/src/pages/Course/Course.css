@@ -16,30 +16,14 @@
 }
 .table {
   width: 90vw;
-  height: 75vh;
+  height: 60vh;
   padding: 30px 35px;
   background: #4c1d06;
   border-radius: 20px;
   box-shadow: 0px 10px 40px #020100;
   align-self: center;
 }
-.btn-editar {
-  padding: 10px;
-  border: none;
-  border-radius: 10px;
-  outline: none;
-  text-transform: uppercase;
-  letter-spacing: 4px;
-  font-weight: 900;
-  color: #381503;
-  background: #f85605;
-  cursor: pointer;
-  box-shadow: 0px 10px 40px -12px #ec5306;
-}
-.btn-editar:hover {
-  color: #fafafa;
-  box-shadow: 10px 10px 20px 15px #050505;
-}
+
 .form {
   width: 90vw;
   padding: 30px;
@@ -61,7 +45,7 @@
   outline: none;
   box-sizing: border-box;
 }
-.btn-adicionar {
+.btn-add {
   padding: 0.8%;
   border: none;
   border-radius: 10px;
@@ -74,12 +58,9 @@
   cursor: pointer;
   box-shadow: 0px 10px 40px -12px #ec5306;
 }
-.btn-adicionar:hover {
+.btn-add:hover {
   color: #fafafa;
   box-shadow: 10px 10px 20px 15px #050505;
-}
-.pagination {
-  display: flex;
 }
 .active {
   padding: 5px;
@@ -117,4 +98,30 @@ td {
 }
 td:hover {
   color: #020100;
+}
+
+.pagination2 {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination2 button {
+  background-color: #4c1d06;
+  color: #f85605;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 12px;
+  margin: 0 4px;
+  cursor: pointer;
+}
+
+.pagination2 button.active {
+  background-color: #f85605;
+  color: #fff;
+}
+
+.pagination2 button:hover {
+  background-color: #f85605;
+  color: #fff;
 }

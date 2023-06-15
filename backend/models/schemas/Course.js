@@ -1,10 +1,10 @@
 module.exports = (sequelize, DataTypes) => {
-  const Cursos = sequelize.define("Cursos", {
+  const Course = sequelize.define("Course", {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    curso: {
+    course: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -19,5 +19,5 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DATEONLY,
     },
   });
-  return Cursos;
+  return Course;
 };

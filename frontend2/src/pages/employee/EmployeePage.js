@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import logo from "./../../assets/images/logo.png";
 
 function EmployeePage() {
   const navigateTo = useNavigate();
@@ -34,9 +35,9 @@ function EmployeePage() {
   return (
     <div className="postPage">
       <div className="header">
-        <h1 onClick={goToEmployees}>
-          Sonda <br /> Engenharia
-        </h1>
+      <div className="logo" onClick={goToEmployees}>
+          <img src={logo} alt="SONDA Engenharia" className="sonda" />
+          </div>
       </div>
       <div className="post" id="individual">
         <h1>Funcionário</h1>
@@ -60,7 +61,7 @@ function EmployeePage() {
           <div className="box-bnt ">
             {" "}
             <button
-              className="bnt-cursos"
+              className="bnt-courses"
               onClick={() => navigateTo(`/cursosdooperario/${id}`)}
             >
               Cursos

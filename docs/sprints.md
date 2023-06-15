@@ -7,6 +7,7 @@
 |17/05/2023|0.1|Criação do documento|Gabriel e Vinícius|
 |21/05/2023|0.2|Descrição das sprints realizadas|Júlia|
 |12/06/2023|0.3|Atualização da descrição das sprints|Vinícius|
+|14/06/2023|0.4|Detalhamento da sprint 4|Vinícius|
 
 ## Sprint 1(06/04/2023-20/04/2023)
 
@@ -74,8 +75,8 @@ Assim como na Sprint 1 e 2, não utilizamos Integração Contínua, Padrões de 
 |---------|----|---------|-----------|
 |Sprint planning|30/05/23|A equipe se reuniu para definir o escopo da entrega da sprint e a disponibilidade de cada membro. Foi definido que o nosso escopo corresponderia a todo o MVP1.|Gabriel, Felipe, Júlia, Manoel e Vinícius|
 |Daily Scrum|30/05/23-13/06/23|Foram feitos diariamente feedbacks, nas plataformas de comunicação(Teams e WhatsApp)|Gabriel, Felipe, Júlia, Manoel e Vinícius|
-|Sprint review|12/06/2023|PENDENTE|Gabriel, Felipe, Júlia, Manoel, Vinícius e Olenice(Product Owner)|
-|Sprint retrospective|13/06/2023|A reunião que corresponde à retrospectiva será realizada na terça-feira (dia 13/06) com todos os membros da equipe presentes.|Gabriel, Felipe, Júlia, Manoel e Vinícius|
+|Sprint review|12/06/2023|Foi realizada uma reunião com o cliente, via Google Meet, apresentando a implementação das histórias de usuário que foram o escopo da sprint, na qual ele nos deu o seu feedback acerca da entrega, em que foram apontados pontos de melhoria acerca da organização da listagem de operário e das datas de admissão na empresa e de conclusão do curso.|Gabriel, Felipe, Júlia, Manoel, Vinícius e Olenice(Product Owner)|
+|Sprint retrospective|15/06/2023|A reunião que corresponde à retrospectiva será realizada na quinta-feira (dia 15/06) com todos os membros da equipe presentes. Optamos por essa data para poder levar em conta o feedback da apresentação para a turma, a fim de podermos refletir melhor nos pontos de melhoria.|Gabriel, Felipe, Júlia, Manoel e Vinícius|
 
 ### XP
 
@@ -85,7 +86,18 @@ Assim como na Sprint 1 e 2, não utilizamos Integração Contínua, Padrões de 
 
 - Testes Unitários: os testes unitários foram devidamente realizados para atender a Definition of Done de cada história.
 
-- Padrões de Codificação, Refatoração, e Programação em Pares: foram usados em conjunto nos horários de aula e em outros horários que atendessem o cronograma das duplas.
+- Padrões de Codificação e Refatoração: foi usado a refatoração para aplicar os padrões de codificação adotados pelo grupo durante todo o decorrer do desenvolvimento, para evitar o uso de variáveis globais, manter um padrão camelCase e usar apenas nomes significativos nas variáveis usadas.
+
+- Programação em pares:
+
+|Dupla|Atividade|Data|
+|-----|---------|----|
+|Julia/Felipe|Estudo do banco de dados|31/05/23|
+|Manoel/Vinicius|Programação Front-end|01/06/23|
+|Julia/Felipe|Adição do login|05/06/23|
+|Julia/Gabriel|Adição do cadastro de operario|06/06/23|
+|Julia/Manoel|Correção dos bugs do merge|09/06/23|
+|Manoel/Vinicius|Ajustes no Front-end|12/06/23|
 
 #### Entrega da sprint 4
 

@@ -51,3 +51,8 @@ As lições aprendidas pelo grupo no decorrer da unidade foram:
 <figure class="video_container">
     <iframe width="560" height="315" src="https://www.youtube.com/embed/_QtY9dv6DEM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 </figure>
+
+### Feedback do cliente acerca da entrega da sprint 4
+<figure class="video_container">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/q8z_07OgZFc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</figure>

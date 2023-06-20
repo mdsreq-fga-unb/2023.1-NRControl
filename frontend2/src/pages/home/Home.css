@@ -30,7 +30,6 @@ body {
 
 .box {
   width: 40vw;
-  height: 75vh;
   display: flex;
   flex-direction: column;
   padding: 30px 35px;
@@ -41,12 +40,11 @@ body {
 
 .info {
   width: 100%;
-  height: calc(100% - 70px); 
+  height: calc(100% - 70px);
   display: flex;
   flex-direction: column;
   padding: 30px 20px;
 }
-
 
 .employee-box {
   cursor: pointer;
@@ -69,7 +67,7 @@ body {
 .pagination {
   display: flex;
   justify-content: center;
-  margin-top: auto; 
+  margin-top: auto;
 }
 
 .pagination button {
@@ -91,4 +89,3 @@ body {
   background-color: #f85605;
   color: #fff;
 }
-

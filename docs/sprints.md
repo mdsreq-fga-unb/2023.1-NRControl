@@ -103,4 +103,12 @@ Assim como na Sprint 1 e 2, não utilizamos Integração Contínua, Padrões de 
 
 ```bash
 http://sonda-engenharia-mds.vercel.app/
+Login: adm@gmail.com
+Senha: adm1234/
 ```
+
+#### Video da retrospectiva
+
+<figure class="video_container">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/yv5JS9Vuims" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</figure>

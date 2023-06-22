@@ -6,7 +6,7 @@ Projeto desenvolvido pela equipe Binary Bandit da *Universidade de Brasília (Un
 
 ## Documentação 
 
-[Clique aqui](https://mdsreq-fga-unb.github.io/2023.1-NRControl/) para acessar a documentação do projeto.
+[Clique aqui](https://mdsreq-fga-unb.github.io/2023.1-EscalaCOPOM/) para acessar a documentação do projeto.
 
 ## Integrantes da equipe
 

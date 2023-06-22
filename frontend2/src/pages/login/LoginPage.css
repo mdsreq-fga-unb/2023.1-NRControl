@@ -1,0 +1,153 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
+}
+
+.main-login {
+  width: 100vw;
+  height: 100vh;
+  background: #200c02;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.left-login {
+  width: 50vw;
+  height: 50vh;
+}
+
+.left-login .sonda {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-250%, -350%);
+}
+
+.left-login .img {
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  transform: translate(-130%, 60%);
+}
+
+
+.left-login > h1 {
+  color: #f85605;
+  font-weight: bold;
+  font-size: 3vw;
+}
+
+.right-login {
+  background-color: #200c02;
+  width: 50vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-login {
+  width: 60%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 30px 35px;
+  background: #4c1d06;
+  border-radius: 20px;
+  box-shadow: 0px 10px 40px #020100;
+}
+.card-login > h1 {
+  color: #f85605;
+  font-weight: bold;
+  margin: 20px;
+}
+
+.form-field {
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  margin: 15px 0px 25px 0px;
+  padding: 15px;
+  background: #463026;
+  color: white;
+  font-size: 12pt;
+  box-shadow: 0px 10px 40px #020100;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.btn-login {
+  width: 100%;
+  padding: 16px 0px;
+  margin: 40px 5px;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 3px;
+  color: #381503;
+  background: #f85605;
+  cursor: pointer;
+  box-shadow: 0px 10px 40px -12px #ec5306;
+}
+.btn-login:hover {
+  color: #fafafa;
+  box-shadow: 10px 10px 20px 15px #050505;
+}
+
+.img {
+  width: 35vw;
+}
+.sonda {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+.recover {
+  color: #ec5306;
+  padding-top: 30px;
+  margin-left: 35%;
+}
+
+@media only screen and (max-width: 950px) {
+  .card-login {
+    width: 85%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .main-login {
+    flex-direction: column;
+  }
+  .left-login > h1 {
+    display: none;
+  }
+  .left-login {
+    width: 100%;
+    height: auto;
+  }
+  .right-login {
+    width: 100%;
+    height: auto;
+  }
+  .card-login {
+    height: auto;
+    width: 80%;
+  }
+  .recover {
+    margin-left: 25%;
+  }
+  .img {
+    margin-bottom: 20px;
+  }
+}

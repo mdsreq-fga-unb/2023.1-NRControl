@@ -1,0 +1,94 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
+}
+
+body {
+  background-color: #200c02;
+}
+
+.main {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.box > h1 {
+  text-align: center;
+  color: #f85605;
+  font-weight: 400;
+  font-size: 3vw;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.box {
+  width: 40vw;
+  height: 75vh;
+  display: flex;
+  flex-direction: column;
+  padding: 30px 35px;
+  background: #4c1d06;
+  border-radius: 20px;
+  box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.4);
+}
+
+.info {
+  width: 100%;
+  height: calc(100% - 70px); 
+  display: flex;
+  flex-direction: column;
+  padding: 30px 20px;
+}
+
+
+.employee-box {
+  cursor: pointer;
+  background-color: #463026;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  box-shadow: 0px 10px 40px #020100;
+}
+
+.employee-box .name {
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.employee-box .cpf {
+  color: #ffffff;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: auto; 
+}
+
+.pagination button {
+  background-color: #4c1d06;
+  color: #f85605;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 12px;
+  margin: 0 4px;
+  cursor: pointer;
+}
+
+.pagination button.active {
+  background-color: #f85605;
+  color: #fff;
+}
+
+.pagination button:hover {
+  background-color: #f85605;
+  color: #fff;
+}
+

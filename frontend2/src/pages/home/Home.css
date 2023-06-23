@@ -18,7 +18,13 @@ body {
   justify-content: center;
   align-items: center;
 }
-
+.button-wrapper {
+  width: 13vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
 .box > h1 {
   text-align: center;
   color: #f85605;

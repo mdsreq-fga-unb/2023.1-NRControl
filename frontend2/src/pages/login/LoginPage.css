@@ -18,14 +18,8 @@
 
 .left-login {
   width: 50vw;
-  height: 50vh;
-}
-
-.left-login .sonda {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-250%, -350%);
+  height: 100vh;
+  display: flex;
 }
 
 .left-login .img {
@@ -35,7 +29,6 @@
   transform: translate(-130%, 60%);
 }
 
-
 .left-login > h1 {
   color: #f85605;
   font-weight: bold;
@@ -44,6 +37,7 @@
 
 .right-login {
   background-color: #200c02;
+  display: flex;
   width: 50vw;
   height: 100vh;
   display: flex;
@@ -52,8 +46,7 @@
 }
 
 .card-login {
-  width: 60%;
-  height: 50%;
+  width: 30vw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -112,6 +105,7 @@
   left: 0;
   margin-top: 10px;
   margin-left: 10px;
+  height: 14vh;
 }
 .recover {
   color: #ec5306;
@@ -119,9 +113,14 @@
   margin-left: 35%;
 }
 
-@media only screen and (max-width: 950px) {
-  .card-login {
-    width: 85%;
+@media only screen and (max-width: 720px) {
+  .right-login {
+    width: 100vw;
+    height: 100vh;
+    flex-direction: column;
+  }
+  .left-login .img {
+    display: none;
   }
 }
 

@@ -1,0 +1,36 @@
+.email-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.textField {
+  & .MuiInputBase-input {
+    color: white;
+  }
+  & .MuiInputLabel-root {
+    color: #3f51b5;
+  }
+  & .MuiInputLabel-root.Mui-focused {
+    color: #3f51b5;
+  }
+  & .MuiOutlinedInput-root {
+    & fieldset {
+      border-color: #3f51b5;
+    }
+    &:hover fieldset {
+      border-color: #3f51b5;
+    }
+    &.Mui-focused fieldset {
+      border-color: #3f51b5;
+    }
+  }
+  &.toField {
+    min-height: 56px;
+  }
+}
+
+.success-message {
+  color: green;
+  font-weight: bold;
+}

@@ -32,12 +32,16 @@ function EmployeePage() {
     }
   }, [id]);
 
+  const editEmployeeData = () => {
+    navigateTo(`/editEmployee/${id}`);
+  };
+
   return (
     <div className="postPage">
       <div className="header">
-      <div className="logo" onClick={goToEmployees}>
+        <div className="logo" onClick={goToEmployees}>
           <img src={logo} alt="SONDA Engenharia" className="sonda" />
-          </div>
+        </div>
       </div>
       <div className="post" id="individual">
         <h1>Funcionário</h1>
@@ -59,13 +63,13 @@ function EmployeePage() {
         </div>
         <div>
           <div className="box-bnt ">
-            {" "}
             <button
               className="bnt-courses"
               onClick={() => navigateTo(`/cursosdooperario/${id}`)}
             >
               Cursos
             </button>
+            <button onClick={editEmployeeData}>Editar</button>
           </div>
         </div>
       </div>

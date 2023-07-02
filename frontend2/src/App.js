@@ -9,6 +9,7 @@ import Course from "./pages/Course/Course";
 import EmployeePage from "./pages/employee/EmployeePage";
 import EmployeeCourses from "./pages/employeeCourses/employeeCourses";
 import Email from "./pages/Email/Email";
+import EditEmployee from "./pages/editEmployee/EditEmployee";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/cursos" element={<Course />} />
         <Route path="/cursosdooperario/:id" element={<EmployeeCourses />} />
         <Route path="/employee/:id" element={<EmployeePage />} />
+        <Route path="/editEmployee/:id" element={<EditEmployee />} />
         <Route
           path="/api/password-reset/:id/:token"
           element={<PasswordReset />}

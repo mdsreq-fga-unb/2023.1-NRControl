@@ -28,9 +28,15 @@ const Course = () => {
   useEffect(() => {
     axios
       .get("http://localhost:3005/course")
-      .then((response) => setUsers(response.data))
+      .then((response) => {
+        const sortedUsers = response.data.sort((a, b) =>
+          a.name.localeCompare(b.name)
+        );
+        setUsers(sortedUsers);
+      })
       .catch((err) => console.log(err));
   }, []);
+  
 
   const sendData = async (values, { resetForm }) => {
     try {
@@ -145,7 +151,6 @@ const Course = () => {
           <table className="table">
             <thead>
               <tr>
-                <th>ID</th>
                 <th>Funcionário</th>
                 <th>Código do curso</th>
                 <th>Info</th>
@@ -156,7 +161,6 @@ const Course = () => {
             <tbody>
               {currentUsers.map((user, index) => (
                 <tr key={index}>
-                  <td>{user.id}</td>
                   <td>{user.name}</td>
                   <td className="course-column">{topics(user.course)}</td>
                   <td>{user.info}</td>

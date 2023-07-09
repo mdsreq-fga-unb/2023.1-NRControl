@@ -61,26 +61,19 @@ function EmployeeCourses() {
           <table>
             <thead>
               <tr>
-                <th>Curso</th>
-                <th>Informações</th>
-                <th>Data de conclusão</th>
-                <th>Data de expiração</th>
+                <th>Cursos</th>
               </tr>
             </thead>
             <tbody>
               {courses.map((course, key) => (
                 <tr key={key}>
                   <td>
-                    <div className="name">{course.course}</div>
-                  </td>
-                  <td>
-                    <div className="info">{course.info}</div>
-                  </td>
-                  <td>
-                    <div className="conclusiondate">{course.conclusiondate}</div>
-                  </td>
-                  <td>
-                    <div className="expirationdate">{course.expirationdate}</div>
+                    <div 
+                      key={key} 
+                      className="name" 
+                      onClick={() => navigateTo(`/curso/${course.id}`)}>
+                        {course.course}
+                    </div>
                   </td>
                 </tr>
               ))}

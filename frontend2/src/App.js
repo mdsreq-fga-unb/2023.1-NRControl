@@ -10,6 +10,8 @@ import EmployeePage from "./pages/employee/EmployeePage";
 import EmployeeCourses from "./pages/employeeCourses/employeeCourses";
 import Email from "./pages/Email/Email";
 import EditEmployee from "./pages/editEmployee/EditEmployee";
+import EditCourse from "./pages/editCourse/editCourse";
+import CourseInfo from "./pages/courseInfo/courseInfo";
 
 function App() {
   return (
@@ -21,12 +23,12 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/recuperarsenha" element={<Password />} />
         <Route path="/cursos" element={<Course />} />
+        <Route path="/curso/:id" element={<CourseInfo />} />
         <Route path="/cursosdooperario/:id" element={<EmployeeCourses />} />
         <Route path="/employee/:id" element={<EmployeePage />} />
         <Route path="/editEmployee/:id" element={<EditEmployee />} />
-        <Route
-          path="/api/password-reset/:id/:token"
-          element={<PasswordReset />}
+        <Route path="/editCourse/:id" element={<EditCourse />} />
+        <Route path="/api/password-reset/:id/:token" element={<PasswordReset />}
         />
       </Routes>
     </BrowserRouter>

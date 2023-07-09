@@ -23,3 +23,18 @@ exports.createCourses = (req, res) => {
       res.status(500).json(err);
     });
 };
+
+exports.getCourseById = (req, res) => {
+  const courseId = req.params.id;
+
+  Course.findByPk(courseId)
+    .then((course) => {
+      if (!course) {
+        return res.status(404).json({ error: "Curso não encontrado" });
+      }
+      res.json(course);
+    })
+    .catch((err) => {
+      res.status(500).json(err);
+    });
+};

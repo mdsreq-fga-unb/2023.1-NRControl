@@ -109,12 +109,20 @@ function Register() {
       .required("O telefone é obrigatório"),
     birthday: Yup.date()
       .max(new Date(), "A data de nascimento não pode ser futura")
-      .required("A data de nascimento é obrigatória"),
-    admissiondate: Yup.date()
+      .required("A data de nascimento é obrigatória")
+      .test("age", "A idade mínima é de 18 anos e a máxima é de 80 anos", (value) => {
+        const today = moment();
+        const birthDate = moment(value);
+        const age = today.diff(birthDate, 'years');
+        return age >= 18 && age <= 80;;
+      }),
+      admissiondate: Yup.date()
+      .min(moment("1971-10-01"), "Data de admissão inválida")
       .max(new Date(), "A data de admissão não pode ser futura")
       .required("A data de admissão é obrigatória"),
     asodate: Yup.date()
       .max(new Date(), "A data de ASO não pode ser futura")
+      .min(moment().subtract(12, 'months'), 'A validade do ASO é de 12 meses')
       .required("A data de ASO é obrigatória"),
   });
 

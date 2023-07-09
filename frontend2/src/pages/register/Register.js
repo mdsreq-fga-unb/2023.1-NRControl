@@ -44,7 +44,62 @@ function Register() {
     name: Yup.string().required("O nome é obrigatório"),
     cpf: Yup.string()
       .matches(/^\d{3}\.\d{3}\.\d{3}-\d{2}$/, "CPF inválido")
-      .required("Campo obrigatório"),
+      .required("Campo obrigatório")
+      .test("cpf", "CPF inválido", (value) => {
+        // Remove os caracteres especiais do CPF: pontos e hífen
+        const cleanedCPF = value.replace(/[.-]/g, "");
+  
+        // Validação do CPF
+        let sum = 0;
+        let remainder;
+  
+        if (
+          cleanedCPF === "00000000000" ||
+          cleanedCPF === "11111111111" ||
+          cleanedCPF === "22222222222" ||
+          cleanedCPF === "33333333333" ||
+          cleanedCPF === "44444444444" ||
+          cleanedCPF === "55555555555" ||
+          cleanedCPF === "66666666666" ||
+          cleanedCPF === "77777777777" ||
+          cleanedCPF === "88888888888" ||
+          cleanedCPF === "99999999999"
+        ) {
+          return false;
+        }
+  
+        for (let i = 1; i <= 9; i++) {
+          sum += parseInt(cleanedCPF.substring(i - 1, i)) * (11 - i);
+        }
+  
+        remainder = (sum * 10) % 11;
+  
+        if (remainder === 10 || remainder === 11) {
+          remainder = 0;
+        }
+  
+        if (remainder !== parseInt(cleanedCPF.substring(9, 10))) {
+          return false;
+        }
+  
+        sum = 0;
+  
+        for (let i = 1; i <= 10; i++) {
+          sum += parseInt(cleanedCPF.substring(i - 1, i)) * (12 - i);
+        }
+  
+        remainder = (sum * 10) % 11;
+  
+        if (remainder === 10 || remainder === 11) {
+          remainder = 0;
+        }
+  
+        if (remainder !== parseInt(cleanedCPF.substring(10, 11))) {
+          return false;
+        }
+  
+        return true;
+      }),
     email: Yup.string()
       .email("Email inválido")
       .required("O email é obrigatório"),
@@ -170,8 +225,7 @@ function Register() {
                     )}
                   </Field>
                   <ErrorMessage name="phonenumber" component="span" />
-
-                  <Field
+                   <Field
                     id="inputCreatePost"
                     name="birthday"
                     placeholder="Data de nascimento"
@@ -195,6 +249,7 @@ function Register() {
                     placeholder="Data de ASO"
                     type="date"
                     autoComplete="off"
+                    
                   />
                   <ErrorMessage name="asodate" component="span" />
                 </div>

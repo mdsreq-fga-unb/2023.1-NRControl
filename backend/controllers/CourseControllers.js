@@ -38,3 +38,17 @@ exports.getCourseById = (req, res) => {
       res.status(500).json(err);
     });
 };
+
+exports.putCourse = async (req, res) => {
+  const id = req.params.id;
+  const courseData = req.body;
+
+  try {
+    const updatedCourse = await Course.update(courseData, {
+      where: { id: id },
+    });
+    res.json(updatedCourse);
+  } catch (error) {
+    res.status(500).json({ error: "Falha ao atualizar curso." });
+  }
+};

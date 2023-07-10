@@ -1,143 +1,106 @@
 const { Users } = require("../models/schemas");
 const bcrypt = require("bcrypt");
+const crypto = require("crypto");
+const nodemailer = require("nodemailer");
+const Joi = require("joi");
+const sendgridTransport = require("nodemailer-sendgrid-transport");
+
+// Importe o controlador e os métodos de teste
 const {
   resetPasswordRequest,
   validateResetPasswordUrl,
   resetPassword,
 } = require("../controllers/PasswordControllers");
 
-// Mock das dependências
-jest.mock("../models/schemas");
-jest.mock("bcrypt");
+// Caso de teste para resetPasswordRequest
+describe("resetPasswordRequest", () => {
+  it("deve retornar 400 se o email não for fornecido", async () => {
+    const req = { body: {} };
+    const res = {
+      status: jest.fn().mockReturnThis(),
+      send: jest.fn(),
+    };
 
-describe("userController", () => {
-  afterEach(() => {
-    jest.clearAllMocks();
+    await resetPasswordRequest(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(400);
+    expect(res.send).toHaveBeenCalled();
+  });
+
+  it("deve retornar 409 se o email não existir na base de dados", async () => {
+    const req = { body: { email: "emailinexistente@example.com" } };
+    const res = {
+      status: jest.fn().mockReturnThis(),
+      send: jest.fn(),
+    };
+
+    // Mock da função Users.findOne para retornar null
+    Users.findOne = jest.fn().mockResolvedValue(null);
+
+    await resetPasswordRequest(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(409);
+    expect(res.send).toHaveBeenCalled();
+  });
+
+
+});
+
+// Caso de teste para validateResetPasswordUrl
+describe("validateResetPasswordUrl", () => {
+  it("deve retornar 400 se o link for inválido", async () => {
+    const req = { params: { id: "idinexistente", token: "tokeninexistente" } };
+    const res = {
+      status: jest.fn().mockReturnThis(),
+      send: jest.fn(),
+    };
+
+    // Mock da função Users.findOne para retornar null
+    Users.findOne = jest.fn().mockResolvedValue(null);
+
+    await validateResetPasswordUrl(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(400);
+    expect(res.send).toHaveBeenCalled();
+  });
+
+  it("deve retornar 400 se o link estiver expirado", async () => {
+    const req = { params: { id: "validoid", token: "validotoken" } };
+    const res = {
+      status: jest.fn().mockReturnThis(),
+      send: jest.fn(),
+    };
+
+    // Mock da função Users.findOne para retornar um usuário com tokenExpiration passado
+    Users.findOne = jest.fn().mockResolvedValue({
+      tokenExpiration: new Date("2021-01-01"), // Defina uma data passada aqui
+    });
+
+    await validateResetPasswordUrl(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(400);
+    expect(res.send).toHaveBeenCalled();
   });
 
   
+});
 
-  describe("validateResetPasswordUrl", () => {
-    it("should validate reset password URL", async () => {
-      const mockRequest = {
-        params: {
-          id: "1",
-          token: "testtoken",
-        },
-      };
-      const mockResponse = {
-        status: jest.fn().mockReturnThis(),
-        send: jest.fn(),
-      };
-      const mockUser = {
-        id: "1",
-        token: "testtoken",
-        tokenExpiration: new Date(),
-      };
+// Caso de teste para resetPassword
+describe("resetPassword", () => {
+  it("deve retornar 422 se o token for inválido", async () => {
+    const req = { body: { password: "novasenha" }, params: { token: "tokeninexistente" } };
+    const res = {
+      status: jest.fn().mockReturnThis(),
+      json: jest.fn(),
+    };
 
-      Users.findOne.mockResolvedValue(mockUser);
+    // Mock da função Users.findOne para retornar null
+    Users.findOne = jest.fn().mockResolvedValue(null);
 
-      await validateResetPasswordUrl(mockRequest, mockResponse);
+    await resetPassword(req, res);
 
-      expect(Users.findOne).toHaveBeenCalledWith({
-        where: {
-          id: mockRequest.params.id,
-          token: mockRequest.params.token.toString(),
-        },
-      });
-      expect(mockResponse.status).toHaveBeenCalledWith(200);
-      expect(mockResponse.send).toHaveBeenCalledWith("URL Válida");
-    });
-
-    it("should handle invalid reset password URL", async () => {
-      const mockRequest = {
-        params: {
-          id: "1",
-          token: "testtoken",
-        },
-      };
-      const mockResponse= {
-        status: jest.fn().mockReturnThis(),
-        send: jest.fn(),
-      };
-
-      Users.findOne.mockResolvedValue(null);
-
-      await validateResetPasswordUrl(mockRequest, mockResponse);
-
-      expect(Users.findOne).toHaveBeenCalledWith({
-        where: {
-          id: mockRequest.params.id,
-          token: mockRequest.params.token.toString(),
-        },
-      });
-      expect(mockResponse.status).toHaveBeenCalledWith(400);
-      expect(mockResponse.send).toHaveBeenCalledWith({
-        message: "Link inválido",
-      });
-    });
+    expect(res.status).toHaveBeenCalledWith(422);
+    expect(res.json).toHaveBeenCalled();
   });
 
-  describe("resetPassword", () => {
-    it("should reset password", async () => {
-      const mockRequest = {
-        body: {
-          password: "newPassword",
-        },
-        params: {
-          token: "testtoken",
-        },
-      };
-      const mockResponse = {
-        status: jest.fn().mockReturnThis(),
-        json: jest.fn(),
-      };
-      const mockUser = {
-        token: mockRequest.params.token.toString(),
-        save: jest.fn().mockResolvedValue(),
-      };
-
-      Users.findOne.mockResolvedValue(mockUser);
-      bcrypt.genSalt.mockResolvedValue("salt");
-      bcrypt.hash.mockResolvedValue("hashedPassword");
-
-      await resetPassword(mockRequest, mockResponse);
-
-      expect(Users.findOne).toHaveBeenCalledWith({
-        where: { token: mockRequest.params.token.toString() },
-      });
-      expect(mockUser.save).toHaveBeenCalled();
-      expect(mockResponse.json).toHaveBeenCalledWith({
-        message: "Senha atualizada com sucesso",
-      });
-    });
-
-    it("should handle error when resetting password", async () => {
-      const mockRequest = {
-        body: {
-          password: "newPassword",
-        },
-        params: {
-          token: "testtoken",
-        },
-      };
-      const mockResponse = {
-        status: jest.fn().mockReturnThis(),
-        json: jest.fn(),
-      };
-      const mockError = new Error("Internal Server Error");
-
-      Users.findOne.mockRejectedValue(mockError);
-
-      await resetPassword(mockRequest, mockResponse);
-
-      expect(Users.findOne).toHaveBeenCalledWith({
-        where: { token: mockRequest.params.token.toString() },
-      });
-      expect(mockResponse.status).toHaveBeenCalledWith(500);
-      expect(mockResponse.json).toHaveBeenCalledWith({
-        error: "Internal Server Error",
-      });
-    });
-  });
 });

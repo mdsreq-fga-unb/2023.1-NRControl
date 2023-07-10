@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import logo from "./../../assets/images/logo.png";
+import moment from "moment";
 
 function EmployeePage() {
   const navigateTo = useNavigate();
@@ -36,6 +37,10 @@ function EmployeePage() {
     navigateTo(`/editEmployee/${id}`);
   };
 
+  const formatDate = (date) => {
+    return moment(date).format("DD/MM/YYYY");
+  };
+
   return (
     <div className="postPage">
       <div className="header">
@@ -54,10 +59,10 @@ function EmployeePage() {
             Telefone: {employeeObject.phonenumber}
           </div>
           <div className="birthday">
-            Data de nascimento: {employeeObject.birthday}
+            Data de nascimento: {formatDate(employeeObject.birthday)}
           </div>
           <div className="admissiondate">
-            Data de admissão: {employeeObject.admissiondate}
+            Data de admissão: {formatDate(employeeObject.admissiondate)}
           </div>
           <div className="asodate">Data de ASO: {employeeObject.asodate}</div>
         </div>

@@ -11,8 +11,7 @@ import moment from "moment";
 const Course = () => {
   const navigateTo = useNavigate();
   const [users, setUsers] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const usersPerPage = 8;
+
 
   const goToEmployees = () => {
     navigateTo("/employees");
@@ -25,18 +24,6 @@ const Course = () => {
       navigateTo("/");
     }
   }, [navigateTo]);
-
-  useEffect(() => {
-    axios
-      .get("http://localhost:3005/course")
-      .then((response) => {
-        const sortedUsers = response.data.sort((a, b) =>
-          a.name.localeCompare(b.name)
-        );
-        setUsers(sortedUsers);
-      })
-      .catch((err) => console.log(err));
-  }, []);
 
   const sendData = async (values, { resetForm }) => {
     try {
@@ -72,12 +59,61 @@ const Course = () => {
     course: Yup.string().required("O código do curso é obrigatório"),
     info: Yup.string().required("As informações do curso são obrigatórias"),
     conclusiondate: Yup.string()
-      .max(new Date(), "A data de conclusão não pode ser futura")
-      .required("A data de conclusão do curso é obrigatória"),
-    expirationdate: Yup.string()
-      .max(new Date(), "A data de expiração não pode ser futura")
-      .required("A data de expiração do curso é obrigatória"),
+  .required("A data de conclusão do curso é obrigatória")
+  .test("conclusiondate", "Data de conclusão inválida", function(value) {
+    const currentDate = moment().startOf("day");
+    const conclusionDate = moment(value, "DD/MM/YYYY", true).startOf("day");
+    const maxDate = moment().subtract(10, "years").startOf("day");
+
+    if (!value) {
+      return this.createError({
+        message: "A data de conclusão do curso é obrigatória",
+        path: "conclusiondate",
+      });
+    }
+
+    if (!conclusionDate.isValid()) {
+      return this.createError({
+        message: "Data de conclusão inválida",
+        path: "conclusiondate",
+      });
+    }
+
+    if (conclusionDate.isAfter(currentDate)) {
+      return this.createError({
+        message: "A data de conclusão não pode ser futura",
+        path: "conclusiondate",
+      });
+    }
+
+    return conclusionDate.isSameOrAfter(maxDate);
+  }),
+
+  expirationdate: Yup.string()
+  .required("A data de expiração do curso é obrigatória")
+  .test("expirationdate", "Data de expiração inválida", function(value) {
+    const conclusionDate = this.resolve(Yup.ref("conclusiondate"));
+    const expirationDate = moment(value, "DD/MM/YYYY", true).startOf("day");
+
+    if (!value) {
+      return this.createError({
+        message: "A data de conclusão do curso é obrigatória",
+        path: "conclusiondate",
+      });
+    }
+
+    if (!expirationDate.isValid()) {
+      return this.createError({
+        message: "Data de expiração inválida",
+        path: "expirationdate",
+      });
+    }
+
+    return moment(conclusionDate, "DD/MM/YYYY").isSameOrBefore(expirationDate);
+  })
+
   });
+
 
   const initialValues = {
     name: "",
@@ -87,127 +123,105 @@ const Course = () => {
     expirationdate: "",
   };
 
-  const topics = (course) => {
-    if (course && course.length > 0) {
-      return course
-        .split(",")
-        .map((topics, index) => <div key={index}>{topics}</div>);
-    }
-    return "";
-  };
-
-  const paginate = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
-
-  const indexOfLastUser = currentPage * usersPerPage;
-  const indexOfFirstUser = indexOfLastUser - usersPerPage;
-  const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
-
-  const pageNumbers = Math.ceil(users.length / usersPerPage);
-  const pages = Array.from({ length: pageNumbers }, (_, i) => i + 1);
-
-  const formatDate = (date) => {
-    return moment(date).format("DD/MM/YYYY");
-  };
-
-  return (
-    <div className="page-container">
-      <div className="content-container">
+return (
+  <div className="page-container">
+    <div className="page">
+      <div className="header">
         <div className="logo" onClick={goToEmployees}>
           <img src={logo} alt="SONDA Engenharia" className="sonda" />
         </div>
-        <div className="title">
-          <h1>Cadastro de Curso </h1>
-        </div>
-        <div className="form">
-          <Formik
-            initialValues={initialValues}
-            onSubmit={sendData}
-            validationSchema={validationSchema}
-          >
-            <Form>
-              <Field
-                type="text"
-                name="name"
-                placeholder="  Nome do funcionário"
-              />
-              <ErrorMessage name="name" component="span" />
-
-              <Field
-                type="text"
-                name="course"
-                placeholder="  Código do curso"
-              />
-              <ErrorMessage name="course" component="span" />
-
-              <Field
-                type="text"
-                name="info"
-                placeholder="  Informações do curso"
-              />
-              <ErrorMessage name="info" component="span" />
-
-              <Field
-                id="inputCreatePost"
-                name="conclusiondate"
-                placeholder="  Data de conclusão"
-                as={InputMask}
-                mask="99/99/9999"
-              />
-              <ErrorMessage name="conclusiondate" component="span" />
-
-              <Field
-                id="inputCreatePost"
-                name="expirationdate"
-                placeholder=" Data de expiração"
-                as={InputMask}
-                mask="99/99/9999"
-              />
-              <ErrorMessage name="expirationdate" component="span" />
-
-              <button className="btn-add" type="submit">
-                Adicionar
-              </button>
-            </Form>
-          </Formik>
-        </div>
-        <div className="table-container">
-          <table className="table">
-            <thead>
-              <tr>
-                <th>Funcionário</th>
-                <th>Código do curso</th>
-                <th>Info</th>
-                <th>Data de Conclusão</th>
-                <th>Data de Expiração</th>
-              </tr>
-            </thead>
-            <tbody>
-              {currentUsers.map((user, index) => (
-                <tr key={index}>
-                  <td>{user.name}</td>
-                  <td className="course-column">{topics(user.course)}</td>
-                  <td>{user.info}</td>
-                  <td>{formatDate(user.conclusiondate)}</td>
-                  <td>{formatDate(user.expirationdate)}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        <div className="pagination2">
-          {pages.map((pageNumber) => (
-            <button
-              key={pageNumber}
-              onClick={() => paginate(pageNumber)}
-              className={currentPage === pageNumber ? "active" : ""}
+      </div>
+      <div className="tam-container">
+        <div className="container">
+          <h1>Cadastro de Curso</h1>
+          <div className="createPostPage">
+            <Formik
+              initialValues={initialValues}
+              onSubmit={sendData}
+              validationSchema={validationSchema}
+              validateOnChange={false}
             >
-              {pageNumber}
-            </button>
-          ))}
+              <Form className="formContainer">
+                <div className="left-card">
+                  <Field
+                    type="text"
+                    name="name"
+                    placeholder="Nome do funcionário"
+                  />
+                  <ErrorMessage
+                    name="name"
+                    component="span"
+                    className="error-message"
+                  />
+
+                  <Field
+                    type="text"
+                    name="course"
+                    placeholder="Código do curso"
+                  />
+                  <ErrorMessage
+                    name="course"
+                    component="span"
+                    className="error-message"
+                  />
+
+                  <Field
+                    type="text"
+                    name="info"
+                    placeholder="Informações do curso"
+                  />
+                  <ErrorMessage
+                    name="info"
+                    component="span"
+                    className="error-message"
+                  />
+                </div>
+
+                <div className="right-card">
+                  <div className="field-group">
+                    <label>Data de Conclusão</label>
+                    <Field
+                      id="inputCreatePost"
+                      name="conclusiondate"
+                      placeholder="Data de conclusão"
+                      as={InputMask}
+                      mask="99/99/9999"
+                    />
+                    <ErrorMessage
+                      name="conclusiondate"
+                      component="span"
+                      className="error-message"
+                    />
+                  </div>
+
+                  <div className="field-group">
+                    <label>Data de Expiração</label>
+                    <Field
+                      id="inputCreatePost"
+                      name="expirationdate"
+                      placeholder="Data de expiração"
+                      as={InputMask}
+                      mask="99/99/9999"
+                    />
+                    <ErrorMessage
+                      name="expirationdate"
+                      component="span"
+                      className="error-message"
+                    />
+                  </div>
+                </div>
+
+                <div className="baixo">
+                  <button type="submit" className="cadastrar">
+                    Adicionar
+                  </button>
+                </div>
+              </Form>
+            </Formik>
+          </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };

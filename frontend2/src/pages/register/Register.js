@@ -104,27 +104,139 @@ function Register() {
       .email("Email inválido")
       .required("O email é obrigatório"),
     address: Yup.string().required("O endereço é obrigatório"),
+
     phonenumber: Yup.string()
-      .matches(/^\(\d{2}\) \d{5}-\d{4}$/, "Número de telefone inválido")
+      .matches(/^\(\d{2}\) \d{5}-\d{4}$/, "O telefone é obrigatório")
       .required("O telefone é obrigatório"),
-    birthday: Yup.date()
-      .max(new Date(), "A data de nascimento não pode ser futura")
-      .required("A data de nascimento é obrigatória")
-      .test("age", "A idade mínima é de 18 anos e a máxima é de 80 anos", (value) => {
-        const today = moment();
-        const birthDate = moment(value);
-        const age = today.diff(birthDate, 'years');
-        return age >= 18 && age <= 80;;
-      }),
-      admissiondate: Yup.date()
-      .min(moment("1971-10-01"), "Data de admissão inválida")
-      .max(new Date(), "A data de admissão não pode ser futura")
+
+      birthday: Yup.string()
+      .test("birthday", "Data de nascimento inválida", function (value) {
+        const isValidFormat = /^\d{2}\/\d{2}\/\d{4}$/.test(value);
+        const currentDate = moment();
+        const selectedDate = moment(value, "DD/MM/YYYY");
+        const minAge = 18;
+        const maxAge = 80;
+    
+        if (isValidFormat && selectedDate.isValid()) {
+          if (!selectedDate.isValid()) {
+            return this.createError({
+              message: "Data de nascimento inválida",
+              path: "birthday",
+            });
+          }
+    
+          if (selectedDate.isAfter(currentDate)) {
+            return this.createError({
+              message: "A data de nascimento não pode ser futura",
+              path: "birthday",
+            });
+          }
+    
+          const age = currentDate.diff(selectedDate, "years");
+          if (age < minAge || age > maxAge) {
+            return this.createError({
+              message: `A idade mínima é de ${minAge} anos e a máxima é de ${maxAge} anos`,
+              path: "birthday",
+            });
+          }
+        } else if (value) {
+          return this.createError({
+            message: "Data de nascimento inválida",
+            path: "birthday",
+          });
+        }
+    
+        return true;
+      })
+      .required("A data de nascimento é obrigatória"),
+    
+    admissiondate: Yup.string()
+      .test("admissiondate", "A data de admissão é obrigatória", function (value) {
+        const isValidFormat = /^\d{2}\/\d{2}\/\d{4}$/.test(value);
+        const currentDate = moment();
+        const selectedDate = moment(value, "DD/MM/YYYY");
+        const minDate = moment("1971-10-01", "YYYY-MM-DD");
+        const ageRequirementDate = moment().subtract(18, "years");
+    
+        if (isValidFormat && selectedDate.isValid()) {
+          if (!selectedDate.isValid()) {
+            return this.createError({
+              message: "Data de admissão inválida",
+              path: "admissiondate",
+            });
+          }
+    
+          if (selectedDate.isBefore(minDate)) {
+            throw this.createError({
+              message: "Data de admissão inválida",
+              path: "admissiondate",
+            });
+          }
+    
+          if (selectedDate.isAfter(currentDate)) {
+            throw this.createError({
+              message: "A data de admissão não pode ser futura",
+              path: "admissiondate",
+            });
+          }
+    
+          if (selectedDate.isBefore(ageRequirementDate)) {
+            throw this.createError({
+              message: "O funcionário deve ter pelo menos 18 anos na data de admissão",
+              path: "admissiondate",
+            });
+          }
+        } else if (value) {
+          return this.createError({
+            message: "Data de admissão inválida",
+            path: "admissiondate",
+          });
+        }
+    
+        return true;
+      })
       .required("A data de admissão é obrigatória"),
-    asodate: Yup.date()
-      .max(new Date(), "A data de ASO não pode ser futura")
-      .min(moment().subtract(12, 'months'), 'A validade do ASO é de 12 meses')
+    
+    asodate: Yup.string()
+      .test("asodate", "A data de ASO é obrigatória", function (value) {
+        const isValidFormat = /^\d{2}\/\d{2}\/\d{4}$/.test(value);
+        const currentDate = moment();
+        const selectedDate = moment(value, "DD/MM/YYYY");
+        const maxDate = moment().endOf("day");
+        const minDate = moment().subtract(12, "months").startOf("day");
+    
+        if (isValidFormat && selectedDate.isValid()) {
+          if (!selectedDate.isValid()) {
+            return this.createError({
+              message: "Data de ASO inválida",
+              path: "asodate",
+            });
+          }
+    
+          if (selectedDate.isAfter(maxDate)) {
+            return this.createError({
+              message: "A data de ASO não pode ser futura",
+              path: "asodate",
+            });
+          }
+    
+          if (selectedDate.isBefore(minDate)) {
+            return this.createError({
+              message: "A validade do ASO é de 12 meses",
+              path: "asodate",
+            });
+          }
+        } else if (value) {
+          return this.createError({
+            message: "Data de ASO inválida",
+            path: "asodate",
+          });
+        }
+    
+        return true;
+      })
       .required("A data de ASO é obrigatória"),
-  });
+    })    
 
   const onSubmit = (data, { resetForm }) => {
     const accessToken = sessionStorage.getItem("accessToken");
@@ -191,18 +303,14 @@ function Register() {
                   />
                   <ErrorMessage name="name" component="span" />
 
-                  <Field name="cpf" placeholder="CPF">
-                    {({ field }) => (
-                      <InputMask
+                  <Field name="cpf" 
                         id="inputCreatePost"
                         placeholder="CPF"
-                        {...field}
+                        as={InputMask}
                         mask="999.999.999-99"
                         type="text"
-                        maskChar=""
-                      />
-                    )}
-                  </Field>
+                        />
+                        
                   <ErrorMessage name="cpf" component="span" />
 
                   <Field
@@ -221,24 +329,20 @@ function Register() {
                 </div>
 
                 <div className="right-card">
-                  <Field name="phonenumber" placeholder="Telefone">
-                    {({ field }) => (
-                      <InputMask
-                        id="inputCreatePost"
-                        placeholder="Telefone"
-                        {...field}
-                        mask="(99) 99999-9999"
-                        maskChar=""
-                      />
-                    )}
-                  </Field>
+                  <Field name="phonenumber" 
+                    id="inputCreatePost"
+                    placeholder="Telefone"
+                    as={InputMask}
+                    mask="(99) 99999-9999"
+                  />
                   <ErrorMessage name="phonenumber" component="span" />
+
                    <Field
                     id="inputCreatePost"
                     name="birthday"
                     placeholder="Data de nascimento"
-                    type="date"
-                    autoComplete="off"
+                    as={InputMask}
+                    mask="99/99/9999"
                   />
                   <ErrorMessage name="birthday" component="span" />
 
@@ -246,19 +350,19 @@ function Register() {
                     id="inputCreatePost"
                     name="admissiondate"
                     placeholder="Data de admissão"
-                    type="date"
-                    autoComplete="off"
+                    as={InputMask}
+                    mask="99/99/9999"
                   />
+                  
                   <ErrorMessage name="admissiondate" component="span" />
 
                   <Field
-                    id="inputCreatePost"
-                    name="asodate"
-                    placeholder="Data de ASO"
-                    type="date"
-                    autoComplete="off"
-                    
-                  />
+                      id="inputCreatePost"
+                      name="asodate"
+                      placeholder="Data de ASO"
+                      as={InputMask}
+                      mask="99/99/9999"
+                    />
                   <ErrorMessage name="asodate" component="span" />
                 </div>
                 <div className="baixo">

@@ -6,6 +6,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import InputMask from "react-input-mask";
 import logo from "./../../assets/images/logo.png";
+import moment from "moment";
 
 const Course = () => {
   const navigateTo = useNavigate();
@@ -39,8 +40,14 @@ const Course = () => {
 
   const sendData = async (values, { resetForm }) => {
     try {
+      const formattedData = {
+        ...values,
+        conclusiondate: moment(values.conclusiondate, "DD/MM/YYYY").format("YYYY-MM-DD"),
+        expirationdate: moment(values.expirationdate, "DD/MM/YYYY").format("YYYY-MM-DD"),
+      };
+      
       const id = users.length > 0 ? users[users.length - 1].id + 1 : 1;
-      const response = await axios.post("http://localhost:3005/course", {
+      const response = await axios.post("http://localhost:3005/course", formattedData, {
         id: id,
         name: values.name,
         course: values.course,
@@ -99,6 +106,10 @@ const Course = () => {
 
   const pageNumbers = Math.ceil(users.length / usersPerPage);
   const pages = Array.from({ length: pageNumbers }, (_, i) => i + 1);
+
+  const formatDate = (date) => {
+    return moment(date).format("DD/MM/YYYY");
+  };
 
   return (
     <div className="page-container">
@@ -178,8 +189,8 @@ const Course = () => {
                   <td>{user.name}</td>
                   <td className="course-column">{topics(user.course)}</td>
                   <td>{user.info}</td>
-                  <td>{user.conclusiondate}</td>
-                  <td>{user.expirationdate}</td>
+                  <td>{formatDate(user.conclusiondate)}</td>
+                  <td>{formatDate(user.expirationdate)}</td>
                 </tr>
               ))}
             </tbody>

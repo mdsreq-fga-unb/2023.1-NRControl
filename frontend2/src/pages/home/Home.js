@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { BsFillPersonPlusFill } from "react-icons/bs";
 import { MdAssignmentAdd } from "react-icons/md";
+import { TfiEmail } from "react-icons/tfi";
 import logo from "./../../assets/images/logo.png";
 import "./Home.css";
 
@@ -36,6 +37,9 @@ function Home() {
   const goToCursos = () => {
     navigateTo("/cursos");
   };
+  const goToEmail = () => {
+    navigateTo("/enviaremail");
+  };
 
   const indexOfLastEmployee = currentPage * employeesPerPage;
   const indexOfFirstEmployee = indexOfLastEmployee - employeesPerPage;
@@ -61,6 +65,7 @@ function Home() {
           <div className="icons-sidebar">
             <BsFillPersonPlusFill onClick={goToRegister} />
             <MdAssignmentAdd onClick={goToCursos} />
+            <TfiEmail onClick={goToEmail} />
           </div>
         </div>
       </div>

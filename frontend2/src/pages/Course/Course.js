@@ -36,7 +36,6 @@ const Course = () => {
       })
       .catch((err) => console.log(err));
   }, []);
-  
 
   const sendData = async (values, { resetForm }) => {
     try {
@@ -83,9 +82,9 @@ const Course = () => {
 
   const topics = (course) => {
     if (course && course.length > 0) {
-      return course.split(",").map((topics, index) => (
-        <div key={index}>{topics}</div>
-      ));
+      return course
+        .split(",")
+        .map((topics, index) => <div key={index}>{topics}</div>);
     }
     return "";
   };
@@ -104,9 +103,12 @@ const Course = () => {
   return (
     <div className="page-container">
       <div className="content-container">
-      <div className="logo" onClick={goToEmployees}>
+        <div className="logo" onClick={goToEmployees}>
           <img src={logo} alt="SONDA Engenharia" className="sonda" />
-          </div>
+        </div>
+        <div className="title">
+          <h1>Cadastro de Curso </h1>
+        </div>
         <div className="form">
           <Formik
             initialValues={initialValues}
@@ -114,13 +116,25 @@ const Course = () => {
             validationSchema={validationSchema}
           >
             <Form>
-              <Field type="text" name="name" placeholder="  Nome do funcionário" />
+              <Field
+                type="text"
+                name="name"
+                placeholder="  Nome do funcionário"
+              />
               <ErrorMessage name="name" component="span" />
 
-              <Field type="text" name="course" placeholder="  Código do curso" />
+              <Field
+                type="text"
+                name="course"
+                placeholder="  Código do curso"
+              />
               <ErrorMessage name="course" component="span" />
 
-              <Field type="text" name="info" placeholder="  Informações do curso" />
+              <Field
+                type="text"
+                name="info"
+                placeholder="  Informações do curso"
+              />
               <ErrorMessage name="info" component="span" />
 
               <Field

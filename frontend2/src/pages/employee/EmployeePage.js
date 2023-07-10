@@ -69,7 +69,9 @@ function EmployeePage() {
             >
               Cursos
             </button>
-            <button onClick={editEmployeeData}>Editar</button>
+            <button className="bnt-courses" onClick={editEmployeeData}>
+              Editar
+            </button>
           </div>
         </div>
       </div>

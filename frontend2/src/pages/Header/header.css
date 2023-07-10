@@ -1,0 +1,48 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  background-color: #f0f0f0;
+  padding: 20px;
+  height: 10%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+}
+
+.logo img {
+  width: 150px;
+  height: auto;
+}
+
+.nav-links ul {
+  list-style: none;
+  display: flex;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li a {
+  color: #333;
+  text-decoration: none;
+  padding: 10px;
+}
+
+.nav-links li a:hover {
+  color: #000;
+  background-color: #ccc;
+}
+
+/* Adicione o estilo abaixo para evitar que o conteúdo fique oculto atrás do cabeçalho */
+.content {
+  margin-top: 80px; /* Altura do cabeçalho */
+}

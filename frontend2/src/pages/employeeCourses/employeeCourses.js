@@ -3,6 +3,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import "./employeeCourses.css";
 import logo from "./../../assets/images/logo.png";
+import Header from "../Header/header";
+
 
 function EmployeeCourses() {
   const navigateTo = useNavigate();
@@ -52,10 +54,8 @@ function EmployeeCourses() {
     <div>
       <div className="main-table">
         <div className="table-employees">
-          <div className="header" onClick={goToEmployees}>
-          <div className="logo" onClick={goToEmployees}>
-          <img src={logo} alt="SONDA Engenharia" className="sonda" />
-          </div>
+          <div className="header">
+          <Header/>
           </div>
           <h2>Cursos do Funcionário</h2>
           <table>

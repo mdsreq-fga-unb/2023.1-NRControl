@@ -6,6 +6,7 @@ import { MdAssignmentAdd } from "react-icons/md";
 import { TfiEmail } from "react-icons/tfi";
 import logo from "./../../assets/images/logo.png";
 import "./Home.css";
+import Header from "../Header/header";
 
 function Home() {
   const navigateTo = useNavigate();
@@ -58,16 +59,8 @@ function Home() {
   return (
     <div className="main">
       <div className="header">
-        <div className="logo">
-          <img src={logo} alt="SONDA Engenharia" className="sonda" />
-        </div>
-        <div className="button-wrapper">
-          <div className="icons-sidebar">
-            <BsFillPersonPlusFill onClick={goToRegister} />
-            <MdAssignmentAdd onClick={goToCursos} />
-            <TfiEmail onClick={goToEmail} />
-          </div>
-        </div>
+      <Header/>
+
       </div>
       <div className="box">
         <h1>Funcionários</h1>

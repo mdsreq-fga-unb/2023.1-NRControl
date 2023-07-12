@@ -28,7 +28,7 @@ describe("resetPasswordRequest", () => {
   });
 
   it("deve retornar 409 se o email não existir na base de dados", async () => {
-    const req = { body: { email: "emailinexistente@example.com" } };
+    const req = { body: { email: "emailnexiste@example.com" } };
     const res = {
       status: jest.fn().mockReturnThis(),
       send: jest.fn(),

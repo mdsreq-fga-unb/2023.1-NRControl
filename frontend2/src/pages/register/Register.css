@@ -56,29 +56,13 @@
   text-align: center;
 }
 
-.left-card {
-  width: 50%;
-  margin: 0px 10px;
-}
-.right-card {
+.left-card, .right-card {
   width: 50%;
   margin: 0px 10px;
 }
 
-.left-card > input {
-  width: 25vw;
-  border: none;
-  border-radius: 10px;
-  margin-top: 8%;
-  padding: 3%;
-  background: #463026;
-  color: white;
-  font-size: 12pt;
-  box-shadow: 0px 10px 40px #020100;
-  outline: none;
-  box-sizing: border-box;
-}
 
+.left-card > input,
 .right-card > input {
   width: 25vw;
   border: none;
@@ -92,6 +76,7 @@
   outline: none;
   box-sizing: border-box;
 }
+
 .baixo {
   display: flex;
   justify-content: center;
@@ -148,4 +133,26 @@ span {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.error-message {
+  display: center;
+  color: #ff0000;
+  font-size: 14px;
+  margin-top: 10px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.error-container {
+  height: 1px; 
+  margin-top: 8px; 
+}
+
+.error-message {
+  color: #ff0000;
+  font-size: 14px;
+  text-align: center;
 }

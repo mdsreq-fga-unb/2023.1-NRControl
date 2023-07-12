@@ -7,5 +7,6 @@ router.get("/byId/:id", employeeController.getEmployeeById);
 router.post("/", employeeController.createEmployee);
 router.get("/compareNames", employeeController.compareNames);
 router.put("/byId/:id", employeeController.putEmployee);
+router.get("/checkCpf/:cpf", employeeController.checkCpfExistence);
 
 module.exports = router;

@@ -61,3 +61,17 @@ exports.putEmployee = async (req, res) => {
     res.status(500).json({ error: "Falha ao atualizar funcionário." });
   }
 };
+
+exports.checkCpfExistence = async (req, res) => {
+  const cpf = req.params.cpf;
+  try {
+    const employee = await Employee.findOne({ where: { cpf: cpf } });
+    if (employee) {
+      res.json({ exists: true });
+    } else {
+      res.json({ exists: false });
+    }
+  } catch (error) {
+    res.status(500).json({ error: "Falha ao verificar a existência do CPF." });
+  }
+};

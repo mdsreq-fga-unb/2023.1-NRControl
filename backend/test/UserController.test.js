@@ -11,9 +11,9 @@ describe("Testes para a função registerUser", () => {
     // Dados de entrada para o teste
     const req = {
       body: {
-        username: "john",
-        email: "john@example.com",
-        password: "mypassword",
+        username: "Gabriel",
+        email: "Gabriel@gmail.com",
+        password: "1234",
       },
     };
     const res = {
@@ -21,7 +21,7 @@ describe("Testes para a função registerUser", () => {
     };
 
     // Mock da função bcrypt.hash
-    const hash = "hashedpassword";
+    const hash = "hashedsenha";
     bcrypt.hash = jest.fn().mockResolvedValue(hash);
 
     // Mock da função Users.create
@@ -67,8 +67,8 @@ describe("Testes para a função loginUser", () => {
   it("Deve retornar um token válido ao fazer login com sucesso", async () => {
     const req = {
       body: {
-        email: "john@example.com",
-        password: "mypassword",
+        email: "Gabriel@gmail.com",
+        password: "1234",
       },
     };
     const res = {
@@ -77,8 +77,8 @@ describe("Testes para a função loginUser", () => {
 
     const user = {
       id: 1,
-      username: "john",
-      password: "hashedpassword",
+      username: "Gabriel",
+      password: "hashedsenha",
     };
     Users.findOne.mockResolvedValue(user);
 
@@ -102,8 +102,8 @@ describe("Testes para a função loginUser", () => {
   it("Deve retornar erro ao fazer login com email inexistente", async () => {
     const req = {
       body: {
-        email: "nonexistent@example.com",
-        password: "mypassword",
+        email: "nexiste@example.com",
+        password: "1234",
       },
     };
     const res = {
@@ -121,8 +121,8 @@ describe("Testes para a função loginUser", () => {
   it("Deve retornar erro ao fazer login com senha incorreta", async () => {
     const req = {
       body: {
-        email: "john@example.com",
-        password: "wrongpassword",
+        email: "Gabriel@gmail.com",
+        password: "senhaerrada",
       },
     };
     const res = {
@@ -131,8 +131,8 @@ describe("Testes para a função loginUser", () => {
 
     const user = {
       id: 1,
-      username: "john",
-      password: "hashedpassword",
+      username: "Gabriel",
+      password: "hashedenha",
     };
     Users.findOne.mockResolvedValue(user);
 

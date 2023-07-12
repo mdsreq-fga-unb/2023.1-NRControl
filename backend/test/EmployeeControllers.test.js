@@ -1,4 +1,4 @@
-const { getEmployees, getEmployeeById, createEmployee, compareNames } = require('../controllers/EmployeeControllers');
+const { getEmployees, getEmployeeById, createEmployee, compareNames, putEmployee } = require('../controllers/EmployeeControllers');
 const { Employee, Cursos } = require('../models/schemas');
 
 describe('Employee Controller', () => {
@@ -151,5 +151,76 @@ describe('Employee Controller', () => {
       expect(Employee.findAll).toHaveBeenCalled();
       expect(res.status).toHaveBeenCalledWith(500);
       expect(res.json).toHaveBeenCalledWith({ error: 'Falha ao comparar nomes.' });
+    });
+  });
+
+  describe('putEmployee', () => {
+    // Caso de teste quando a atualização é bem-sucedida
+    it('deve atualizar o funcionário corretamente', async () => {
+      // Dados de exemplo
+      const req = {
+        params: {
+          id: 1, // ID do funcionário a ser atualizado
+        },
+        body: {
+          name: 'Novo Nome', // Novo nome do funcionário
+          position: 'Nova Posição', // Nova posição do funcionário
+        },
+      };
+  
+      const res = {
+        json: jest.fn(), // Função mock para res.json()
+      };
+  
+      // Mock da função de atualização do Employee
+      Employee.update = jest.fn().mockResolvedValue(1); // O valor retornado pode ser ajustado conforme necessário
+  
+      // Chamar a função controller
+      await putEmployee(req, res);
+  
+      // Verificar se a função de atualização do Employee foi chamada corretamente
+      expect(Employee.update).toHaveBeenCalledWith(
+        {
+          name: 'Novo Nome',
+          position: 'Nova Posição',
+        },
+        {
+          where: { id: 1 },
+        }
+      );
+  
+      // Verificar se res.json() foi chamado com o resultado da atualização
+      expect(res.json).toHaveBeenCalledWith(1);
+    });
+  
+    // Caso de teste quando a atualização falha
+    it('deve retornar um erro ao falhar a atualização do funcionário', async () => {
+      // Dados de exemplo
+      const req = {
+        params: {
+          id: 1, // ID do funcionário a ser atualizado
+        },
+        body: {
+          name: 'Novo Nome', // Novo nome do funcionário
+          position: 'Nova Posição', // Nova posição do funcionário
+        },
+      };
+  
+      const res = {
+        status: jest.fn().mockReturnThis(), // Função mock para res.status()
+        json: jest.fn(), // Função mock para res.json()
+      };
+  
+      // Mock da função de atualização do Employee lançando um erro
+      Employee.update = jest.fn().mockRejectedValue(new Error('Erro na atualização do funcionário'));
+  
+      // Chamar a função controller
+      await putEmployee(req, res);
+  
+      // Verificar se res.status() foi chamado com o código de status 500
+      expect(res.status).toHaveBeenCalledWith(500);
+  
+      // Verificar se res.json() foi chamado com a mensagem de erro apropriada
+      expect(res.json).toHaveBeenCalledWith({ error: 'Falha ao atualizar funcionário.' });
     });
   });

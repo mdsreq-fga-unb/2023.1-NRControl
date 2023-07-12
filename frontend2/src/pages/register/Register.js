@@ -319,10 +319,6 @@ function Register() {
           <img src={logo} alt="SONDA Engenharia" className="sonda" />
         </div>
         <div className="sidebar">
-          <div className="icons-sidebar">
-            <BsFillPersonDashFill />
-            <BsPersonVcard onClick={goToCursos} />
-          </div>
         </div>
       </div>
       <div className="tam-container">

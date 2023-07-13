@@ -38,8 +38,7 @@
   height: 100vh;
 }
 
-.container {
-  width: 100vw;
+.container-add {
   display: flex;
   flex-direction: column;
   padding: 3% 2%;
@@ -48,7 +47,7 @@
   box-shadow: 0px 10px 40px #020100;
 }
 
-.container > h1 {
+.container-add > h1 {
   text-align: center;
   color: #f85605;
   font-weight: 400;
@@ -60,13 +59,13 @@
   text-align: center;
 }
 
-.left-card {
-  width: 50%;
+.left-card-add-course {
+  width: 16vw;
   margin: 0px 10px;
 }
 
-.right-card {
-  width: 50%;
+.right-card-add-course {
+  width: 16vw;
   margin: 0px 10px;
 }
 
@@ -83,14 +82,6 @@
   box-shadow: 0px 10px 40px #020100;
   outline: none;
   box-sizing: border-box;
-}
-
-.baixo {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  width: 50%;
-  margin: 20px auto;
 }
 
 .cadastrar {

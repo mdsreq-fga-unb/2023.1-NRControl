@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import "./courseInfo.css";
-import logo from "./../../assets/images/logo.png";
+import Header from "../Header/header";
 
 function CourseInfo() {
   const navigateTo = useNavigate();
@@ -32,7 +32,7 @@ function CourseInfo() {
           console.log(error);
         });
     }
-  }, [id]);  
+  }, [id]);
 
   const editCourseData = () => {
     navigateTo(`/editCourse/${id}`);
@@ -43,9 +43,7 @@ function CourseInfo() {
       <div className="main-table">
         <div className="table-employees">
           <div className="header" onClick={goToEmployees}>
-            <div className="logo" onClick={goToEmployees}>
-              <img src={logo} alt="SONDA Engenharia" className="sonda" />
-            </div>
+            <Header />
           </div>
           <h2>Informações do Curso</h2>
           <table>
@@ -67,16 +65,24 @@ function CourseInfo() {
                     <div className="info">{course.info}</div>
                   </td>
                   <td>
-                    <div className="conclusiondate">{course.conclusiondate}</div>
+                    <div className="conclusiondate">
+                      {course.conclusiondate}
+                    </div>
                   </td>
                   <td>
-                    <div className="expirationdate">{course.expirationdate}</div>
+                    <div className="expirationdate">
+                      {course.expirationdate}
+                    </div>
                   </td>
                 </tr>
               )}
             </tbody>
           </table>
-          <button onClick={editCourseData}>Editar</button>
+          <div className="box-bnt-editar">
+            <button onClick={editCourseData} className="bnt-editar">
+              Editar
+            </button>
+          </div>
         </div>
       </div>
     </div>

@@ -15,7 +15,12 @@
   justify-content: center;
   align-items: center;
 }
-
+.name {
+  cursor: pointer;
+}
+.name:hover {
+  color: #f85605;
+}
 .table-employees > h2 {
   text-align: center;
   color: #f85605;

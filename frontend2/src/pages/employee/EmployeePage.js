@@ -3,8 +3,8 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import logo from "./../../assets/images/logo.png";
 import moment from "moment";
+import Header from "../Header/header";
 
 function EmployeePage() {
   const navigateTo = useNavigate();
@@ -44,9 +44,7 @@ function EmployeePage() {
   return (
     <div className="postPage">
       <div className="header">
-        <div className="logo" onClick={goToEmployees}>
-          <img src={logo} alt="SONDA Engenharia" className="sonda" />
-        </div>
+        <Header />
       </div>
       <div className="post" id="individual">
         <h1>Funcionário</h1>

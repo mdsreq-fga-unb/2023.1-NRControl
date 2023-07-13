@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { BsFillPersonPlusFill } from "react-icons/bs";
-import { MdAssignmentAdd } from "react-icons/md";
-import { TfiEmail } from "react-icons/tfi";
-import logo from "./../../assets/images/logo.png";
 import "./Home.css";
 import Header from "../Header/header";
 
@@ -59,8 +55,7 @@ function Home() {
   return (
     <div className="main">
       <div className="header">
-      <Header/>
-
+        <Header />
       </div>
       <div className="box">
         <h1>Funcionários</h1>

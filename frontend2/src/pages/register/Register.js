@@ -3,25 +3,16 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { BsFillPersonDashFill, BsPersonVcard } from "react-icons/bs";
 import "./Register.css";
 import InputMask from "react-input-mask";
 import moment from "moment";
-import logo from "./../../assets/images/logo.png";
+import Header from "../Header/header";
 
 function Register() {
   const [successMessage, setSuccessMessage] = useState("");
   const [cpfExistsError, setCpfExistsError] = useState("");
   const navigateTo = useNavigate();
-  const timeoutRef = useRef(null); 
-
-  const goToEmployees = () => {
-    navigateTo("/employees");
-  };
-
-  const goToCursos = () => {
-    navigateTo("/cursos");
-  };
+  const timeoutRef = useRef(null);
 
   useEffect(() => {
     const accessToken = sessionStorage.getItem("accessToken");
@@ -112,7 +103,9 @@ function Register() {
 
         return true;
       }),
-    email: Yup.string().email("Email inválido").required("O email é obrigatório"),
+    email: Yup.string()
+      .email("Email inválido")
+      .required("O email é obrigatório"),
     address: Yup.string().required("O endereço é obrigatório"),
 
     phonenumber: Yup.string()
@@ -161,51 +154,55 @@ function Register() {
       .required("A data de nascimento é obrigatória"),
 
     admissiondate: Yup.string()
-      .test("admissiondate", "A data de admissão é obrigatória", function (value) {
-        const isValidFormat = /^\d{2}\/\d{2}\/\d{4}$/.test(value);
-        const currentDate = moment();
-        const selectedDate = moment(value, "DD/MM/YYYY");
-        const minDate = moment("1971-10-01", "YYYY-MM-DD");
-        const ageRequirementDate = moment().subtract(18, "years");
+      .test(
+        "admissiondate",
+        "A data de admissão é obrigatória",
+        function (value) {
+          const isValidFormat = /^\d{2}\/\d{2}\/\d{4}$/.test(value);
+          const currentDate = moment();
+          const selectedDate = moment(value, "DD/MM/YYYY");
+          const minDate = moment("1971-10-01", "YYYY-MM-DD");
+          const ageRequirementDate = moment().subtract(18, "years");
 
-        if (isValidFormat && selectedDate.isValid()) {
-          if (!selectedDate.isValid()) {
+          if (isValidFormat && selectedDate.isValid()) {
+            if (!selectedDate.isValid()) {
+              return this.createError({
+                message: "Data de admissão inválida",
+                path: "admissiondate",
+              });
+            }
+
+            if (selectedDate.isBefore(minDate)) {
+              throw this.createError({
+                message: "Data de admissão inválida",
+                path: "admissiondate",
+              });
+            }
+
+            if (selectedDate.isAfter(currentDate)) {
+              throw this.createError({
+                message: "A data de admissão não pode ser futura",
+                path: "admissiondate",
+              });
+            }
+
+            if (selectedDate.isBefore(ageRequirementDate)) {
+              throw this.createError({
+                message:
+                  "O funcionário deve ter pelo menos 18 anos na data de admissão",
+                path: "admissiondate",
+              });
+            }
+          } else if (value) {
             return this.createError({
               message: "Data de admissão inválida",
               path: "admissiondate",
             });
           }
 
-          if (selectedDate.isBefore(minDate)) {
-            throw this.createError({
-              message: "Data de admissão inválida",
-              path: "admissiondate",
-            });
-          }
-
-          if (selectedDate.isAfter(currentDate)) {
-            throw this.createError({
-              message: "A data de admissão não pode ser futura",
-              path: "admissiondate",
-            });
-          }
-
-          if (selectedDate.isBefore(ageRequirementDate)) {
-            throw this.createError({
-              message:
-                "O funcionário deve ter pelo menos 18 anos na data de admissão",
-              path: "admissiondate",
-            });
-          }
-        } else if (value) {
-          return this.createError({
-            message: "Data de admissão inválida",
-            path: "admissiondate",
-          });
+          return true;
         }
-
-        return true;
-      })
+      )
       .required("A data de admissão é obrigatória"),
 
     asodate: Yup.string()
@@ -315,11 +312,7 @@ function Register() {
   return (
     <div className="page">
       <div className="header">
-        <div className="logo" onClick={goToEmployees}>
-          <img src={logo} alt="SONDA Engenharia" className="sonda" />
-        </div>
-        <div className="sidebar">
-        </div>
+        <Header />
       </div>
       <div className="tam-container">
         <div className="container">
@@ -338,7 +331,11 @@ function Register() {
                     placeholder="Nome completo"
                   />
                   <div className="error-container">
-                    <ErrorMessage name="name" component="span" className="error-message" />
+                    <ErrorMessage
+                      name="name"
+                      component="span"
+                      className="error-message"
+                    />
                   </div>
 
                   <Field
@@ -350,7 +347,11 @@ function Register() {
                     type="text"
                   />
                   <div className="error-container">
-                    <ErrorMessage name="cpf" component="span" className="error-message" />
+                    <ErrorMessage
+                      name="cpf"
+                      component="span"
+                      className="error-message"
+                    />
                   </div>
                   {cpfExistsError && (
                     <div className="error-message">{cpfExistsError}</div>
@@ -362,7 +363,11 @@ function Register() {
                     placeholder="Email"
                   />
                   <div className="error-container">
-                    <ErrorMessage name="email" component="span" className="error-message" />
+                    <ErrorMessage
+                      name="email"
+                      component="span"
+                      className="error-message"
+                    />
                   </div>
 
                   <Field
@@ -371,7 +376,11 @@ function Register() {
                     placeholder="Endereço"
                   />
                   <div className="error-container">
-                    <ErrorMessage name="address" component="span" className="error-message" />
+                    <ErrorMessage
+                      name="address"
+                      component="span"
+                      className="error-message"
+                    />
                   </div>
                 </div>
 
@@ -384,7 +393,11 @@ function Register() {
                     mask="(99) 99999-9999"
                   />
                   <div className="error-container">
-                    <ErrorMessage name="phonenumber" component="span" className="error-message" />
+                    <ErrorMessage
+                      name="phonenumber"
+                      component="span"
+                      className="error-message"
+                    />
                   </div>
 
                   <Field
@@ -395,7 +408,11 @@ function Register() {
                     mask="99/99/9999"
                   />
                   <div className="error-container">
-                    <ErrorMessage name="birthday" component="span" className="error-message" />
+                    <ErrorMessage
+                      name="birthday"
+                      component="span"
+                      className="error-message"
+                    />
                   </div>
 
                   <Field
@@ -406,7 +423,11 @@ function Register() {
                     mask="99/99/9999"
                   />
                   <div className="error-container">
-                    <ErrorMessage name="admissiondate" component="span" className="error-message" />
+                    <ErrorMessage
+                      name="admissiondate"
+                      component="span"
+                      className="error-message"
+                    />
                   </div>
 
                   <Field
@@ -417,7 +438,11 @@ function Register() {
                     mask="99/99/9999"
                   />
                   <div className="error-container">
-                    <ErrorMessage name="asodate" component="span" className="error-message" />
+                    <ErrorMessage
+                      name="asodate"
+                      component="span"
+                      className="error-message"
+                    />
                   </div>
                 </div>
                 <div className="baixo">

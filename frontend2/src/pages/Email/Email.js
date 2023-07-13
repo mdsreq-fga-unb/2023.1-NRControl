@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import logo from "./../../assets/images/logo.png";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import Header from "../Header/header";
 
 import "./Email.css";
 
@@ -57,9 +57,7 @@ function Email() {
 
   return (
     <div className="main-email">
-      <div className="logo">
-        <img src={logo} alt="SONDA Engenharia" className="sonda" />
-      </div>
+      <Header />
       <div className="box-email">
         <h1>Enviar Email</h1>
         <ThemeProvider theme={theme}>

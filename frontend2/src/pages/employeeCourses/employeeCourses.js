@@ -2,9 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import "./employeeCourses.css";
-import logo from "./../../assets/images/logo.png";
 import Header from "../Header/header";
-
 
 function EmployeeCourses() {
   const navigateTo = useNavigate();
@@ -55,7 +53,7 @@ function EmployeeCourses() {
       <div className="main-table">
         <div className="table-employees">
           <div className="header">
-          <Header/>
+            <Header />
           </div>
           <h2>Cursos do Funcionário</h2>
           <table>
@@ -68,11 +66,12 @@ function EmployeeCourses() {
               {courses.map((course, key) => (
                 <tr key={key}>
                   <td>
-                    <div 
-                      key={key} 
-                      className="name" 
-                      onClick={() => navigateTo(`/curso/${course.id}`)}>
-                        {course.course}
+                    <div
+                      key={key}
+                      className="name"
+                      onClick={() => navigateTo(`/curso/${course.id}`)}
+                    >
+                      {course.course}
                     </div>
                   </td>
                 </tr>

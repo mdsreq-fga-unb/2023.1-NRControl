@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
-
-import logo from "./../../assets/images/logo.png";
+import Header from "../Header/header";
 import "./listOfCourses.css";
 
 const ListOfCourses = () => {
@@ -51,17 +50,13 @@ const ListOfCourses = () => {
       .catch((err) => console.log(err));
   }, []);
 
- 
   return (
     <div className="page-container">
       <div className="content-container">
-        <div className="logo" onClick={goToEmployees}>
-          <img src={logo} alt="SONDA Engenharia" className="sonda" />
-        </div>
+        <Header />
         <div className="title">
           <h1>Lista de cursos</h1>
         </div>
-
         <div className="table-container">
           <table className="table">
             <thead>
@@ -86,7 +81,7 @@ const ListOfCourses = () => {
             </tbody>
           </table>
         </div>
-        <div className="pagination2">
+        <div className="pagination">
           {pages.map((pageNumber) => (
             <button
               key={pageNumber}

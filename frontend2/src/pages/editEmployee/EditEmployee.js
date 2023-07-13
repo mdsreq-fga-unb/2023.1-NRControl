@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import logo from "./../../assets/images/logo.png";
 import "./EditEmployee.css";
+import Header from "../Header/header";
+
 function EditEmployeePage() {
   const navigateTo = useNavigate();
   const { id } = useParams();
@@ -56,9 +57,7 @@ function EditEmployeePage() {
   return (
     <div className="main-edit">
       <div className="box-edit">
-        <div>
-          <img src={logo} alt="SONDA Engenharia" className="sonda" />
-        </div>
+        <Header />
         <h1>Editar Dados do Funcionário</h1>
         <div className="info-edit">
           <form onSubmit={updateData}>

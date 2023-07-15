@@ -150,11 +150,11 @@ function EditEmployeePage() {
                 />
               </label>
             </div>
+            <button className="bnt-edit" type="submit">
+              Salvar
+            </button>
           </form>
         </div>
-        <button className="bnt-edit" type="submit">
-          Salvar
-        </button>
       </div>
     </div>
   );

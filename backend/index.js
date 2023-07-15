@@ -20,7 +20,6 @@ app.use("/employeeinfo", employeeRoute);
 app.use("/course", courseRoute);
 app.use("/", emailRoute);
 
-
 database.sequelize.sync().then(() => {
   app.listen(3005, () => {
     console.log("Servidor está rodando na porta 3005");

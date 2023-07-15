@@ -2,14 +2,18 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
-import Header from "../Header/header";
+import { FiBell } from "react-icons/fi";
 import "./listOfCourses.css";
+import Header from "../Header/header";
 
 const ListOfCourses = () => {
   const navigateTo = useNavigate();
   const [users, setUsers] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const usersPerPage = 8;
+  const [expiredCourses, setExpiredCourses] = useState([]);
+  const [showNotification, setShowNotification] = useState(false);
+  const [notificationIndex, setNotificationIndex] = useState(0);
 
   const goToEmployees = () => {
     navigateTo("/employees");
@@ -28,6 +32,34 @@ const ListOfCourses = () => {
 
   const formatDate = (date) => {
     return moment(date).format("DD/MM/YYYY");
+  };
+
+  const showCourseExpiredNotification = (user) => {
+    if (Notification.permission === "granted") {
+      new Notification(`Curso expirado para ${user.name}`, {
+        body: `Data de expiração: ${formatDate(user.expirationdate)}`,
+      });
+    }
+  };
+
+  const showAllNotifications = () => {
+    const expiredCourses = users.filter((user) =>
+      moment().isAfter(user.expirationdate)
+    );
+
+    if (Notification.permission === "granted") {
+      expiredCourses.forEach((user) => {
+        showCourseExpiredNotification(user);
+      });
+    } else if (Notification.permission !== "denied") {
+      Notification.requestPermission().then((permission) => {
+        if (permission === "granted") {
+          expiredCourses.forEach((user) => {
+            showCourseExpiredNotification(user);
+          });
+        }
+      });
+    }
   };
 
   useEffect(() => {
@@ -50,12 +82,60 @@ const ListOfCourses = () => {
       .catch((err) => console.log(err));
   }, []);
 
+  useEffect(() => {
+    Notification.requestPermission();
+  }, []);
+
+  useEffect(() => {
+    const expired = users.filter((user) =>
+      moment().isAfter(user.expirationdate)
+    );
+    setExpiredCourses(expired);
+  }, [currentPage, users]);
+
+  useEffect(() => {
+    let timeoutId;
+
+    if (showNotification && expiredCourses.length > 0) {
+      timeoutId = setTimeout(() => {
+        showCourseExpiredNotification(
+          expiredCourses[notificationIndex % expiredCourses.length]
+        );
+        setNotificationIndex((prevIndex) => prevIndex + 1);
+      }, 1000);
+    }
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [showNotification, expiredCourses, notificationIndex]);
+
+  const handleNotificationClick = () => {
+    setShowNotification(!showNotification);
+
+    if (!showNotification && expiredCourses.length > 0) {
+      showAllNotifications();
+    }
+  };
+
   return (
     <div className="page-container">
       <div className="content-container">
-        <Header />
         <div className="title">
           <h1>Lista de cursos</h1>
+          <button
+            className={`notification-button ${
+              showNotification ? "active" : ""
+            }`}
+            onClick={handleNotificationClick}
+          >
+            <FiBell className="notification-icon" />
+            {showNotification && expiredCourses.length > 0 && (
+              <span className="notification-count">
+                {expiredCourses.length}
+              </span>
+            )}
+          </button>
         </div>
         <div className="table-container">
           <table className="table">
@@ -75,7 +155,20 @@ const ListOfCourses = () => {
                   <td className="course-column">{user.course}</td>
                   <td>{user.info}</td>
                   <td>{formatDate(user.conclusiondate)}</td>
-                  <td>{formatDate(user.expirationdate)}</td>
+                  <td>
+                    {formatDate(user.expirationdate)}
+                    {moment().isAfter(user.expirationdate) && (
+                      <button
+                        className="notification-button"
+                        onClick={() => showAllNotifications()}
+                      >
+                        <FiBell className="notification-icon" />
+                        <span className="notification-count">
+                          {expiredCourses.length}
+                        </span>
+                      </button>
+                    )}
+                  </td>
                 </tr>
               ))}
             </tbody>

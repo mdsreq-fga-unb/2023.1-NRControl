@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import "./courseInfo.css";
 import Header from "../Header/header";
+import moment from "moment";
 
 function CourseInfo() {
   const navigateTo = useNavigate();
@@ -38,6 +39,10 @@ function CourseInfo() {
     navigateTo(`/editCourse/${id}`);
   };
 
+  const formatDate = (date) => {
+    return moment(date).format("DD/MM/YYYY");
+  };
+
   return (
     <div>
       <div className="main-table">
@@ -65,14 +70,10 @@ function CourseInfo() {
                     <div className="info">{course.info}</div>
                   </td>
                   <td>
-                    <div className="conclusiondate">
-                      {course.conclusiondate}
-                    </div>
+                    <div className="conclusiondate">{formatDate(course.conclusiondate)}</div>
                   </td>
                   <td>
-                    <div className="expirationdate">
-                      {course.expirationdate}
-                    </div>
+                    <div className="expirationdate">{formatDate(course.expirationdate)}</div>
                   </td>
                 </tr>
               )}

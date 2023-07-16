@@ -119,7 +119,9 @@ const ListOfCourses = () => {
   };
 
   return (
+    
     <div className="page-container">
+        <Header />
       <div className="content-container">
         <div className="title">
           <h1>Lista de cursos</h1>

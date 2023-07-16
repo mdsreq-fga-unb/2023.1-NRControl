@@ -23,7 +23,7 @@ function EditEmployeePage() {
     const showEmployeeData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3005/employeeinfo/byId/${id}`
+          `http://localhost:3005/employee/byId/${id}`
         );
         setEmployeeData(response.data);
       } catch (error) {
@@ -47,7 +47,7 @@ function EditEmployeePage() {
 
     try {
       await axios.put(
-        `http://localhost:3005/employeeinfo/byId/${id}`,
+        `http://localhost:3005/employee/byId/${id}`,
         employeeData
       );
       navigateTo(`/employee/${id}`);
@@ -58,8 +58,9 @@ function EditEmployeePage() {
 
   return (
     <div className="main-edit">
+              <Header/>
       <div className="box-edit">
-        <Header />
+
         <h1>Editar Dados do Funcionário</h1>
         <div className="info-edit">
           <form onSubmit={updateData}>

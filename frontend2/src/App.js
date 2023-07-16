@@ -27,7 +27,7 @@ function App() {
         <Route path="/curso/:id" element={<CourseInfo />} />
         <Route path="/cursosdooperario/:id" element={<EmployeeCourses />} />
         <Route path="/employee/:id" element={<EmployeePage />} />
-        <Route path="/editEmployee/:id" element={<EditEmployee />} />
+        <Route path="/editemployee/:id" element={<EditEmployee />} />
         <Route path="/listadecursos" element={<ListOfCourses />} />
         <Route path="/editCourse/:id" element={<EditCourse />} />
         <Route path="/api/password-reset/:id/:token" element={<PasswordReset />}

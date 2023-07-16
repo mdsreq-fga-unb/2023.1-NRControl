@@ -37,7 +37,7 @@ const Course = () => {
 
     try {
       const employeeExistsResponse = await axios.get(
-        `http://localhost:3005/employeeinfo/checkName/${data.name}`
+        `http://localhost:3005/employee/checkName/${data.name}`
       );
 
       if (employeeExistsResponse.data.exists) {
@@ -180,9 +180,9 @@ const Course = () => {
                 )}
               </Formik>
             </div>
-            {successMessage && (
+              {successMessage && (
             <div className="success-message">{successMessage}</div>
-          )}
+            )}
           </div>
         </div>
       </div>

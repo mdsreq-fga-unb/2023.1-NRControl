@@ -19,7 +19,7 @@ function Home() {
   }, [navigateTo]);
 
   useEffect(() => {
-    axios.get("http://localhost:3005/employeeinfo").then((response) => {
+    axios.get("http://localhost:3005/employee").then((response) => {
       const sortedEmployees = response.data.sort((a, b) =>
         a.name.localeCompare(b.name)
       );

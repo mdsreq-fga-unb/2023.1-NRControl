@@ -31,6 +31,7 @@ function Register() {
     birthday: "",
     admissiondate: "",
     asodate: "",
+    competence: "", 
   };
 
   const validationSchema = Yup.object().shape({
@@ -244,6 +245,8 @@ function Register() {
         return true;
       })
       .required("A data de ASO é obrigatória"),
+      competence: Yup.string()
+        .required("Selecione uma competência"),
   });
 
   const onSubmit = async (data, { resetForm }) => {
@@ -276,7 +279,6 @@ function Register() {
       if (cpfExistsResponse.data.exists) {
         setCpfExistsError("CPF já existe no sistema");
 
-        // Limpa a mensagem de erro após 3000 milissegundos (3 segundos)
         timeoutRef.current = setTimeout(() => {
           setCpfExistsError("");
         }, 3000);
@@ -444,6 +446,24 @@ function Register() {
                       className="error-message"
                     />
                   </div>
+                  <Field
+                    as="select"
+                    name="competence"
+                    id="inputCreatePost"
+                    className="competence-select"
+                  >
+                    <option value="">Selecione uma competência</option>
+                    <option value="Servente">Servente</option>
+                    <option value="Operador de máquinas">Operador de máquinas</option>
+                    <option value="Auxiliar de máquinas">Auxiliar de máquinas</option>
+                    <option value="Sondador">Sondador</option>
+                    <option value="Soldador">Soldador</option>
+                    <option value="Encarregado">Encarregado</option>
+                    <option value="Poceiro">Poceiro</option>
+                  </Field>
+                  <div className="error-container"><ErrorMessage name="competence" component="span" className="error-message"/>
+                  </div>
+
                 </div>
                 <div className="baixo">
                   <button type="submit" className="cadastrar">

@@ -8,6 +8,8 @@ const passwordRoute = require("./views/routes/Password");
 const employeeRoute = require("./views/routes/Employee");
 const courseRoute = require("./views/routes/Course");
 const emailRoute = require("./views/routes/Email");
+const { validateToken } = require("./controllers/middlewares/auth");
+
 
 require("dotenv").config();
 
@@ -16,9 +18,10 @@ app.use(cors());
 
 app.use("/auth", userRoute);
 app.use("/api/password-reset", passwordRoute);
-app.use("/employeeinfo", employeeRoute);
+app.use("/employee", employeeRoute);
 app.use("/course", courseRoute);
 app.use("/", emailRoute);
+app.use(validateToken);
 
 database.sequelize.sync().then(() => {
   app.listen(3005, () => {

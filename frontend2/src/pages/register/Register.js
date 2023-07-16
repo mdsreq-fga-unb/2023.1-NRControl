@@ -268,7 +268,7 @@ function Register() {
 
     try {
       const cpfExistsResponse = await axios.get(
-        `http://localhost:3005/employeeinfo/checkCpf/${formattedData.cpf}`,
+        `http://localhost:3005/employee/checkCpf/${formattedData.cpf}`,
         {
           headers: {
             Authorization: "Bearer " + accessToken,
@@ -285,7 +285,7 @@ function Register() {
         return;
       } else {
         const createdEmployee = await axios.post(
-          "http://localhost:3005/employeeinfo",
+          "http://localhost:3005/employee",
           formattedData,
           {
             headers: {

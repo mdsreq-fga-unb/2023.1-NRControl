@@ -11,6 +11,9 @@ function EmployeePage() {
 
   let { id } = useParams();
   const [employeeObject, setEmployeeObject] = useState({});
+  const goToEmployees = () => {
+    navigateTo("/employees");
+  };
 
   useEffect(() => {
     const accessToken = sessionStorage.getItem("accessToken");
@@ -23,7 +26,7 @@ function EmployeePage() {
   useEffect(() => {
     if (id) {
       axios
-        .get(`http://localhost:3005/employee/byId/${id}`)
+        .get(`http://localhost:3005/employeeinfo/byId/${id}`)
         .then((response) => {
           setEmployeeObject(response.data);
         });
@@ -53,7 +56,7 @@ function EmployeePage() {
           <div className="phonenumber">Telefone: {employeeObject.phonenumber}</div>
           <div className="birthday">Data de nascimento: {formatDate(employeeObject.birthday)}</div>
           <div className="admissiondate">Data de admissão: {formatDate(employeeObject.admissiondate)}</div>
-          <div className="asodate">Data de ASO: {formatDate(employeeObject.asodate)}</div>
+          <div className="asodate">Data de ASO: {employeeObject.asodate}</div>
           <div className="competence">Competência: {employeeObject.competence}</div>
         </div>
         <div>

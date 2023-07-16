@@ -24,7 +24,7 @@ function EmployeeCourses() {
   useEffect(() => {
     if (id) {
       axios
-        .get(`http://localhost:3005/employeeinfo/byId/${id}`)
+        .get(`http://localhost:3005/employee/byId/${id}`)
         .then((response) => {
           showCourses(response.data.name);
         })

@@ -53,16 +53,11 @@ function EmployeePage() {
           <div className="cpf">CPF: {employeeObject.cpf}</div>
           <div className="email">Email: {employeeObject.email}</div>
           <div className="address">Endereço: {employeeObject.address}</div>
-          <div className="phonenumber">
-            Telefone: {employeeObject.phonenumber}
-          </div>
-          <div className="birthday">
-            Data de nascimento: {formatDate(employeeObject.birthday)}
-          </div>
-          <div className="admissiondate">
-            Data de admissão: {formatDate(employeeObject.admissiondate)}
-          </div>
+          <div className="phonenumber">Telefone: {employeeObject.phonenumber}</div>
+          <div className="birthday">Data de nascimento: {formatDate(employeeObject.birthday)}</div>
+          <div className="admissiondate">Data de admissão: {formatDate(employeeObject.admissiondate)}</div>
           <div className="asodate">Data de ASO: {employeeObject.asodate}</div>
+          <div className="competence">Competência: {employeeObject.competence}</div>
         </div>
         <div>
           <div className="box-bnt ">

@@ -16,6 +16,7 @@ function EditEmployeePage() {
     birthday: "",
     admissiondate: "",
     asodate: "",
+    competence: "",
   });
 
   useEffect(() => {
@@ -54,6 +55,7 @@ function EditEmployeePage() {
       console.error(error);
     }
   };
+
   return (
     <div className="main-edit">
       <div className="box-edit">
@@ -148,6 +150,24 @@ function EditEmployeePage() {
                   value={employeeData.asodate}
                   onChange={changeValue}
                 />
+              </label>
+            </div>
+            <div>
+              <label>
+                Competência:
+                <select
+                  name="competence"
+                  value={employeeData.competence}
+                  onChange={changeValue}
+                >
+                  <option value="Servente">Servente</option>
+                  <option value="Operador de máquinas">Operador de máquinas</option>
+                  <option value="Auxiliar de máquinas">Auxiliar de máquinas</option>
+                  <option value="Sondador">Sondador</option>
+                  <option value="Soldador">Soldador</option>
+                  <option value="Encarregado">Encarregado</option>
+                  <option value="Poceiro">Poceiro</option>
+                </select>
               </label>
             </div>
             <button className="bnt-edit" type="submit">

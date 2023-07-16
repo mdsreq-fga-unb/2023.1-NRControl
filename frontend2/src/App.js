@@ -6,7 +6,7 @@ import Home from "./pages/home/Home";
 import Password from "./pages/password/password";
 import PasswordReset from "./pages/passwordReset/PasswordReset";
 import Course from "./pages/Course/Course";
-import EmployeePage from "./pages/employee/EmployeePage";
+import EmployeePage from "./pages/employeePage/EmployeePage";
 import EmployeeCourses from "./pages/employeeCourses/employeeCourses";
 import Email from "./pages/Email/Email";
 import EditEmployee from "./pages/editEmployee/EditEmployee";

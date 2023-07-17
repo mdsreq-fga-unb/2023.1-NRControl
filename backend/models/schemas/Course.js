@@ -18,6 +18,10 @@ module.exports = (sequelize, DataTypes) => {
     expirationdate: {
       type: DataTypes.DATEONLY,
     },
+    fileUrl: {
+      type: DataTypes.TEXT, 
+    },
   });
+
   return Course;
 };

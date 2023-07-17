@@ -1,0 +1,77 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
+}
+.main-edit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+}
+.box-edit {
+  width: 50vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: #4c1d06;
+  border-radius: 20px;
+  box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.4);
+}
+.info-edit {
+  width: 25vw;
+  display: flex;
+  background-color: #463026;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  box-shadow: 0px 10px 40px #020100;
+  font-weight: bold;
+}
+input {
+  text-align: center;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 0px;
+  margin: 5px 10px;
+  background: #4c1d06;
+  color: white;
+  font-size: 12pt;
+  box-shadow: 0px 10px 40px #020100;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.bnt-edit {
+  padding: 2%;
+  margin: 10px 0px;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-weight: 900;
+  color: #381503;
+  background: #f85605;
+  cursor: pointer;
+  box-shadow: 0px 10px 40px -12px #ec5306;
+}
+.bnt-edit:hover {
+  color: #fafafa;
+  cursor: pointer;
+  border-radius: 10px;
+  box-shadow: 0px 10px 40px #020100;
+}
+h1 {
+  text-align: center;
+  color: #f85605;
+  font-weight: 400;
+  font-size: 3vw;
+  margin-bottom: 20px;
+}

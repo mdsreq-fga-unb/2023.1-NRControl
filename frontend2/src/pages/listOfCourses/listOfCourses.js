@@ -121,6 +121,7 @@ const ListOfCourses = () => {
   return (
     <div className="page-container">
       <div className="content-container">
+        <Header />
         <div className="title">
           <h1>Lista de cursos</h1>
           <button

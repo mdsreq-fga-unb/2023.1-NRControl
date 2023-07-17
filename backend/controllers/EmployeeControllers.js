@@ -38,12 +38,54 @@ exports.compareNames = async (req, res) => {
     const employees = await Employee.findAll();
     const cursos = await Cursos.findAll();
 
-    const matchedCourses = cursos.filter(employee =>
-      cursos.some(curso => curso.name === employee.name)
+    const matchedCourses = cursos.filter((employee) =>
+      cursos.some((curso) => curso.name === employee.name)
     );
 
     res.json(matchedCourses);
   } catch (error) {
     res.status(500).json({ error: "Falha ao comparar nomes." });
+  }
+};
+
+exports.putEmployee = async (req, res) => {
+  const id = req.params.id;
+  const employeeData = req.body;
+
+  try {
+    const updatedEmployee = await Employee.update(employeeData, {
+      where: { id: id },
+    });
+    res.json(updatedEmployee);
+  } catch (error) {
+    res.status(500).json({ error: "Falha ao atualizar funcionário." });
+  }
+};
+
+exports.checkCpfExistence = async (req, res) => {
+  const cpf = req.params.cpf;
+  try {
+    const employee = await Employee.findOne({ where: { cpf: cpf } });
+    if (employee) {
+      res.json({ exists: true });
+    } else {
+      res.json({ exists: false });
+    }
+  } catch (error) {
+    res.status(500).json({ error: "Falha ao verificar a existência do CPF." });
+  }
+};
+
+exports.checkNameExistence = async (req, res) => {
+  const name = req.params.name;
+  try {
+    const employee = await Employee.findOne({ where: { name: name } });
+    if (employee) {
+      res.json({ exists: true });
+    } else {
+      res.json({ exists: false });
+    }
+  } catch (error) {
+    res.status(500).json({ error: "Falha ao verificar a existência do nome do funcionário." });
   }
 };

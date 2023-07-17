@@ -2,20 +2,16 @@ import React, { useEffect, useState } from "react";
 import "./Course.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import InputMask from "react-input-mask";
-import logo from "./../../assets/images/logo.png";
+import Header from "../Header/header";
 
 const Course = () => {
   const navigateTo = useNavigate();
   const [users, setUsers] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const usersPerPage = 8;
-
-  const goToEmployees = () => {
-    navigateTo("/employees");
-  };
+  const [successMessage, setSuccessMessage] = useState("");
+  const [employeeExistsError, setEmployeeExistsError] = useState("");
 
   useEffect(() => {
     const accessToken = sessionStorage.getItem("accessToken");
@@ -25,33 +21,57 @@ const Course = () => {
     }
   }, [navigateTo]);
 
-  useEffect(() => {
-    axios
-      .get("http://localhost:3005/course")
-      .then((response) => setUsers(response.data))
-      .catch((err) => console.log(err));
-  }, []);
+  const onSubmit = async (data, { resetForm }) => {
+    const accessToken = sessionStorage.getItem("accessToken");
 
-  const sendData = async (values, { resetForm }) => {
+    if (!accessToken) {
+      navigateTo("/");
+      return;
+    }
+
     try {
-      const id = users.length > 0 ? users[users.length - 1].id + 1 : 1;
-      const response = await axios.post("http://localhost:3005/course", {
-        id: id,
-        name: values.name,
-        course: values.course,
-        info: values.info,
-        conclusiondate: values.conclusiondate,
-        expirationdate: values.expirationdate,
-      });
+      const employeeExistsResponse = await axios.get(
+        `https://2023-1-nr-control.vercel.app/employee/checkName/${data.name}`
+      );
 
-      if (response.status === 201) {
-        setUsers([...users, response.data]);
+      if (employeeExistsResponse.data.exists) {
+        const id = users.length > 0 ? users[users.length - 1].id + 1 : 1;
+
+        const formattedData = {
+          ...data,
+          conclusiondate: data.conclusiondate,
+          expirationdate: data.expirationdate,
+        };
+
+        await axios.post(
+          "https://2023-1-nr-control.vercel.app/course",
+          formattedData
+        );
+        console.log("Curso cadastrado com sucesso");
+        setSuccessMessage("Curso cadastrado com sucesso!");
         resetForm();
+        setTimeout(() => {
+          setSuccessMessage("");
+        }, 3000);
       } else {
-        console.log("Ocorreu um erro ao adicionar o curso.");
+        setEmployeeExistsError(
+          "Só é possível adicionar um curso para um funcionário cadastrado"
+        );
+        setTimeout(() => {
+          setEmployeeExistsError("");
+        }, 3000);
       }
     } catch (error) {
       console.log(error);
+      if (error.response && error.response.status === 404) {
+        setEmployeeExistsError(
+          "Só é possível adicionar um curso a um funcionário já cadastrado no sistema"
+        );
+      } else {
+        setEmployeeExistsError(
+          "Ocorreu um erro ao verificar se o funcionário está cadastrado"
+        );
+      }
     }
   };
 
@@ -59,12 +79,12 @@ const Course = () => {
     name: Yup.string().required("O nome do funcionário é obrigatório"),
     course: Yup.string().required("O código do curso é obrigatório"),
     info: Yup.string().required("As informações do curso são obrigatórias"),
-    conclusiondate: Yup.string()
-      .max(new Date(), "A data de conclusão não pode ser futura")
-      .required("A data de conclusão do curso é obrigatória"),
-    expirationdate: Yup.string()
-      .max(new Date(), "A data de expiração não pode ser futura")
-      .required("A data de expiração do curso é obrigatória"),
+    conclusiondate: Yup.string().required(
+      "A data de conclusão do curso é obrigatória"
+    ),
+    expirationdate: Yup.string().required(
+      "A data de expiração do curso é obrigatória"
+    ),
   });
 
   const initialValues = {
@@ -75,108 +95,106 @@ const Course = () => {
     expirationdate: "",
   };
 
-  const topics = (course) => {
-    if (course && course.length > 0) {
-      return course.split(",").map((topics, index) => (
-        <div key={index}>{topics}</div>
-      ));
-    }
-    return "";
-  };
-
-  const paginate = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
-
-  const indexOfLastUser = currentPage * usersPerPage;
-  const indexOfFirstUser = indexOfLastUser - usersPerPage;
-  const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
-
-  const pageNumbers = Math.ceil(users.length / usersPerPage);
-  const pages = Array.from({ length: pageNumbers }, (_, i) => i + 1);
-
   return (
     <div className="page-container">
-      <div className="content-container">
-      <div className="logo" onClick={goToEmployees}>
-          <img src={logo} alt="SONDA Engenharia" className="sonda" />
+      <div className="page">
+        <div className="header">
+          <Header />
+        </div>
+        <div className="tam-container">
+          <div className="container-add">
+            <h1>Cadastro de Curso</h1>
+            <div className="createPostPage">
+              <Formik
+                initialValues={initialValues}
+                onSubmit={onSubmit}
+                validationSchema={validationSchema}
+                validateOnChange={false}
+              >
+                {({ errors, touched }) => (
+                  <Form className="formContainer">
+                    <div className="left-card-add-course">
+                      <Field
+                        type="text"
+                        name="name"
+                        placeholder="Nome do funcionário"
+                      />
+                      {touched.name && errors.name && (
+                        <div className="error-message">{errors.name}</div>
+                      )}
+
+                      <Field
+                        type="text"
+                        name="course"
+                        placeholder="Código do curso"
+                      />
+                      {touched.course && errors.course && (
+                        <div className="error-message">{errors.course}</div>
+                      )}
+
+                      <Field
+                        type="text"
+                        name="info"
+                        placeholder="Informações do curso"
+                      />
+                      {touched.info && errors.info && (
+                        <div className="error-message">{errors.info}</div>
+                      )}
+
+                      {employeeExistsError && (
+                        <div className="error-message">
+                          {employeeExistsError}
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="right-card-add-course">
+                      <div className="field-group">
+                        <label>Data de Conclusão</label>
+                        <Field
+                          id="inputCreatePost"
+                          name="conclusiondate"
+                          placeholder="Data de conclusão"
+                          as={InputMask}
+                          mask="99/99/9999"
+                        />
+                        {touched.conclusiondate && errors.conclusiondate && (
+                          <div className="error-message">
+                            {errors.conclusiondate}
+                          </div>
+                        )}
+                      </div>
+
+                      <div className="field-group">
+                        <label>Data de Expiração</label>
+                        <Field
+                          id="inputCreatePost"
+                          name="expirationdate"
+                          placeholder="Data de expiração"
+                          as={InputMask}
+                          mask="99/99/9999"
+                        />
+                        {touched.expirationdate && errors.expirationdate && (
+                          <div className="error-message">
+                            {errors.expirationdate}
+                          </div>
+                        )}
+                      </div>
+
+                      <div className="baixo">
+                        <button type="submit" className="cadastrar">
+                          Adicionar
+                        </button>
+                      </div>
+                    </div>
+                  </Form>
+                )}
+              </Formik>
+            </div>
+            {successMessage && (
+              <div className="success-message">{successMessage}</div>
+            )}
           </div>
-        <div className="form">
-          <Formik
-            initialValues={initialValues}
-            onSubmit={sendData}
-            validationSchema={validationSchema}
-          >
-            <Form>
-              <Field type="text" name="name" placeholder="  Nome do funcionário" />
-              <ErrorMessage name="name" component="span" />
-
-              <Field type="text" name="course" placeholder="  Código do curso" />
-              <ErrorMessage name="course" component="span" />
-
-              <Field type="text" name="info" placeholder="  Informações do curso" />
-              <ErrorMessage name="info" component="span" />
-
-              <Field
-                id="inputCreatePost"
-                name="conclusiondate"
-                placeholder="  Data de conclusão"
-                as={InputMask}
-                mask="99/99/9999"
-              />
-              <ErrorMessage name="conclusiondate" component="span" />
-
-              <Field
-                id="inputCreatePost"
-                name="expirationdate"
-                placeholder=" Data de expiração"
-                as={InputMask}
-                mask="99/99/9999"
-              />
-              <ErrorMessage name="expirationdate" component="span" />
-
-              <button className="btn-add" type="submit">
-                Adicionar
-              </button>
-            </Form>
-          </Formik>
-        </div>
-        <div className="table-container">
-          <table className="table">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Funcionário</th>
-                <th>Código do curso</th>
-                <th>Info</th>
-                <th>Data de Conclusão</th>
-                <th>Data de Expiração</th>
-              </tr>
-            </thead>
-            <tbody>
-              {currentUsers.map((user, index) => (
-                <tr key={index}>
-                  <td>{user.id}</td>
-                  <td>{user.name}</td>
-                  <td className="course-column">{topics(user.course)}</td>
-                  <td>{user.info}</td>
-                  <td>{user.conclusiondate}</td>
-                  <td>{user.expirationdate}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        <div className="pagination2">
-          {pages.map((pageNumber) => (
-            <button
-              key={pageNumber}
-              onClick={() => paginate(pageNumber)}
-              className={currentPage === pageNumber ? "active" : ""}
-            >
-              {pageNumber}
-            </button>
-          ))}
         </div>
       </div>
     </div>

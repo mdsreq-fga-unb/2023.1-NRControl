@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import "./Home.css";
 import Header from "../Header/header";
 
-function Home() {
+function Competence() {
   const navigateTo = useNavigate();
   const [listOfEmployees, setListOfEmployees] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -36,22 +35,38 @@ function Home() {
   const goToCursos = () => {
     navigateTo("/cursos");
   };
+
   const goToEmail = () => {
     navigateTo("/enviaremail");
   };
 
-  const indexOfLastEmployee = currentPage * employeesPerPage;
-  const indexOfFirstEmployee = indexOfLastEmployee - employeesPerPage;
-  const currentEmployees = listOfEmployees.slice(
-    indexOfFirstEmployee,
-    indexOfLastEmployee
-  );
+  const employeesByCompetence = listOfEmployees.reduce((result, employee) => {
+    const { competence } = employee;
+    if (!result[competence]) {
+      result[competence] = [];
+    }
+    result[competence].push(employee);
+    return result;
+  }, {});
+
+  // Ordenar as competências em ordem alfabética
+  const sortedCompetences = Object.keys(employeesByCompetence).sort();
+
+  const currentEmployees = sortedCompetences
+    .flatMap((competence) => employeesByCompetence[competence])
+    .slice(
+      (currentPage - 1) * employeesPerPage,
+      currentPage * employeesPerPage
+    );
 
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
-  const pageNumbers = Math.ceil(listOfEmployees.length / employeesPerPage);
+  const pageNumbers = Math.ceil(
+    sortedCompetences.flatMap((competence) => employeesByCompetence[competence])
+      .length / employeesPerPage
+  );
   const pages = Array.from({ length: pageNumbers }, (_, i) => i + 1);
 
   return (
@@ -60,19 +75,24 @@ function Home() {
         <Header />
       </div>
       <div className="box">
-        <h1>Funcionários</h1>
-        <div className="info">
-          {currentEmployees.map((value, key) => (
-            <div
-              key={key}
-              className="employee-box"
-              onClick={() => navigateTo(`/employee/${value.id}`)}
-            >
-              <div className="name">{value.name}</div>
-              <div className="cpf">CPF: {value.cpf}</div>
+        <h1>Competências</h1>
+        {sortedCompetences.map((competence) => (
+          <div key={competence} className="competence-section">
+            <h2>{competence}</h2>
+            <div className="info">
+              {employeesByCompetence[competence].map((value, key) => (
+                <div
+                  key={key}
+                  className="employee-box"
+                  onClick={() => navigateTo(`/employee/${value.id}`)}
+                >
+                  <div className="name">{value.name}</div>
+                  <div className="cpf">CPF: {value.cpf}</div>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
         <div className="pagination">
           {pages.map((pageNumber) => (
             <button
@@ -89,4 +109,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Competence;

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import "./employeeCourses.css";
-import logo from "./../../assets/images/logo.png";
+import Header from "../Header/header";
 
 function EmployeeCourses() {
   const navigateTo = useNavigate();
@@ -24,7 +24,7 @@ function EmployeeCourses() {
   useEffect(() => {
     if (id) {
       axios
-        .get(`http://localhost:3005/employeeinfo/byId/${id}`)
+        .get(`https://2023-1-nr-control.vercel.app/employee/byId/${id}`)
         .then((response) => {
           showCourses(response.data.name);
         })
@@ -36,7 +36,7 @@ function EmployeeCourses() {
 
   const showCourses = (name) => {
     axios
-      .get(`http://localhost:3005/course?name=${name}`)
+      .get(`https://2023-1-nr-control.vercel.app/course?name=${name}`)
       .then((response) => {
         const employeeCourses = response.data.filter(
           (course) => course.name === name
@@ -52,35 +52,35 @@ function EmployeeCourses() {
     <div>
       <div className="main-table">
         <div className="table-employees">
-          <div className="header" onClick={goToEmployees}>
-          <div className="logo" onClick={goToEmployees}>
-          <img src={logo} alt="SONDA Engenharia" className="sonda" />
-          </div>
+          <div className="header">
+            <Header />
           </div>
           <h2>Cursos do Funcionário</h2>
           <table>
             <thead>
               <tr>
-                <th>Curso</th>
-                <th>Informações</th>
-                <th>Data de conclusão</th>
-                <th>Data de expiração</th>
+                <th>Cursos</th>
+                <th>Status</th>
               </tr>
             </thead>
             <tbody>
               {courses.map((course, key) => (
                 <tr key={key}>
                   <td>
-                    <div className="name">{course.course}</div>
+                    <div
+                      key={key}
+                      className="name"
+                      onClick={() => navigateTo(`/curso/${course.id}`)}
+                    >
+                      {course.course}
+                    </div>
                   </td>
                   <td>
-                    <div className="info">{course.info}</div>
-                  </td>
-                  <td>
-                    <div className="conclusiondate">{course.conclusiondate}</div>
-                  </td>
-                  <td>
-                    <div className="expirationdate">{course.expirationdate}</div>
+                    {course.fileUrl ? (
+                      <div className="status">Cadastro Completo</div>
+                    ) : (
+                      <div className="status">Pendente</div>
+                    )}
                   </td>
                 </tr>
               ))}

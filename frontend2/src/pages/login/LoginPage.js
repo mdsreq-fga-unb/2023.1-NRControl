@@ -6,7 +6,6 @@ import axios from "axios";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as yup from "yup";
 
-
 import YupPassword from "yup-password";
 YupPassword(yup);
 
@@ -16,7 +15,7 @@ function LoginPage() {
   const loginUser = (values) => {
     const data = { email: values.email || "", password: values.password || "" };
     axios
-      .post("http://localhost:3005/auth/login", data)
+      .post("https://2023-1-nr-control.vercel.app/auth/login", data)
       .then((response) => {
         if (response.data.error) {
           alert(response.data.error);
@@ -45,8 +44,8 @@ function LoginPage() {
 
   const initialValues = {
     email: "",
-    password: ""
-  }
+    password: "",
+  };
 
   return (
     <div className="main-login">
@@ -67,19 +66,19 @@ function LoginPage() {
                 <Field
                   name="email"
                   className="form-field"
-                  placeholder="Email"  
+                  placeholder="Email"
                 />
                 <ErrorMessage
                   component="span"
                   name="email"
                   className="form-error"
                 />
-                 <Field
-                 type="password"
-                 name="password"
-                 className="form-field"
-                 placeholder="Senha"
-               />
+                <Field
+                  type="password"
+                  name="password"
+                  className="form-field"
+                  placeholder="Senha"
+                />
                 <ErrorMessage
                   component="span"
                   name="password"

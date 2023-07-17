@@ -60,23 +60,32 @@ function EmployeeCourses() {
             <thead>
               <tr>
                 <th>Cursos</th>
+                <th>Status</th>
               </tr>
             </thead>
             <tbody>
-              {courses.map((course, key) => (
-                <tr key={key}>
-                  <td>
-                    <div
-                      key={key}
-                      className="name"
-                      onClick={() => navigateTo(`/curso/${course.id}`)}
-                    >
-                      {course.course}
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
+  {courses.map((course, key) => (
+    <tr key={key}>
+      <td>
+        <div
+          key={key}
+          className="name"
+          onClick={() => navigateTo(`/curso/${course.id}`)}
+        >
+          {course.course}
+        </div>
+      </td>
+      <td>
+        {course.fileUrl ? (
+          <div className="status">Cadastro Completo</div>
+        ) : (
+          <div className="status">Pendente</div>
+        )}
+      </td>
+    </tr>
+  ))}
+</tbody>
+
           </table>
         </div>
       </div>

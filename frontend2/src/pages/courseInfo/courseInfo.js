@@ -9,6 +9,8 @@ function CourseInfo() {
   const navigateTo = useNavigate();
   const { id } = useParams();
   const [course, setCourse] = useState(null);
+  const [file, setFile] = useState(null);
+  const [successMessage, setSuccessMessage] = useState("");
 
   const goToEmployees = () => {
     navigateTo("/employees");
@@ -43,6 +45,37 @@ function CourseInfo() {
     return moment(date).format("DD/MM/YYYY");
   };
 
+  const downloadFile = () => {
+    console.log("Download iniciado");
+    if (course && course.fileUrl) {
+      window.open(course.fileUrl, "_blank");
+    }
+  };
+
+  const handleFileChange = (event) => {
+    setFile(event.target.files[0]);
+  };
+
+  const uploadFile = () => {
+    if (file) {
+      const formData = new FormData();
+      formData.append("file", file);
+
+      axios
+        .post(`http://localhost:3005/file/${id}`, formData)
+        .then((response) => {
+          console.log("Arquivo enviado com sucesso!", response.data);
+          setSuccessMessage("Arquivo enviado com sucesso!");
+          setTimeout(() => {
+            setSuccessMessage("");
+          }, 3000);
+        })
+        .catch((error) => {
+          console.error("Erro ao enviar arquivo:", error);
+        });
+    }
+  };
+
   return (
     <div>
       <div className="main-table">
@@ -70,10 +103,14 @@ function CourseInfo() {
                     <div className="info">{course.info}</div>
                   </td>
                   <td>
-                    <div className="conclusiondate">{formatDate(course.conclusiondate)}</div>
+                    <div className="conclusiondate">
+                      {formatDate(course.conclusiondate)}
+                    </div>
                   </td>
                   <td>
-                    <div className="expirationdate">{formatDate(course.expirationdate)}</div>
+                    <div className="expirationdate">
+                      {formatDate(course.expirationdate)}
+                    </div>
                   </td>
                 </tr>
               )}
@@ -83,6 +120,18 @@ function CourseInfo() {
             <button onClick={editCourseData} className="bnt-editar">
               Editar
             </button>
+            {course && course.fileUrl && (
+              <button onClick={downloadFile} className="download-button">
+                Baixar Arquivo
+              </button>
+            )}
+            <div>
+              <input type="file" onChange={handleFileChange} />
+              <button onClick={uploadFile}>Enviar Arquivo</button>
+            </div>
+            {successMessage && (
+            <div className="success-message">{successMessage}</div>
+          )}
           </div>
         </div>
       </div>

@@ -31,13 +31,16 @@ function Header() {
               <a href="/employees">Lista de operários</a>
             </li>
             <li>
+              <a href="/competencias">Competências</a>
+            </li>
+            <li>
               <a href="/enviaremail">Enviar e-mail</a>
             </li>
           </ul>
         </nav>
       </header>
       <div className="content">
-        {/* Conteúdo principal da página */}
+
       </div>
     </>
   );

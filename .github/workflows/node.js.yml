@@ -25,13 +25,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         
-    - name: FrontEnd
-      run: |
-          cd ./frontend2 && npm install
-          npm run build
-          ls -la    
     - name: BackEnd
       run: |
-          cd ./2023.1-NRControl-main && cd ./backend && npm install
+          cd ./backend && npm install
           npm i --save-dev jest && npm test
-          ls -la

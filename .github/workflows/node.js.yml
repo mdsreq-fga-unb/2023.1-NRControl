@@ -27,7 +27,7 @@ jobs:
         
     - name: FrontEnd
       run: |
-          cd ./2023.1-NRControl-main && cd ./frontend2 && npm install
+          cd ./frontend2 && npm install
           npm run build
           ls -la    
     - name: BackEnd

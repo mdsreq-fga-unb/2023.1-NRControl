@@ -31,7 +31,7 @@ const Course = () => {
 
     try {
       const employeeExistsResponse = await axios.get(
-        `http://localhost:3005/employee/checkName/${data.name}`
+        `https://2023-1-nr-control.vercel.app/employee/checkName/${data.name}`
       );
 
       if (employeeExistsResponse.data.exists) {
@@ -43,7 +43,10 @@ const Course = () => {
           expirationdate: data.expirationdate,
         };
 
-        await axios.post("http://localhost:3005/course", formattedData);
+        await axios.post(
+          "https://2023-1-nr-control.vercel.app/course",
+          formattedData
+        );
         console.log("Curso cadastrado com sucesso");
         setSuccessMessage("Curso cadastrado com sucesso!");
         resetForm();
@@ -76,8 +79,12 @@ const Course = () => {
     name: Yup.string().required("O nome do funcionário é obrigatório"),
     course: Yup.string().required("O código do curso é obrigatório"),
     info: Yup.string().required("As informações do curso são obrigatórias"),
-    conclusiondate: Yup.string().required("A data de conclusão do curso é obrigatória"),
-    expirationdate: Yup.string().required("A data de expiração do curso é obrigatória"),
+    conclusiondate: Yup.string().required(
+      "A data de conclusão do curso é obrigatória"
+    ),
+    expirationdate: Yup.string().required(
+      "A data de expiração do curso é obrigatória"
+    ),
   });
 
   const initialValues = {
@@ -135,7 +142,9 @@ const Course = () => {
                       )}
 
                       {employeeExistsError && (
-                        <div className="error-message">{employeeExistsError}</div>
+                        <div className="error-message">
+                          {employeeExistsError}
+                        </div>
                       )}
                     </div>
 

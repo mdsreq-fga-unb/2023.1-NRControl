@@ -30,7 +30,7 @@ function Register() {
     phonenumber: "",
     birthday: "",
     admissiondate: "",
-    asodate: ""
+    asodate: "",
   };
 
   const validationSchema = Yup.object().shape({
@@ -103,7 +103,9 @@ function Register() {
 
         return true;
       }),
-    email: Yup.string().email("Email inválido").required("O email é obrigatório"),
+    email: Yup.string()
+      .email("Email inválido")
+      .required("O email é obrigatório"),
     address: Yup.string().required("O endereço é obrigatório"),
 
     phonenumber: Yup.string()
@@ -263,7 +265,7 @@ function Register() {
 
     try {
       const cpfExistsResponse = await axios.get(
-        `http://localhost:3005/employee/checkCpf/${formattedData.cpf}`,
+        `https://2023-1-nr-control.vercel.app/employee/checkCpf/${formattedData.cpf}`,
         {
           headers: {
             Authorization: "Bearer " + accessToken,
@@ -280,7 +282,7 @@ function Register() {
         return;
       } else {
         const createdEmployee = await axios.post(
-          "http://localhost:3005/employee",
+          "https://2023-1-nr-control.vercel.app/employee",
           formattedData,
           {
             headers: {
@@ -449,16 +451,24 @@ function Register() {
                   >
                     <option value="">Selecione uma competência</option>
                     <option value="Servente">Servente</option>
-                    <option value="Operador de máquinas">Operador de máquinas</option>
-                    <option value="Auxiliar de máquinas">Auxiliar de máquinas</option>
+                    <option value="Operador de máquinas">
+                      Operador de máquinas
+                    </option>
+                    <option value="Auxiliar de máquinas">
+                      Auxiliar de máquinas
+                    </option>
                     <option value="Sondador">Sondador</option>
                     <option value="Soldador">Soldador</option>
                     <option value="Encarregado">Encarregado</option>
                     <option value="Poceiro">Poceiro</option>
                   </Field>
-                  <div className="error-container"><ErrorMessage name="competence" component="span" className="error-message"/>
+                  <div className="error-container">
+                    <ErrorMessage
+                      name="competence"
+                      component="span"
+                      className="error-message"
+                    />
                   </div>
-
                 </div>
                 <div className="baixo">
                   <button type="submit" className="cadastrar">

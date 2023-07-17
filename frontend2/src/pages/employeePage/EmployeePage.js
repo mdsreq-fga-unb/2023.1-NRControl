@@ -23,7 +23,7 @@ function EmployeePage() {
   useEffect(() => {
     if (id) {
       axios
-        .get(`http://localhost:3005/employee/byId/${id}`)
+        .get(`https://2023-1-nr-control.vercel.app/employee/byId/${id}`)
         .then((response) => {
           setEmployeeObject(response.data);
         });
@@ -50,11 +50,21 @@ function EmployeePage() {
           <div className="cpf">CPF: {employeeObject.cpf}</div>
           <div className="email">Email: {employeeObject.email}</div>
           <div className="address">Endereço: {employeeObject.address}</div>
-          <div className="phonenumber">Telefone: {employeeObject.phonenumber}</div>
-          <div className="birthday">Data de nascimento: {formatDate(employeeObject.birthday)}</div>
-          <div className="admissiondate">Data de admissão: {formatDate(employeeObject.admissiondate)}</div>
-          <div className="asodate">Data de ASO: {formatDate(employeeObject.asodate)}</div>
-          <div className="competence">Competência: {employeeObject.competence}</div>
+          <div className="phonenumber">
+            Telefone: {employeeObject.phonenumber}
+          </div>
+          <div className="birthday">
+            Data de nascimento: {formatDate(employeeObject.birthday)}
+          </div>
+          <div className="admissiondate">
+            Data de admissão: {formatDate(employeeObject.admissiondate)}
+          </div>
+          <div className="asodate">
+            Data de ASO: {formatDate(employeeObject.asodate)}
+          </div>
+          <div className="competence">
+            Competência: {employeeObject.competence}
+          </div>
         </div>
         <div>
           <div className="box-bnt ">

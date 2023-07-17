@@ -12,6 +12,8 @@ const { validateToken } = require("./controllers/middlewares/auth");
 
 require("dotenv").config();
 
+const PORT = process.env.PORT || 3000;
+
 app.use(express.json());
 app.use(cors());
 app.use("/auth", userRoute);
@@ -22,7 +24,7 @@ app.use("/", emailRoute);
 app.use(validateToken);
 
 database.sequelize.sync().then(() => {
-  app.listen(3005, () => {
-    console.log("Servidor está rodando na porta 3005");
+  app.listen(PORT, () => {
+    console.log("Servidor está rodando");
   });
 });

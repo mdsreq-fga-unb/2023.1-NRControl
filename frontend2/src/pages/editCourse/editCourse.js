@@ -18,7 +18,9 @@ function EditCoursePage() {
   useEffect(() => {
     const showCourseData = async () => {
       try {
-        const response = await axios.get(`http://localhost:3005/course/${id}`);
+        const response = await axios.get(
+          `https://2023-1-nr-control.vercel.app/course/${id}`
+        );
         setCourseData(response.data);
       } catch (error) {
         console.error(error);
@@ -39,7 +41,10 @@ function EditCoursePage() {
     event.preventDefault();
 
     try {
-      await axios.put(`http://localhost:3005/course/${id}`, courseData);
+      await axios.put(
+        `https://2023-1-nr-control.vercel.app/course/${id}`,
+        courseData
+      );
       navigateTo(`/curso/${id}`);
     } catch (error) {
       console.error(error);

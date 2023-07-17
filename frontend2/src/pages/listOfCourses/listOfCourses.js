@@ -72,7 +72,7 @@ const ListOfCourses = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3005/course")
+      .get("https://2023-1-nr-control.vercel.app/course")
       .then((response) => {
         const sortedUsers = response.data.sort((a, b) =>
           a.name.localeCompare(b.name)
@@ -119,9 +119,8 @@ const ListOfCourses = () => {
   };
 
   return (
-    
     <div className="page-container">
-        <Header />
+      <Header />
       <div className="content-container">
         <Header />
         <div className="title">

@@ -14,7 +14,7 @@ const PasswordReset = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const url = `http://localhost:3005/api/password-reset/${param.id}/${param.token}`;
+  const url = `https://2023-1-nr-control.vercel.app/api/password-reset/${param.id}/${param.token}`;
 
   useEffect(() => {
     const verifyUrl = async () => {

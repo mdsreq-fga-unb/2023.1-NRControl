@@ -24,7 +24,7 @@ function EmployeeCourses() {
   useEffect(() => {
     if (id) {
       axios
-        .get(`http://localhost:3005/employee/byId/${id}`)
+        .get(`https://2023-1-nr-control.vercel.app/employee/byId/${id}`)
         .then((response) => {
           showCourses(response.data.name);
         })
@@ -36,7 +36,7 @@ function EmployeeCourses() {
 
   const showCourses = (name) => {
     axios
-      .get(`http://localhost:3005/course?name=${name}`)
+      .get(`https://2023-1-nr-control.vercel.app/course?name=${name}`)
       .then((response) => {
         const employeeCourses = response.data.filter(
           (course) => course.name === name
@@ -64,28 +64,27 @@ function EmployeeCourses() {
               </tr>
             </thead>
             <tbody>
-  {courses.map((course, key) => (
-    <tr key={key}>
-      <td>
-        <div
-          key={key}
-          className="name"
-          onClick={() => navigateTo(`/curso/${course.id}`)}
-        >
-          {course.course}
-        </div>
-      </td>
-      <td>
-        {course.fileUrl ? (
-          <div className="status">Cadastro Completo</div>
-        ) : (
-          <div className="status">Pendente</div>
-        )}
-      </td>
-    </tr>
-  ))}
-</tbody>
-
+              {courses.map((course, key) => (
+                <tr key={key}>
+                  <td>
+                    <div
+                      key={key}
+                      className="name"
+                      onClick={() => navigateTo(`/curso/${course.id}`)}
+                    >
+                      {course.course}
+                    </div>
+                  </td>
+                  <td>
+                    {course.fileUrl ? (
+                      <div className="status">Cadastro Completo</div>
+                    ) : (
+                      <div className="status">Pendente</div>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
           </table>
         </div>
       </div>

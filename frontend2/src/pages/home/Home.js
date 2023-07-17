@@ -19,12 +19,14 @@ function Home() {
   }, [navigateTo]);
 
   useEffect(() => {
-    axios.get("http://localhost:3005/employee").then((response) => {
-      const sortedEmployees = response.data.sort((a, b) =>
-        a.name.localeCompare(b.name)
-      );
-      setListOfEmployees(sortedEmployees);
-    });
+    axios
+      .get("https://2023-1-nr-control.vercel.app/employee")
+      .then((response) => {
+        const sortedEmployees = response.data.sort((a, b) =>
+          a.name.localeCompare(b.name)
+        );
+        setListOfEmployees(sortedEmployees);
+      });
   }, []);
 
   const goToRegister = () => {

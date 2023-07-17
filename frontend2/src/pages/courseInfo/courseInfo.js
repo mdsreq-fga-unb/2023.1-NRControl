@@ -27,7 +27,7 @@ function CourseInfo() {
   useEffect(() => {
     if (id) {
       axios
-        .get(`http://localhost:3005/course/${id}`)
+        .get(`https://2023-1-nr-control.vercel.app/course/${id}`)
         .then((response) => {
           setCourse(response.data);
         })
@@ -62,7 +62,10 @@ function CourseInfo() {
       formData.append("file", file);
 
       axios
-        .post(`http://localhost:3005/course/file/${id}`, formData)
+        .post(
+          `https://2023-1-nr-control.vercel.app/course/file/${id}`,
+          formData
+        )
         .then((response) => {
           console.log("Arquivo enviado com sucesso!", response.data);
           setSuccessMessage("Arquivo enviado com sucesso!");
@@ -130,8 +133,8 @@ function CourseInfo() {
               <button onClick={uploadFile}>Enviar Arquivo</button>
             </div>
             {successMessage && (
-            <div className="success-message">{successMessage}</div>
-          )}
+              <div className="success-message">{successMessage}</div>
+            )}
           </div>
         </div>
       </div>

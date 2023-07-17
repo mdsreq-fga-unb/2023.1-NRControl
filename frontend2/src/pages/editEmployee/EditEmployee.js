@@ -23,7 +23,7 @@ function EditEmployeePage() {
     const showEmployeeData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3005/employee/byId/${id}`
+          `https://2023-1-nr-control.vercel.app/employee/byId/${id}`
         );
         setEmployeeData(response.data);
       } catch (error) {
@@ -47,7 +47,7 @@ function EditEmployeePage() {
 
     try {
       await axios.put(
-        `http://localhost:3005/employee/byId/${id}`,
+        `https://2023-1-nr-control.vercel.app/employee/byId/${id}`,
         employeeData
       );
       navigateTo(`/employee/${id}`);
@@ -58,9 +58,8 @@ function EditEmployeePage() {
 
   return (
     <div className="main-edit">
-              <Header/>
+      <Header />
       <div className="box-edit">
-
         <h1>Editar Dados do Funcionário</h1>
         <div className="info-edit">
           <form onSubmit={updateData}>
@@ -162,8 +161,12 @@ function EditEmployeePage() {
                   onChange={changeValue}
                 >
                   <option value="Servente">Servente</option>
-                  <option value="Operador de máquinas">Operador de máquinas</option>
-                  <option value="Auxiliar de máquinas">Auxiliar de máquinas</option>
+                  <option value="Operador de máquinas">
+                    Operador de máquinas
+                  </option>
+                  <option value="Auxiliar de máquinas">
+                    Auxiliar de máquinas
+                  </option>
                   <option value="Sondador">Sondador</option>
                   <option value="Soldador">Soldador</option>
                   <option value="Encarregado">Encarregado</option>

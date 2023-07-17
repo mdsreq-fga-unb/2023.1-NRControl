@@ -18,12 +18,14 @@ function Competence() {
   }, [navigateTo]);
 
   useEffect(() => {
-    axios.get("http://localhost:3005/employee").then((response) => {
-      const sortedEmployees = response.data.sort((a, b) =>
-        a.name.localeCompare(b.name)
-      );
-      setListOfEmployees(sortedEmployees);
-    });
+    axios
+      .get("https://2023-1-nr-control.vercel.app/employee")
+      .then((response) => {
+        const sortedEmployees = response.data.sort((a, b) =>
+          a.name.localeCompare(b.name)
+        );
+        setListOfEmployees(sortedEmployees);
+      });
   }, []);
 
   const goToRegister = () => {
@@ -52,14 +54,18 @@ function Competence() {
 
   const currentEmployees = sortedCompetences
     .flatMap((competence) => employeesByCompetence[competence])
-    .slice((currentPage - 1) * employeesPerPage, currentPage * employeesPerPage);
+    .slice(
+      (currentPage - 1) * employeesPerPage,
+      currentPage * employeesPerPage
+    );
 
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
   const pageNumbers = Math.ceil(
-    sortedCompetences.flatMap((competence) => employeesByCompetence[competence]).length / employeesPerPage
+    sortedCompetences.flatMap((competence) => employeesByCompetence[competence])
+      .length / employeesPerPage
   );
   const pages = Array.from({ length: pageNumbers }, (_, i) => i + 1);
 

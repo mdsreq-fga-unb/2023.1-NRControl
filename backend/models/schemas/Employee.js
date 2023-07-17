@@ -31,6 +31,9 @@ module.exports = (sequelize, DataTypes) => {
     asodate: {
       type: DataTypes.DATEONLY,
     },
+    competence: {
+      type: DataTypes.STRING,
+    },
   });
   return Employee;
 };

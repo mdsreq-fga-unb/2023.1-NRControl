@@ -6,6 +6,7 @@
   box-sizing: border-box;
   font-family: "Montserrat", sans-serif;
 }
+
 .page {
   width: 100vw;
   height: 100vh;
@@ -14,11 +15,28 @@
   justify-content: center;
   align-items: center;
 }
+.table-container {
+  padding: 3% 2%;
+  background: #4c1d06;
+  border-radius: 20px;
+  box-shadow: 0px 10px 40px #020100;
+}
+table tr th {
+  cursor: default;
+  border: none;
+  padding: 8px;
+  border-bottom: 1px solid #2f1910;
+}
+td {
+  color: #fff;
+}
 .header {
+  background-color: #200c02;
   position: absolute;
   top: 0;
   left: 0;
 }
+
 .header > h1 {
   margin-left: 10px;
   color: #f85605;
@@ -26,6 +44,7 @@
   font-size: 2vw;
   cursor: pointer;
 }
+
 .tam-container {
   display: flex;
   justify-content: center;
@@ -56,11 +75,15 @@
   text-align: center;
 }
 
-.left-card, .right-card {
+.left-card {
   width: 50%;
   margin: 0px 10px;
 }
 
+.right-card-course {
+  width: 50%;
+  margin: 0px 10px;
+}
 
 .left-card > input,
 .right-card > input {
@@ -81,11 +104,13 @@
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  width: 10vw;
+  width: 50%;
+  margin: 20px auto;
 }
+
 .cadastrar {
   height: 5vh;
-  width: 100vh;
+  width: 100%;
   border: none;
   border-radius: 10px;
   outline: none;
@@ -96,6 +121,7 @@
   cursor: pointer;
   box-shadow: 0px 10px 40px -12px #ec5306;
 }
+
 .cadastrar:hover {
   color: #fafafa;
   box-shadow: 10px 10px 20px 15px #050505;
@@ -105,10 +131,12 @@
   margin-bottom: 150px;
   cursor: pointer;
 }
+
 span {
   display: inline-block;
   color: red;
 }
+
 .sidebar {
   width: 13vw;
   display: flex;
@@ -116,14 +144,17 @@ span {
   align-items: center;
   text-align: center;
 }
+
 .icons-sidebar {
   width: 20vw;
   color: #f85605;
   cursor: pointer;
 }
+
 .icons-sidebar > svg {
   font-size: 8rem;
 }
+
 .success-message {
   display: center;
   color: #00ff00;
@@ -135,24 +166,32 @@ span {
   align-items: center;
 }
 
-.error-message {
-  display: center;
-  color: #ff0000;
-  font-size: 14px;
-  margin-top: 10px;
-  text-align: center;
+.notification-button {
+  position: relative;
+  margin: 115px 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: red;
+  font-size: 2rem;
+  margin-right: 10px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.notification-count {
+  position: absolute;
+  top: -10px;
+  right: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.error-container {
-  height: 1px; 
-  margin-top: 8px; 
-}
-
-.error-message {
-  color: #ff0000;
-  font-size: 14px;
-  text-align: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: red;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
 }

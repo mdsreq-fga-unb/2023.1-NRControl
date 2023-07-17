@@ -3,16 +3,14 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import logo from "./../../assets/images/logo.png";
+import moment from "moment";
+import Header from "../Header/header";
 
 function EmployeePage() {
   const navigateTo = useNavigate();
 
   let { id } = useParams();
   const [employeeObject, setEmployeeObject] = useState({});
-  const goToEmployees = () => {
-    navigateTo("/employees");
-  };
 
   useEffect(() => {
     const accessToken = sessionStorage.getItem("accessToken");
@@ -25,19 +23,25 @@ function EmployeePage() {
   useEffect(() => {
     if (id) {
       axios
-        .get(`http://localhost:3005/employeeinfo/byId/${id}`)
+        .get(`https://2023-1-nr-control.vercel.app/employee/byId/${id}`)
         .then((response) => {
           setEmployeeObject(response.data);
         });
     }
   }, [id]);
 
+  const editemployeeData = () => {
+    navigateTo(`/editemployee/${id}`);
+  };
+
+  const formatDate = (date) => {
+    return moment(date).format("DD/MM/YYYY");
+  };
+
   return (
     <div className="postPage">
       <div className="header">
-      <div className="logo" onClick={goToEmployees}>
-          <img src={logo} alt="SONDA Engenharia" className="sonda" />
-          </div>
+        <Header />
       </div>
       <div className="post" id="individual">
         <h1>Funcionário</h1>
@@ -50,21 +54,28 @@ function EmployeePage() {
             Telefone: {employeeObject.phonenumber}
           </div>
           <div className="birthday">
-            Data de nascimento: {employeeObject.birthday}
+            Data de nascimento: {formatDate(employeeObject.birthday)}
           </div>
           <div className="admissiondate">
-            Data de admissão: {employeeObject.admissiondate}
+            Data de admissão: {formatDate(employeeObject.admissiondate)}
           </div>
-          <div className="asodate">Data de ASO: {employeeObject.asodate}</div>
+          <div className="asodate">
+            Data de ASO: {formatDate(employeeObject.asodate)}
+          </div>
+          <div className="competence">
+            Competência: {employeeObject.competence}
+          </div>
         </div>
         <div>
           <div className="box-bnt ">
-            {" "}
             <button
               className="bnt-courses"
               onClick={() => navigateTo(`/cursosdooperario/${id}`)}
             >
               Cursos
+            </button>
+            <button className="bnt-courses" onClick={editemployeeData}>
+              Editar
             </button>
           </div>
         </div>

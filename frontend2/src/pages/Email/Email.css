@@ -1,0 +1,77 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
+}
+.main-email {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bnt-email {
+  margin: 10px 0px;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-weight: 900;
+  color: #381503;
+  background: #f85605;
+  cursor: pointer;
+  box-shadow: 0px 10px 40px -12px #ec5306;
+}
+.box-email {
+  width: 40vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 30px 35px;
+  background: #4c1d06;
+  border-radius: 20px;
+  box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.4);
+}
+.email-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.textField {
+  & .MuiInputBase-input {
+    color: white;
+  }
+  & .MuiInputLabel-root {
+    color: #3f51b5;
+  }
+  & .MuiInputLabel-root.Mui-focused {
+    color: #3f51b5;
+  }
+  & .MuiOutlinedInput-root {
+    & fieldset {
+      border-color: #3f51b5;
+    }
+    &:hover fieldset {
+      border-color: #3f51b5;
+    }
+    &.Mui-focused fieldset {
+      border-color: #3f51b5;
+    }
+  }
+  &.toField {
+    min-height: 56px;
+  }
+}
+
+.success-message {
+  color: green;
+  font-weight: bold;
+}

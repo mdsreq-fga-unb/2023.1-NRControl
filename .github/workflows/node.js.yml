@@ -27,11 +27,11 @@ jobs:
         
     - name: FrontEnd
       run: |
-          cd ./2023.1-NRControl-login && cd ./frontend2 && npm install
+          cd ./2023.1-NRControl-main && cd ./frontend2 && npm install
           npm run build
           ls -la    
     - name: BackEnd
       run: |
-          cd ./2023.1-NRControl-login && cd ./backend && npm install
+          cd ./2023.1-NRControl-main && cd ./backend && npm install
           npm i --save-dev jest && npm test
           ls -la

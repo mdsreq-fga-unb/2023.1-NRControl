@@ -4,17 +4,22 @@ import logo from "./../../assets/images/logo.png";
 import { useNavigate } from "react-router-dom";
 
 function Header() {
-    const navigateTo = useNavigate();
+  const navigateTo = useNavigate();
 
-    const goToEmployees = () => {
-        navigateTo("/employees");
-      };
-    
+  const goToEmployees = () => {
+    navigateTo("/employees");
+  };
+
   return (
     <>
       <header className="header">
         <div className="logo">
-          <img src={logo} alt="SONDA Engenharia" className="sonda" onClick={goToEmployees}/>
+          <img
+            src={logo}
+            alt="SONDA Engenharia"
+            className="sonda"
+            onClick={goToEmployees}
+          />
         </div>
         <nav className="nav-links">
           <ul>

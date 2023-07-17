@@ -30,8 +30,7 @@ function Register() {
     phonenumber: "",
     birthday: "",
     admissiondate: "",
-    asodate: "",
-    competence: "", 
+    asodate: ""
   };
 
   const validationSchema = Yup.object().shape({
@@ -104,9 +103,7 @@ function Register() {
 
         return true;
       }),
-    email: Yup.string()
-      .email("Email inválido")
-      .required("O email é obrigatório"),
+    email: Yup.string().email("Email inválido").required("O email é obrigatório"),
     address: Yup.string().required("O endereço é obrigatório"),
 
     phonenumber: Yup.string()
@@ -245,8 +242,6 @@ function Register() {
         return true;
       })
       .required("A data de ASO é obrigatória"),
-      competence: Yup.string()
-        .required("Selecione uma competência"),
   });
 
   const onSubmit = async (data, { resetForm }) => {

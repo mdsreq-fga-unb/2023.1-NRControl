@@ -29,12 +29,6 @@ const Course = () => {
       return;
     }
 
-    const formattedData = {
-      ...data,
-      conclusiondate: data.conclusiondate,
-      expirationdate: data.expirationdate,
-    };
-
     try {
       const employeeExistsResponse = await axios.get(
         `http://localhost:3005/employee/checkName/${data.name}`
@@ -42,6 +36,13 @@ const Course = () => {
 
       if (employeeExistsResponse.data.exists) {
         const id = users.length > 0 ? users[users.length - 1].id + 1 : 1;
+
+        const formattedData = {
+          ...data,
+          conclusiondate: data.conclusiondate,
+          expirationdate: data.expirationdate,
+        };
+
         await axios.post("http://localhost:3005/course", formattedData);
         console.log("Curso cadastrado com sucesso");
         setSuccessMessage("Curso cadastrado com sucesso!");
@@ -170,6 +171,7 @@ const Course = () => {
                           </div>
                         )}
                       </div>
+
                       <div className="baixo">
                         <button type="submit" className="cadastrar">
                           Adicionar
@@ -180,8 +182,8 @@ const Course = () => {
                 )}
               </Formik>
             </div>
-              {successMessage && (
-            <div className="success-message">{successMessage}</div>
+            {successMessage && (
+              <div className="success-message">{successMessage}</div>
             )}
           </div>
         </div>

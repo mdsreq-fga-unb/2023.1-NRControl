@@ -11,10 +11,10 @@ const emailRoute = require("./views/routes/Email");
 const aws = require("aws-sdk");
 const multerS3 = require("multer-s3");
 const multer = require("multer");
-const { uuid } = require("uuidv4");
+const { v4: uuidv4 } = require("uuid");
+const { Course } = require("./models/schemas");
 const path = require("path");
 const { validateToken } = require("./controllers/middlewares/auth");
-
 
 require("dotenv").config();
 
@@ -32,9 +32,27 @@ const upload = multer({
     bucket: process.env.BUCKET_NAME,
     acl: "public-read",
     key(req, file, callback) {
-      callback(null, uuid() + path.extname(file.originalname));
+      callback(null, uuidv4() + path.extname(file.originalname));
     },
   }),
+});
+
+app.post("/file/:id", upload.single("file"), async (req, res) => {
+  console.log(req.file);
+  const id = req.params.id;
+  const fileUrl = req.file.location;
+  console.log(id);
+
+  try {
+    const updatedUrl = await Course.update(
+      { fileUrl: fileUrl }, 
+      { where: { id: id } }
+    );
+
+    res.json({ success: true });
+  } catch (error) {
+    res.status(500).json({ error: "Falha ao atualizar o fileUrl do curso." });
+  }
 });
 
 app.use(express.json());

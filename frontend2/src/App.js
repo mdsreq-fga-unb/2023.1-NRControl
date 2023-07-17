@@ -13,6 +13,7 @@ import EditEmployee from "./pages/editEmployee/EditEmployee";
 import EditCourse from "./pages/editCourse/editCourse";
 import CourseInfo from "./pages/courseInfo/courseInfo";
 import ListOfCourses from "./pages/listOfCourses/listOfCourses";
+import Competence from "./pages/Competence/Competence";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path="/enviaremail" element={<Email />} />
+        <Route path="/competencias" element={<Competence />} />
         <Route path="/employees" element={<Home />} />
         <Route path="/register" element={<Register />} />
         <Route path="/recuperarsenha" element={<Password />} />

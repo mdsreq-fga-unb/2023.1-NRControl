@@ -28,4 +28,4 @@ jobs:
     - name: BackEnd
       run: |
           cd ./backend && npm install
-          npm i --save-dev jest && npm test
+          npm test

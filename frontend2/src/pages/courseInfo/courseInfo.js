@@ -62,7 +62,7 @@ function CourseInfo() {
       formData.append("file", file);
 
       axios
-        .post(`http://localhost:3005/file/${id}`, formData)
+        .post(`http://localhost:3005/course/file/${id}`, formData)
         .then((response) => {
           console.log("Arquivo enviado com sucesso!", response.data);
           setSuccessMessage("Arquivo enviado com sucesso!");

@@ -8,6 +8,16 @@ Projeto desenvolvido pela equipe Binary Bandit da *Universidade de Brasília (Un
 
 [Clique aqui](https://mdsreq-fga-unb.github.io/2023.1-NRControl/) para acessar a documentação do projeto.
 
+[Clique aqui](https://drive.google.com/file/d/16YAiGds4Cmhh_2Uy8-1SkF3E4Tg0RBB0/view?usp=sharing) para acessar a documentação dos testes.
+
+## Login
+
+[Clique aqui](http://https://sonda-engenharia-nr.vercel.app/) para acessar o site.
+
+Email: adm@gmail.com
+
+Senha: adm1234/
+
 ## Integrantes da equipe
 
 |Membro|Matrícula|Github|

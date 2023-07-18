@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Header from "../Header/header";
 import "./Competence.css";
+
 function Competence() {
   const navigateTo = useNavigate();
   const [listOfEmployees, setListOfEmployees] = useState([]);

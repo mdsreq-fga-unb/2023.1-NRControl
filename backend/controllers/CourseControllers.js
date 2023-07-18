@@ -36,7 +36,9 @@ exports.addFileUrl = async (req, res) => {
 
     res.json({ success: true });
   } catch (error) {
-    res.status(500).json({ error: "Falha ao atualizar o fileUrl do curso." });
+    res
+      .status(500)
+      .json({ error: "Falha ao atualizar o fileUrl do curso." });
   }
 };
 
@@ -97,3 +99,4 @@ exports.putCourse = async (req, res) => {
 };
 
 exports.upload = upload;
+

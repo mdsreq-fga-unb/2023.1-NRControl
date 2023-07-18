@@ -5,6 +5,7 @@ import moment from "moment";
 import "./EditEmployee.css";
 import Header from "../Header/header";
 import InputMask from "react-input-mask";
+import Header from "../Header/header";
 
 function EditEmployeePage() {
   const navigateTo = useNavigate();

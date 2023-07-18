@@ -16,6 +16,7 @@ function EditCoursePage() {
     conclusiondate: "",
     expirationdate: "",
   });
+
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
@@ -24,16 +25,19 @@ function EditCoursePage() {
         const response = await axios.get(
           `https://2023-1-nr-control.vercel.app/course/${id}`
         );
+
         const formattedData = {
           ...response.data,
           conclusiondate: moment(response.data.conclusiondate).format("DD/MM/YYYY"),
           expirationdate: moment(response.data.expirationdate).format("DD/MM/YYYY"),
         };
         setCourseData(formattedData);
+
       } catch (error) {
         console.error(error);
       }
     };
+
 
     showCourseData();
   }, [id]);
@@ -106,11 +110,22 @@ function EditCoursePage() {
     }
 
     setErrors(newErrors);
-    return Object.keys(newErrors).length === 0; // Form is valid if there are no errors
+    return Object.keys(newErrors).length === 0; 
+
+    showCourseData();
+  }, [id]);
+
+  const changeValue = (event) => {
+    const { name, value } = event.target;
+    setCourseData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
 
   const updateData = async (event) => {
     event.preventDefault();
+
 
     if (validateForm()) {
       const formattedData = {
@@ -125,6 +140,17 @@ function EditCoursePage() {
       } catch (error) {
         console.error(error);
       }
+    }
+  };
+
+    try {
+      await axios.put(
+        `https://2023-1-nr-control.vercel.app/course/${id}`,
+        courseData
+      );
+      navigateTo(`/curso/${id}`);
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -143,7 +169,9 @@ function EditCoursePage() {
                 value={courseData.course}
                 onChange={changeValue}
               />
+
               {errors.course && <span className="error">{errors.course}</span>}
+
             </label>
           </div>
           <div>
@@ -155,12 +183,15 @@ function EditCoursePage() {
                 value={courseData.info}
                 onChange={changeValue}
               />
+
               {errors.info && <span className="error">{errors.info}</span>}
+
             </label>
           </div>
           <div>
             <label>
               Data de conclusão:
+
               <InputMask
                 mask="99/99/9999"
                 type="text"
@@ -170,11 +201,14 @@ function EditCoursePage() {
                 placeholder="dd/mm/aaaa"
               />
               {errors.conclusiondate && <span className="error">{errors.conclusiondate}</span>}
+
+          
             </label>
           </div>
           <div>
             <label>
               Data de expiração:
+
               <InputMask
                 mask="99/99/9999"
                 type="text"
@@ -184,6 +218,7 @@ function EditCoursePage() {
                 placeholder="dd/mm/aaaa"
               />
               {errors.expirationdate && <span className="error">{errors.expirationdate}</span>}
+
             </label>
           </div>
         </div>

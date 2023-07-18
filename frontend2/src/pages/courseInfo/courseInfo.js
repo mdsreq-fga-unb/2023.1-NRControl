@@ -143,3 +143,4 @@ function CourseInfo() {
 }
 
 export default CourseInfo;
+

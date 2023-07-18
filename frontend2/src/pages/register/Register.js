@@ -244,6 +244,7 @@ function Register() {
         return true;
       })
       .required("A data de ASO é obrigatória"),
+      competence: Yup.string().required("A competência é obrigatória"),
   });
 
   const onSubmit = async (data, { resetForm }) => {
@@ -468,11 +469,9 @@ function Register() {
                       component="span"
                       className="error-message"
                     />
-               <div className="baixo">
                   <button type="submit" className="cadastrar">
                     Cadastrar
                   </button>
-                </div>
                   </div>
                 </div>
               </Form>

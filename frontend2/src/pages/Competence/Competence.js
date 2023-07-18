@@ -53,22 +53,22 @@ function Competence() {
   // Ordenar as competências em ordem alfabética
   const sortedCompetences = Object.keys(employeesByCompetence).sort();
 
-  const currentEmployees = sortedCompetences
-    .flatMap((competence) => employeesByCompetence[competence])
-    .slice(
-      (currentPage - 1) * employeesPerPage,
-      currentPage * employeesPerPage
-    );
-
-  const paginate = (pageNumber) => {
+  const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
-  const pageNumbers = Math.ceil(
-    sortedCompetences.flatMap((competence) => employeesByCompetence[competence])
-      .length / employeesPerPage
+  const indexOfLastEmployee = currentPage * employeesPerPage;
+  const indexOfFirstEmployee = indexOfLastEmployee - employeesPerPage;
+  const currentEmployees = sortedCompetences
+    .map((competence) => employeesByCompetence[competence])
+    .flat()
+    .slice(indexOfFirstEmployee, indexOfLastEmployee);
+
+  const totalPages = Math.ceil(
+    currentEmployees.length / employeesPerPage
   );
-  const pages = Array.from({ length: pageNumbers }, (_, i) => i + 1);
+
+  const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
 
   return (
     <div className="main">
@@ -95,10 +95,10 @@ function Competence() {
           </div>
         ))}
         <div className="pagination">
-          {pages.map((pageNumber) => (
+          {pageNumbers.map((pageNumber) => (
             <button
               key={pageNumber}
-              onClick={() => paginate(pageNumber)}
+              onClick={() => handlePageChange(pageNumber)}
               className={currentPage === pageNumber ? "active" : ""}
             >
               {pageNumber}

@@ -1,19 +1,31 @@
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 .main-table {
   width: 100vw;
-  height: 100vh;
+  height: 80vh;
   background: #200c02;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+}
+
+.table-employees {
+  width: 75vw;
+  padding: 20px;
+  background: #4c1d06;
+  border-radius: 20px;
+  box-shadow: 0px 10px 40px #020100;
+}
+
+.table-employees > .custom-header {
+  cursor: pointer;
 }
 
 .table-employees > h2 {
@@ -21,106 +33,85 @@
   color: #f85605;
   font-weight: 400;
   font-size: 3vw;
-  margin-bottom: 2%;
+  margin-bottom: 20px;
 }
 
-.table-employees {
-  display: flex;
-  flex-direction: column;
-  padding: 3% 2%;
-  background: #4c1d06;
-  border-radius: 20px;
-  box-shadow: 0px 10px 40px #020100;
-}
-.box-bnt-editar {
-  display: flex;
-  justify-content: center;
-  margin: 10px 15px;
-}
-.bnt-arquivo {
-  height: 5vh;
-  width: 50%;
-  border: none;
-  border-radius: 10px;
-  outline: none;
-  text-transform: uppercase;
-  letter-spacing: 4px;
-  color: #381503;
-  background: #f85605;
-  cursor: pointer;
-  box-shadow: 0px 10px 40px -12px #ec5306;
-}
-.bnt-download {
-  height: 5vh;
-  width: 50%;
-  margin-left: 10px;
-  border: none;
-  border-radius: 10px;
-  outline: none;
-  text-transform: uppercase;
-  letter-spacing: 4px;
-  color: #381503;
-  background: #f85605;
-  cursor: pointer;
-  box-shadow: 0px 10px 40px -12px #ec5306;
-}
-.bnt-editar {
-  height: 5vh;
-  width: 50%;
-  border: none;
-  border-radius: 10px;
-  outline: none;
-  text-transform: uppercase;
-  letter-spacing: 4px;
-  color: #381503;
-  background: #f85605;
-  cursor: pointer;
-  box-shadow: 0px 10px 40px -12px #ec5306;
-}
-.input-editar {
-  text-align: center;
-  border: none;
-  border-radius: 10px;
-  padding: 10px 0px;
-  margin: 5px 10px;
-  color: white;
-  font-size: 12pt;
-  outline: none;
-  box-sizing: border-box;
-}
-.file-upload-button {
-  background: black;
-}
-.bnt-download:hover {
-  color: #fafafa;
-  cursor: pointer;
-  border-radius: 10px;
-  box-shadow: 0px 10px 40px #020100;
-}
-.bnt-editar:hover {
-  color: #fafafa;
-  cursor: pointer;
-  border-radius: 10px;
-  box-shadow: 0px 10px 40px #020100;
-}
 table {
-  background-color: #463026;
-  border-spacing: 0;
   width: 100%;
-  border-radius: 20px;
-  border-collapse: collapse; /* Combina as bordas das células */
+  border-collapse: collapse;
 }
 
-table tr td {
-  cursor: default;
-  border: none; /* Remove table cell borders */
-  padding: 8px; /* Adjust the padding as needed */
-  border-bottom: 1px solid #2f1910;
+th,
+td {
+  padding: 10px;
+  text-align: left;
 }
 
-table tr th {
-  cursor: default;
-  border: none; /* Remove table cell borders */
-  padding: 8px; /* Adjust the padding as needed */
-  border-bottom: 1px solid #2f1910;
+th {
+  color: white;
 }
+
+
+.custom-name,
+.custom-info,
+.custom-conclusiondate,
+.custom-expirationdate {
+  color: white;
+}
+
+.custom-box-bnt-editar {
+  align-items: center;
+  margin-top: 20px;
+  display: flex; /* Adicionado display flex */
+  justify-content: space-between; /* Adicionado justify-content space-between */
+  width: 100%; /* Definido a largura como 100% */
+}
+
+.custom-bnt-editar,
+.custom-bnt-download,
+.custom-bnt-arquivo {
+  margin-top: 10px;
+  height: 5vh;
+  width: 22%;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  color: #381503;
+  background: #f85605;
+  cursor: pointer;
+  box-shadow: 0px 10px 40px -12px #ec5306;
+}
+
+.custom-bnt-editar:hover,
+.custom-bnt-download:hover,
+.custom-bnt-arquivo:hover {
+  color: #fafafa;
+  box-shadow: 10px 10px 20px 15px #050505;
+}
+
+.custom-input-editar {
+  height: 5vh;
+  margin-top: 10px;
+  width: 25%;
+}
+
+.custom-success-message {
+  margin-top: 10px;
+  color: #10ac84;
+  font-weight: bold;
+  text-align: center;
+}
+
+.custom-input-editar::file-selector-button {
+  height: 3vh;
+  background-color: #f85605;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  cursor: pointer;
+}
+
+

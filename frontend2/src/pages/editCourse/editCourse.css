@@ -1,35 +1,95 @@
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
+
 .main-edit-course {
+  width: 100vw;
+  height: 100vh;
+  background: #200c02;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  width: 100vw;
-  height: 100vh;
 }
+
 .box-edit-course {
-  display: flex;
-  flex-direction: column;
-  padding: 3% 2%;
+  width: 50vw;
+  margin-top: 20px;
+  padding: 20px;
   background: #4c1d06;
   border-radius: 20px;
   box-shadow: 0px 10px 40px #020100;
 }
-.container-edit-course-info {
-  background-color: #463026;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 10px;
-  box-shadow: 0px 10px 40px #020100;
-  font-weight: bold;
+
+.box-edit-course > h1 {
+  text-align: center;
+  color: #f85605;
+  font-weight: 400;
+  font-size: 3vw;
+  margin-bottom: 20px;
 }
-.error {
+
+.container-edit-course-info {
+  width: 48vw;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+  color: white;
+}
+
+.container-edit-course-info label {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.container-edit-course-info input,
+.container-edit-course-info select {
+  margin-top: 5px;
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  background: #463026;
+  color: white;
+  font-size: 12pt;
+  box-shadow: 0px 10px 40px #020100;
+  outline: none;
+}
+
+.container-edit-course-info .error {
   color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.box-bnt-editar {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.bnt-editar {
+  height: 5vh;
+  width: 20%;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  color: #381503;
+  background: #f85605;
+  cursor: pointer;
+  box-shadow: 0px 10px 40px -12px #ec5306;
+}
+
+.bnt-editar:hover {
+  color: #fafafa;
+  box-shadow: 10px 10px 20px 15px #050505;
 }

@@ -1,197 +1,109 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Montserrat", sans-serif;
-}
-
-.page {
+.page-container {
   width: 100vw;
-  height: 100vh;
-  background: #200c02;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.table-container {
-  padding: 3% 2%;
-  background: #4c1d06;
-  border-radius: 20px;
-  box-shadow: 0px 10px 40px #020100;
-}
-table tr th {
-  cursor: default;
-  border: none;
-  padding: 8px;
-  border-bottom: 1px solid #2f1910;
-}
-td {
-  color: #fff;
-}
-.header {
+  height: 80vh;
   background-color: #200c02;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-.header > h1 {
-  margin-left: 10px;
-  color: #f85605;
-  font-weight: 400;
-  font-size: 2vw;
-  cursor: pointer;
-}
-
-.tam-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 70vw;
-  height: 100vh;
-}
-
-.container {
-  width: 100vw;
   display: flex;
   flex-direction: column;
-  padding: 3% 2%;
-  background: #4c1d06;
+  align-items: center;
+}
+
+.content-container {
+  width: 80vw;
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #4c1d06;
   border-radius: 20px;
   box-shadow: 0px 10px 40px #020100;
 }
 
-.container > h1 {
-  text-align: center;
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.title h1 {
   color: #f85605;
   font-weight: 400;
   font-size: 3vw;
 }
 
-.formContainer {
-  display: flex;
-  text-align: center;
-}
-
-.left-card {
-  width: 50%;
-  margin: 0px 10px;
-}
-
-.right-card-course {
-  width: 50%;
-  margin: 0px 10px;
-}
-
-.left-card > input,
-.right-card > input {
-  width: 25vw;
-  border: none;
-  border-radius: 10px;
-  margin-top: 8%;
-  padding: 3%;
-  background: #463026;
-  color: white;
-  font-size: 12pt;
-  box-shadow: 0px 10px 40px #020100;
-  outline: none;
-  box-sizing: border-box;
-}
-
-.baixo {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  width: 50%;
-  margin: 20px auto;
-}
-
-.cadastrar {
-  height: 5vh;
-  width: 100%;
-  border: none;
-  border-radius: 10px;
-  outline: none;
-  text-transform: uppercase;
-  letter-spacing: 4px;
-  color: #381503;
-  background: #f85605;
-  cursor: pointer;
-  box-shadow: 0px 10px 40px -12px #ec5306;
-}
-
-.cadastrar:hover {
-  color: #fafafa;
-  box-shadow: 10px 10px 20px 15px #050505;
-}
-
-.logo {
-  margin-bottom: 150px;
-  cursor: pointer;
-}
-
-span {
-  display: inline-block;
-  color: red;
-}
-
-.sidebar {
-  width: 13vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.icons-sidebar {
-  width: 20vw;
-  color: #f85605;
-  cursor: pointer;
-}
-
-.icons-sidebar > svg {
-  font-size: 8rem;
-}
-
-.success-message {
-  display: center;
-  color: #00ff00;
-  font-size: 14px;
-  margin-top: 10px;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .notification-button {
-  position: relative;
-  margin: 115px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: none;
   border: none;
+  outline: none;
   cursor: pointer;
-  color: red;
+}
+
+.notification-icon {
+  color: #f85605;
   font-size: 2rem;
-  margin-right: 10px;
-  position: absolute;
-  top: 0;
-  right: 0;
+  margin-right: 5px;
 }
 
 .notification-count {
-  position: absolute;
-  top: -10px;
-  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f85605;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: bold;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  margin-left: 5px;
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  padding: 10px;
+  text-align: left;
+  color: #ffffff;
+  font-size: 12pt;
+}
+
+.table thead th {
+  font-weight: bold;
+  color: #f85605;
+}
+
+
+.pagination {
   display: flex;
   justify-content: center;
-  align-items: center;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background-color: red;
-  color: white;
-  font-size: 12px;
-  font-weight: bold;
+  margin-top: 20px;
+}
+
+.pagination button {
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 14px;
+  padding: 5px 10px;
+  margin-right: 5px;
+}
+
+.pagination button.active {
+  background-color: #f85605;
+  border-radius: 5px;
+}
+
+.notification-button.active .notification-count {
+  display: none;
 }

@@ -122,7 +122,6 @@ const ListOfCourses = () => {
     <div className="page-container">
       <Header />
       <div className="content-container">
-        <Header />
         <div className="title">
           <h1>Lista de cursos</h1>
           <button

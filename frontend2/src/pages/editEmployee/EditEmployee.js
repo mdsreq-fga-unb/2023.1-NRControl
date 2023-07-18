@@ -309,162 +309,157 @@ function EditEmployeePage() {
   return (
     <div className="main-edit">
       <Header />
-      <Header />
       <div className="box-edit">
         <h1>Editar Dados do Funcionário</h1>
         <div className="info-edit">
           <form onSubmit={updateData}>
-            <div>
-              <label>
-                Nome:
-                <input
-                  className="input-edit"
-                  type="text"
-                  name="name"
-                  value={employeeData.name}
-                  onChange={changeValue}
-                />
-                {errors.name && <div className="error">{errors.name}</div>}
-              </label>
+            <div className="form-row">
+              <div className="form-column">
+                <label>
+                  Nome:
+                  <input
+                    className="input-edit"
+                    type="text"
+                    name="name"
+                    value={employeeData.name}
+                    onChange={changeValue}
+                  />
+                  {errors.name && <div className="error">{errors.name}</div>}
+                </label>
+  
+                <label>
+                  CPF:
+                  <input
+                    className="input-edit"
+                    type="text"
+                    name="cpf"
+                    value={employeeData.cpf}
+                    onChange={changeValue}
+                  />
+                  {errors.cpf && <div className="error">{errors.cpf}</div>}
+                </label>
+  
+                <label>
+                  Email:
+                  <input
+                    className="input-edit"
+                    type="email"
+                    name="email"
+                    value={employeeData.email}
+                    onChange={changeValue}
+                  />
+                  {errors.email && <div className="error">{errors.email}</div>}
+                </label>
+  
+                <label>
+                  Endereço:
+                  <input
+                    className="input-edit"
+                    type="text"
+                    name="address"
+                    value={employeeData.address}
+                    onChange={changeValue}
+                  />
+                  {errors.address && (
+                    <div className="error">{errors.address}</div>
+                  )}
+                </label>
+  
+                <label>
+                  Telefone:
+                  <input
+                    className="input-edit"
+                    type="text"
+                    name="phonenumber"
+                    value={employeeData.phonenumber}
+                    onChange={changeValue}
+                  />
+                  {errors.phonenumber && (
+                    <div className="error">{errors.phonenumber}</div>
+                  )}
+                </label>
+              </div>
+  
+              <div className="form-column">
+                <label>
+                  Data de Nascimento:
+                  <InputMask
+                    className="input-edit"
+                    mask="99/99/9999"
+                    maskPlaceholder="dd/mm/aaaa"
+                    type="text"
+                    name="birthday"
+                    value={employeeData.birthday}
+                    onChange={changeValue}
+                  />
+                  {errors.birthday && (
+                    <div className="error">{errors.birthday}</div>
+                  )}
+                </label>
+  
+                <label>
+                  Data de Admissão:
+                  <InputMask
+                    className="input-edit"
+                    mask="99/99/9999"
+                    maskPlaceholder="dd/mm/aaaa"
+                    type="text"
+                    name="admissiondate"
+                    value={employeeData.admissiondate}
+                    onChange={changeValue}
+                  />
+                  {errors.admissiondate && (
+                    <div className="error">{errors.admissiondate}</div>
+                  )}
+                </label>
+  
+                <label>
+                  Data de ASO:
+                  <InputMask
+                    className="input-edit"
+                    mask="99/99/9999"
+                    maskPlaceholder="dd/mm/aaaa"
+                    type="text"
+                    name="asodate"
+                    value={employeeData.asodate}
+                    onChange={changeValue}
+                  />
+                  {errors.asodate && (
+                    <div className="error">{errors.asodate}</div>
+                  )}
+                </label>
+  
+                <label>
+                  Competência:
+                  <select
+                    name="competence"
+                    value={employeeData.competence}
+                    onChange={changeValue}
+                  >
+                    <option value="Servente">Servente</option>
+                    <option value="Operador de máquinas">
+                      Operador de máquinas
+                    </option>
+                    <option value="Auxiliar de máquinas">
+                      Auxiliar de máquinas
+                    </option>
+                    <option value="Sondador">Sondador</option>
+                    <option value="Soldador">Soldador</option>
+                    <option value="Encarregado">Encarregado</option>
+                    <option value="Poceiro">Poceiro</option>
+                  </select>
+                </label>
+                <button className="bnt-edit" type="submit">
+                  Salvar
+                </button>
+              </div>
             </div>
-            <div>
-              <label>
-                CPF:
-                <input
-                  className="input-edit"
-                  type="text"
-                  name="cpf"
-                  value={employeeData.cpf}
-                  onChange={changeValue}
-                />
-                {errors.cpf && <div className="error">{errors.cpf}</div>}
-              </label>
-            </div>
-            <div>
-              <label>
-                Email:
-                <input
-                  className="input-edit"
-                  type="email"
-                  name="email"
-                  value={employeeData.email}
-                  onChange={changeValue}
-                />
-                {errors.email && <div className="error">{errors.email}</div>}
-              </label>
-            </div>
-            <div>
-              <label>
-                Endereço:
-                <input
-                  className="input-edit"
-                  type="text"
-                  name="address"
-                  value={employeeData.address}
-                  onChange={changeValue}
-                />
-                {errors.address && (
-                  <div className="error">{errors.address}</div>
-                )}
-              </label>
-            </div>
-            <div>
-              <label>
-                Telefone:
-                <input
-                  className="input-edit"
-                  type="text"
-                  name="phonenumber"
-                  value={employeeData.phonenumber}
-                  onChange={changeValue}
-                />
-                {errors.phonenumber && (
-                  <div className="error">{errors.phonenumber}</div>
-                )}
-              </label>
-            </div>
-            <div>
-              <label>
-                Data de Nascimento:
-                <InputMask
-                  className="input-edit"
-                  mask="99/99/9999"
-                  maskPlaceholder="dd/mm/aaaa"
-                  type="text"
-                  name="birthday"
-                  value={employeeData.birthday}
-                  onChange={changeValue}
-                />
-                {errors.birthday && (
-                  <div className="error">{errors.birthday}</div>
-                )}
-              </label>
-            </div>
-            <div>
-              <label>
-                Data de Admissão:
-                <InputMask
-                  className="input-edit"
-                  mask="99/99/9999"
-                  maskPlaceholder="dd/mm/aaaa"
-                  type="text"
-                  name="admissiondate"
-                  value={employeeData.admissiondate}
-                  onChange={changeValue}
-                />
-                {errors.admissiondate && (
-                  <div className="error">{errors.admissiondate}</div>
-                )}
-              </label>
-            </div>
-            <div>
-              <label>
-                Data de ASO:
-                <InputMask
-                  className="input-edit"
-                  cd
-                  mask="99/99/9999"
-                  maskPlaceholder="dd/mm/aaaa"
-                  type="text"
-                  name="asodate"
-                  value={employeeData.asodate}
-                  onChange={changeValue}
-                />
-                {errors.asodate && (
-                  <div className="error">{errors.asodate}</div>
-                )}
-              </label>
-            </div>
-            <div>
-              <label>
-                Competência:
-                <select
-                  name="competence"
-                  value={employeeData.competence}
-                  onChange={changeValue}
-                >
-                  <option value="Servente">Servente</option>
-                  <option value="Operador de máquinas">
-                    Operador de máquinas
-                  </option>
-                  <option value="Auxiliar de máquinas">
-                    Auxiliar de máquinas
-                  </option>
-                  <option value="Sondador">Sondador</option>
-                  <option value="Soldador">Soldador</option>
-                  <option value="Encarregado">Encarregado</option>
-                  <option value="Poceiro">Poceiro</option>
-                </select>
-              </label>
-            </div>
-            <button className="bnt-edit" type="submit">
-              Salvar
-            </button>
           </form>
         </div>
       </div>
     </div>
   );
+  
 }
 
 export default EditEmployeePage;

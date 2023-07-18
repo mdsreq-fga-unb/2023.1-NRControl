@@ -82,10 +82,8 @@ function CourseInfo() {
   return (
     <div>
       <div className="main-table">
+      <Header />
         <div className="table-employees">
-          <div className="header" onClick={goToEmployees}>
-            <Header />
-          </div>
           <h2>Informações do Curso</h2>
           <table>
             <thead>
@@ -100,18 +98,18 @@ function CourseInfo() {
               {course && (
                 <tr>
                   <td>
-                    <div className="name">{course.course}</div>
+                    <div className="custom-name">{course.course}</div>
                   </td>
                   <td>
-                    <div className="info">{course.info}</div>
+                    <div className="custom-info">{course.info}</div>
                   </td>
                   <td>
-                    <div className="conclusiondate">
+                    <div className="custom-conclusiondate">
                       {formatDate(course.conclusiondate)}
                     </div>
                   </td>
                   <td>
-                    <div className="expirationdate">
+                    <div className="custom-expirationdate">
                       {formatDate(course.expirationdate)}
                     </div>
                   </td>
@@ -119,29 +117,27 @@ function CourseInfo() {
               )}
             </tbody>
           </table>
-          <div className="box-bnt-editar">
-            <button onClick={editCourseData} className="bnt-editar">
+          <div className="custom-box-bnt-editar">
+            <button onClick={editCourseData} className="custom-bnt-editar">
               Editar
             </button>
             {course && course.fileUrl && (
-              <button onClick={downloadFile} className="bnt-download">
-                Baixar Arquivo
+              <button onClick={downloadFile} className="custom-bnt-download">
+                Download do certificado
               </button>
             )}
-            <div>
               <input
-                className="input-editar"
+                className="custom-input-editar"
                 type="file"
                 onChange={handleFileChange}
               />
-              <button className="bnt-arquivo" onClick={uploadFile}>
-                Enviar Arquivo
+              <button className="custom-bnt-arquivo" onClick={uploadFile}>
+                Enviar certificado
               </button>
-            </div>
-            {successMessage && (
-              <div className="success-message">{successMessage}</div>
-            )}
           </div>
+          {successMessage && (
+              <div className="custom-success-message">{successMessage}</div>
+            )}
         </div>
       </div>
     </div>

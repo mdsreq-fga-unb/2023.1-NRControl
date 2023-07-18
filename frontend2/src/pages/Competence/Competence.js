@@ -7,8 +7,6 @@ import "./Competence.css";
 function Competence() {
   const navigateTo = useNavigate();
   const [listOfEmployees, setListOfEmployees] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const employeesPerPage = 6;
 
   useEffect(() => {
     const accessToken = sessionStorage.getItem("accessToken");
@@ -53,23 +51,6 @@ function Competence() {
   // Ordenar as competências em ordem alfabética
   const sortedCompetences = Object.keys(employeesByCompetence).sort();
 
-  const handlePageChange = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
-
-  const indexOfLastEmployee = currentPage * employeesPerPage;
-  const indexOfFirstEmployee = indexOfLastEmployee - employeesPerPage;
-  const currentEmployees = sortedCompetences
-    .map((competence) => employeesByCompetence[competence])
-    .flat()
-    .slice(indexOfFirstEmployee, indexOfLastEmployee);
-
-  const totalPages = Math.ceil(
-    currentEmployees.length / employeesPerPage
-  );
-
-  const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
-
   return (
     <div className="main">
       <div className="header">
@@ -94,17 +75,6 @@ function Competence() {
             </div>
           </div>
         ))}
-        <div className="pagination">
-          {pageNumbers.map((pageNumber) => (
-            <button
-              key={pageNumber}
-              onClick={() => handlePageChange(pageNumber)}
-              className={currentPage === pageNumber ? "active" : ""}
-            >
-              {pageNumber}
-            </button>
-          ))}
-        </div>
       </div>
     </div>
   );

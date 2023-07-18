@@ -7,6 +7,7 @@
 |19/04/2023|0.1|Descrição do produto|Gabriel, Felipe, Júlia, Manoel e Vinícius|
 |07/05/2023|0.2|Melhorias na descrição do produto a partir das issues apresentadas no github pelo professor|Gabriel, Felipe, Júlia, Manoel e Vinícius|
 |18/05/2023|0.3|Atualização de tecnologia a ser utilizada|Júlia|
+|16/07/2023|0.4|Inclusão das tecnologias que estamos utilizando|Júlia|
 
 ## Problema
 O problema principal é a dificuldade dos funcionários em se manterem atualizados quanto às Normas Regulamentadoras. Abaixo temos o Diagrama de Ishikawa que foi utilizado para identificar as possíveis causas do problema:
@@ -36,4 +37,9 @@ Em nosso projeto, utilizaremos as seguintes tecnologias para desenvolver a aplic
 - Javascript: desenvolvimento da lógica do back-end;
 - React: interfaces gráficas de usuário;
 - MySQL: banco de dados;
-- Github actions: Testes Automatizados.
+- Axios: integração do projeto React com a API;
+- Sequelize: mapeador objeto-relacional;
+- Github actions: Testes Automatizados;
+- Yup: validação de formulários;
+- AWS: hospedagem do banco de dados;
+- Vercel: hospedagem da aplicação.

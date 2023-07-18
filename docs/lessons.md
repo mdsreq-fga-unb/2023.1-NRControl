@@ -56,3 +56,7 @@ As lições aprendidas pelo grupo no decorrer da unidade foram:
 <figure class="video_container">
     <iframe width="560" height="315" src="https://www.youtube.com/embed/q8z_07OgZFc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 </figure>
+
+## Unidade 4
+
+As lições aprendidas pelo grupo no decorrer da unidade foram uma extenção da unidade 4, visto que o grupo continuou em seu mergulho no desenvolvimento do projeto, aprofundando mais ainda os seus conhecimentos acerca da área de desenvolvimento.

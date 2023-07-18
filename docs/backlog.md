@@ -8,6 +8,7 @@
 |11/05/2023|0.2|Alterações na pontuação do Backlog|Júlia|
 |11/05/2023|0.3|Alterações na descrição da pontuação do Backlog|Júlia|
 |21/05/2023|0.4|Alteração na organização das tabelas|Júlia|
+|17/07/2023|0.5|Alteração da US09|Júlia|
 
 ## Personas
 
@@ -21,10 +22,9 @@
 |RNF02|Interface|A aplicação deve manter uma padronização na estilização das listagens, abresentando o mesmo modelo e botões de seleção.|
 |RNF03|Suportabilidade|A aplicação deve ser compatível com as versões mais recentes dos navegadores modernos como Chrome, Safari, Edge, Firefox e Opera.|
 |RFN04|Suportabilidade|O sistema deve ser modular e seguir as melhores práticas de programação, facilitando a manutenção futura e permitindo que novas funcionalidades sejam adicionadas sem causar impacto negativo em outras partes do sistema.|
-|RNF05|Confiabilidade|A aplicação deve garantir a privacidade dos dados dos usuários, estando de acordo com a Lei Geral de Proteção de Dados (13.709/2018).|
-|RNF06|Confiabilidade|A aplicação deve proporcionar um ambiente suficientemente seguro para garantir que apenas aqueles registrados no sistema tenham acesso a ele.|
-|RNF07|Desempenho|A aplicação deve garantir que a conexão com o banco de dados apresente o tempo de resposta igual ou inferior a 1000 ms.|
-|RNF08|Requisitos de implementação|A aplicação deve seguir regras para garantir que os dados inseridos no banco de dados estejam corretos e válidos. Isso pode envolver restrições de tipo de dados, validação de formato, faixas de valores aceitáveis e verificação de integridade referencial. |
+|RNF05|Confiabilidade|A aplicação deve proporcionar um ambiente suficientemente seguro para garantir que apenas aqueles registrados no sistema tenham acesso a ele.|
+|RNF06|Desempenho|A aplicação deve garantir que a conexão com o banco de dados apresente o tempo de resposta igual ou inferior a 1000 ms.|
+|RNF07|Requisitos de implementação|A aplicação deve seguir regras para garantir que os dados inseridos no banco de dados estejam corretos e válidos. Isso pode envolver restrições de tipo de dados, validação de formato, faixas de valores aceitáveis e verificação de integridade referencial. |
 
 ## Requisitos funcionais
 
@@ -67,7 +67,7 @@
             <td>US08 - Eu, como usuário, gostaria de atualizar o cadastro de um operário caso tenha uma informação nova ou com necessidade de alteração.</td>
         </tr>
         <tr>
-            <td>US09 - Eu, como usuário, gostaria de definir os funcionários de acordo com suas habilidades e competências, para ter certeza da qualificação dos operários que estão indo para determinada obra.</td>
+            <td>US09 - Eu, como usuário, gostaria de listar os funcionários de acordo com suas habilidades e competências, para ter certeza da qualificação dos operários que estão indo para determinada obra.</td>
         </tr>
         <tr>
             <td>US10 - Eu, como usuário, gostaria de gerenciar o banco de horas de cada operário, para saber se no final do mês determinado operário ficou devendo horas ou possui horas extras.</td>
@@ -119,7 +119,7 @@
 |US06|Cadastrar operário|3|3|1|7|
 |US08|Atualizar cadastro de operário|3|3|1|7|
 |US15|Adicionar curso|3|3|1|7|
-|US09|Definir operário por competência|3|3|1|7|
+|US09|Listar operário por competência|3|3|1|7|
 |US11|Visualizar lista de operários|3|3|1|7|
 |US12|Visualizar informações de operário|3|3|1|7|
 |US13|Visualizar cursos feitos pelo operário|3|3|1|7|
@@ -153,9 +153,8 @@
 |--|---------|
 |US18|Eu, como usuário, gostaria de anexar um certificado do curso realizado, para poder fazer a sua validação.|
 |US04|Eu, como usuário, gostaria de enviar avisos sobre escalas e sobre a necessidade de realização de determinado curso no e-mail do funcionário, para obter maior transparência de comunicação.|
-|US09|Eu, como usuário, gostaria de definir os funcionários de acordo com suas habilidades e competências, para ter certeza da qualificação dos operários que estão indo para determinada obra.|
+|US09|Eu, como usuário, gostaria de listar os funcionários de acordo com suas habilidades e competências, para ter certeza da qualificação dos operários que estão indo para determinada obra.|
 |US05|Eu, como usuário, gostaria de ser notificado quando um curso de determinado funcionário está prestes a expirar para poder avisar o operário da necessidade de realizar um novo curso.|
 |US08|Eu, como usuário, gostaria de atualizar o cadastro de um operário caso tenha uma informação nova ou com necessidade de alteração.|
 |US17|Eu, como usuário, gostaria de editar informações sobre um curso para manter os dados atualizados e corretos.|
 |US19|Eu, como usuário, gostaria de selecionar um curso específico realizado por um operário para visualizar as suas informações detalhadas.|
-

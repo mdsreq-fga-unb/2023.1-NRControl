@@ -15,7 +15,7 @@
         <link rel="next" href="../backlog/">
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.6">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.15">
     
     
       
@@ -23,10 +23,10 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.ded33207.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.26e3688c.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.a0c5b2b5.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ecc896b0.min.css">
       
       
 
@@ -108,6 +108,8 @@
         </div>
       </div>
     </div>
+    
+      
     
     
     
@@ -452,21 +454,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../teste/" class="md-nav__link">
-        Testes
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../uipattern/" class="md-nav__link">
         Padrões de interface
       </a>
@@ -568,6 +555,12 @@
 <td>Atualização dos critérios de aceitação US11</td>
 <td>Júlia</td>
 </tr>
+<tr>
+<td>16/07/2023</td>
+<td>0.3</td>
+<td>Atualização dos critérios de aceitação: US06, US08, US11, US12, US13, S15, US17, US18</td>
+<td>Júlia e Vinícius</td>
+</tr>
 </tbody>
 </table>
 <h2 id="criterios-de-aceitacao_1">Critérios de aceitação</h2>
@@ -603,52 +596,52 @@
 <tr>
 <td>US06</td>
 <td>Cadastrar operário</td>
-<td>O cadastro deve pedir as seguintes informações:<br>1. CPF: o CPF informado deve conter 11 números;<br>2. Nome: o nome deve conter nome e sobrenome;<br>3. Email: o email deve ter o formato "email@email.com";<br>4. Endereço;<br>5. Número de telefone: o número de telefone deve conter DDD e o telefone, totalizando 11 números;<br>6. Data de nascimento  no formato DD/MM/AAAA;<br>7. Data de admissão no formato DD/MM/AAAA;<br>8. Data de realização do ASO no formato DD/MM/AAAA.</td>
+<td>O cadastro deve pedir as seguintes informações:<br>1. CPF: o CPF informado deve conter 11 números e deverá passar pela seguinte validação:<br>1.1 Os dois últimos dígitos do CPF são chamados de dígitos verificadores. Eles são calculados a partir dos nove primeiros dígitos do CPF.<br>1.2 Para calcular o primeiro dígito verificador, multiplica-se cada um dos nove primeiros dígitos do CPF por um peso que varia de 10 a 2. O peso do primeiro dígito é 10, do segundo é 9, e assim por diante, até o peso do nono dígito que é 2.<br>1.3 Em seguida, soma-se o resultado das multiplicações e divide-se a soma por 11 e obtém-se o resto da divisão.<br>1.4 Se o resto for igual a 0 ou 1, o primeiro dígito verificador é 0. Caso contrário, subtrai-se o resto de 11 para obter o primeiro dígito verificador.<br>1.5 Repete-se o processo para calcular o segundo dígito verificador, mas agora incluindo o primeiro dígito verificador no cálculo.<br>1.6 Após obter o segundo dígito verificador, compara-se com o décimo dígito do CPF fornecido. Se forem iguais, passa-se para a próxima etapa.<br>1.7 Por fim, compara-se o segundo dígito verificador calculado com o décimo primeiro dígito do CPF fornecido. Se também forem iguais, o CPF é considerado válido.<br>2. Nome: o nome deve conter nome e sobrenome;<br>3. Email: o email deve ter o formato "email@email.com";<br>4. Endereço;<br>5. Número de telefone: o número de telefone deve conter DDD e o telefone, totalizando 11 números;<br>6. Data de nascimento  no formato DD/MM/AAAA. A data deve estar dentro de um intervalo inferior a 100 anos e superior a 18 anos, contando a partir da data de realização do cadastro, além de não poder ser futura;<br>7. Data de admissão no formato DD/MM/AAAA. A data de admissão deve ser posterior ou igual a 01/10/1971(fundação da empresa) e não pode ser futura;<br>8. Data de realização do ASO no formato DD/MM/AAAA. A validade da ASO é de 12 meses, logo a data da ASO deve ser menor que 12 meses a partir da data de realização do cadastro e não pode ser futura;<br>9. Competência do operário, podendo escolher entre:<br>9.1 Servente;<br>9.2 Operador de máquinas;<br>9.3 Auxiliar de máquinas;<br>9.4 Sondador;<br>9.5 Soldador;<br>9.6 Encarregado;<br>9.7 Poceiro.</td>
 </tr>
 <tr>
 <td>US08</td>
 <td>Atualizar cadastro de operário</td>
-<td>1. Ao selecionar a opção de atualizar cadastro, a aplicação deve recuperar todos os dados adicionados nos campos de cadastro anteriormente para que o usuário possa editar apenas os dados que quer atualizar.</td>
+<td>Ao selecionar a opção de atualizar cadastro, a aplicação deve recuperar os seguintes dados do funcionário: CPF, nome, email, endereço, número de telefone, data de nascimento, data de admissão e data de ASO levando o usuário a uma página em que ele poderá editar esses dados conforme os seguintes critérios:<br>1. CPF: o CPF informado deve conter 11 números e deverá passar pela seguinte validação:<br>1.1 Os dois últimos dígitos do CPF são chamados de dígitos verificadores. Eles são calculados a partir dos nove primeiros dígitos do CPF.<br>1.2 Para calcular o primeiro dígito verificador, multiplica-se cada um dos nove primeiros dígitos do CPF por um peso que varia de 10 a 2. O peso do primeiro dígito é 10, do segundo é 9, e assim por diante, até o peso do nono dígito que é 2.<br>1.3 Em seguida, soma-se o resultado das multiplicações e divide-se a soma por 11 e obtém-se o resto da divisão.<br>1.4 Se o resto for igual a 0 ou 1, o primeiro dígito verificador é 0. Caso contrário, subtrai-se o resto de 11 para obter o primeiro dígito verificador.<br>1.5 Repete-se o processo para calcular o segundo dígito verificador, mas agora incluindo o primeiro dígito verificador no cálculo.<br>1.6 Após obter o segundo dígito verificador, compara-se com o décimo dígito do CPF fornecido. Se forem iguais, passa-se para a próxima etapa.<br>1.7 Por fim, compara-se o segundo dígito verificador calculado com o décimo primeiro dígito do CPF fornecido. Se também forem iguais, o CPF é considerado válido.<br>2. Nome: o nome deve conter nome e sobrenome;<br>3. Email: o email deve ter o formato "email@email.com";<br>4. Endereço;<br>5. Número de telefone: o número de telefone deve conter DDD e o telefone, totalizando 11 números, no formato "(xx)xxxxx-xxxx";<br>6. Data de nascimento no formato DD/MM/AAAA. A data deve estar dentro de um intervalo inferior a 80 anos e superior a 18 anos, contando a partir da data de realização do cadastro, além de não poder ser futura;<br>7. Data de admissão no formato DD/MM/AAAA. A data de admissão deve ser posterior ou igual a 01/10/1971(fundação da empresa) e não pode ser futura;<br>8. Data de realização do ASO no formato DD/MM/AAAA. A validade da ASO é de 12 meses, logo a data da ASO deve ser menor que 12 meses a partir da data de realização do cadastro e não pode ser futura;<br>9. Competência do operário, podendo escolher entre:<br>9.1 Servente;<br>9.2 Operador de máquinas;<br>9.3 Auxiliar de máquinas;<br>9.4 Sondador;<br>9.5 Soldador;<br>9.6 Encarregado;<br>9.7 Poceiro.</td>
 </tr>
 <tr>
 <td>US09</td>
-<td>Definir operário por competência</td>
-<td>As competências a serem selecionadas devem estar contidas em uma caixa de seleção. As competências são:<br>1. Servente;<br>2. Operador de máquinas;<br>3. Auxiliar de máquinas;<br>4. Sondador;<br>5. Soldador;<br>6. Encarregado;<br>7. Poceiro.</td>
+<td>Listar operários por competência</td>
+<td>1. A lista será dividida por competências;As competências são:<br>1.1 Servente;<br>1.2 Operador de máquinas;<br>1.3 Auxiliar de máquinas;<br>1.4 Sondador;<br>1.5 Soldador;<br>1.6 Encarregado;<br>1.7 Poceiro.<br>2. A lista deve conter o nome e o CPF dos operários. Esses dados são os dados informados pelo usuário durante o cadastro de funcionário.</td>
 </tr>
 <tr>
 <td>US11</td>
-<td>Visualizar lista de operários</td>
-<td>1.  A lista deve conter o nome e o CPF dos operários.<br>2. A lista deve estar organizada com os nomes dos operários em ordem alfabética.</td>
+<td>Visualizar lista de todos os operários da empresa</td>
+<td>1. A lista deve conter o nome e o CPF dos operários. Esses dados são os dados informados pelo usuário durante o cadastro de funcionário;<br>2. A lista deve estar organizada com os nomes dos operários em ordem alfabética.</td>
 </tr>
 <tr>
 <td>US12</td>
 <td>Visualizar informações de operário</td>
-<td>1. Ao clicar em cima de um item na lista, o mesmo deve redirecionar o usuário para uma página contendo todos os dados informados no cadastro e suas competências, além de um botão "Cursos".</td>
+<td>1. Ao clicar em cima de um item na lista, o mesmo deve redirecionar o usuário para uma página contendo os seguintes dados que foram informados no cadastro de funcionário: CPF, nome, email, endereço, número de telefone, data de nascimento, data de admissão, data de ASO, além de sua competência e um botão "Cursos" que irá redirecionar o usuário para uma página contendo todos os cursos cadastrados no nome do funcionário em questão.</td>
 </tr>
 <tr>
 <td>US13</td>
 <td>Visualizar cursos feitos pelo operário</td>
-<td>1. Ao clicar em "Cursos" na página contendo os dados de um operário, o usuário deve ser redirecionado para uma página contendo uma lista que mostre todos códigos dos cursos e preparações realizados por ele.</td>
+<td>1. Ao clicar em "Cursos" na página contendo os dados de um operário, o usuário deve ser redirecionado para uma página contendo uma lista que mostre todos códigos dos cursos/preparações que foram cadastrados pelo usuário no nome do funcionário em questão, além do status de cada curso na frente do seu código. O status vai ser "cadastro completo" quando o usuário anexar um certificado de conclusão do curso e "pendente" quando o usuário não tiver anexado o certificado de conclusão de curso.</td>
 </tr>
 <tr>
 <td>US15</td>
 <td>Adicionar curso</td>
-<td>Ao adicionar um novo curso, é preciso preencher as seguintes informações:<br>1. Código do curso (Exemplo: NR-14);<br>2. Data de conclusão do curso no formato DD/MM/AAAA;<br>3. Data de expiração do curso no formato DD/MM/AAAA;<br>4. Campo de informações do curso.<br>O campo de informações irá conter uma introdução do assunto do curso e será preenchido pelo usuário.</td>
+<td>Ao adicionar um novo curso, é preciso preencher as seguintes informações:<br>1. Código do curso (Exemplo: NR-14);<br>2. Data de conclusão do curso no formato DD/MM/AAAA, além disso a data de conclusão do curso deve estar entre 2010 e a data atual;<br>3. Data de expiração do curso no formato DD/MM/AAAA. Ela não pode ser anterior à data de conclusão e não pode ser anterior à data atual;<br>4. Campo de informações do curso.<br>O campo de informações irá conter uma introdução do assunto do curso e será preenchido pelo usuário.</td>
 </tr>
 <tr>
 <td>US17</td>
 <td>Editar informações sobre curso</td>
-<td>1. Ao editar um curso, deve ser possível alterar a sua data de conclusão e expiração.</td>
+<td>Ao editar um curso, o sistema irá recuperar as informações cadastradas sobre o curso e deve ser possível alterar as seguintes informações seguindo os seguintes critérios:<br> 1. Código do curso (Exemplo: NR-14);<br>2. Data de conclusão do curso no formato DD/MM/AAAA, além disso a data de conclusão do curso deve estar entre 2010 e a data atual;<br>3. Data de expiração do curso no formato DD/MM/AAAA. Ela não pode ser anterior à data de conclusão e não pode ser anterior à data atual;<br>4. Campo de informações do curso.</td>
 </tr>
 <tr>
 <td>US18</td>
 <td>Anexar certificado</td>
-<td>1. Ao selecionar um curso, deve ter um campo para anexar uma imagem do certificado do curso;<br>2. Enquanto o certificado não for anexado, o cadastro do curso vai ter o status de "pendente".</td>
+<td>1. Ao selecionar um curso dentro dos cursos do funcionário, deve ter um campo para anexar um arquivo do certificado do curso;<br>2. Deve ser possível fazer download do arquivo após ser enviado;<br>3. Deve ser possível enviar outro arquivo para substituir o que foi enviado;<br>4. Enquanto o certificado não for anexado, o cadastro do curso vai ter o status de "pendente" na lista de cursos do operário;<br>5. Quando o certificado por anexado, o cadastro do curso vai ter o status de "cadastrado completo" na lista de cursos do operário.</td>
 </tr>
 <tr>
 <td>US19</td>
 <td>Visualizar informações de um curso</td>
-<td>Ao selecionar um curso realizado pelo operário, deve ser exibido as seguintes informações:<br>1. Código do curso (Exemplo: NR-14);<br>2. Data de conclusão do curso no formato DD/MM/AAAA;<br>3. Data de expiração do curso no formato DD/MM/AAAA;<br>4. Campo de informações do curso.</td>
+<td>Ao selecionar um curso realizado pelo operário, deve ser exibido as seguintes informações que foram cadastrada pelo usuário:<br>1. Código do curso (Exemplo: NR-14);<br>2. Data de conclusão do curso no formato DD/MM/AAAA;<br>3. Data de expiração do curso no formato DD/MM/AAAA;<br>4. Campo de informações do curso.</td>
 </tr>
 </tbody>
 </table>
@@ -692,7 +685,7 @@
     <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.51198bba.min.js"></script>
+      <script src="../assets/javascripts/bundle.b4d07000.min.js"></script>
       
     
   </body>

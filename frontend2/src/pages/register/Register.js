@@ -381,9 +381,6 @@ function Register() {
                       className="error-message"
                     />
                   </div>
-                </div>
-
-                <div className="right-card">
                   <Field
                     name="phonenumber"
                     id="inputCreatePost"
@@ -398,6 +395,9 @@ function Register() {
                       className="error-message"
                     />
                   </div>
+                </div>
+
+                <div className="right-card">
 
                   <Field
                     id="inputCreatePost"
@@ -468,12 +468,12 @@ function Register() {
                       component="span"
                       className="error-message"
                     />
-                  </div>
-                </div>
-                <div className="baixo">
+               <div className="baixo">
                   <button type="submit" className="cadastrar">
                     Cadastrar
                   </button>
+                </div>
+                  </div>
                 </div>
               </Form>
             </Formik>

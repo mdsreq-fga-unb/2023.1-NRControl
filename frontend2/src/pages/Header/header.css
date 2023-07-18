@@ -1,9 +1,3 @@
-html,
-body {
-  margin: 0;
-  padding: 0;
-}
-
 .header {
   background-color: #f0f0f0;
   padding: 20px;
@@ -15,6 +9,7 @@ body {
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 1; /* Adicione um índice z para que o cabeçalho fique acima dos demais elementos */
 }
 
 .logo img {
@@ -41,7 +36,6 @@ body {
   background-color: #ccc;
 }
 
-/* Adicione o estilo abaixo para evitar que o conteúdo fique oculto atrás do cabeçalho */
 .content {
-  margin-top: 80px; /* Altura do cabeçalho */
+  margin-top: 10%; /* Altura do cabeçalho */
 }

@@ -76,16 +76,50 @@ const Course = () => {
   };
 
   const validationSchema = Yup.object().shape({
-    name: Yup.string().required("O nome do funcionário é obrigatório"),
     course: Yup.string().required("O código do curso é obrigatório"),
+    conclusiondate: Yup.string()
+      .required("A data de conclusão do curso é obrigatória")
+      .matches(
+        /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(20\d{2}|19\d{2}|18\d{2}|17\d{2}|16\d{2}|15\d{2}|14\d{2}|13\d{2}|12\d{2}|11\d{2}|10\d{2}|09\d{2}|08\d{2}|07\d{2}|06\d{2}|05\d{2}|04\d{2}|03\d{2}|02\d{2}|01\d{2})$/,
+        "A data de conclusão do curso é inválida"
+      )
+      .test(
+        "conclusiondate",
+        "A data de conclusão do curso deve estar entre 2010 e a data atual",
+        (value) => {
+          const currentDate = new Date();
+          const conclusionDate = new Date(value.split("/").reverse().join("/"));
+  
+          return (
+            conclusionDate >= new Date("2010-01-01") &&
+            conclusionDate <= currentDate
+          );
+        }
+      ),
+    expirationdate: Yup.string()
+      .required("A data de expiração do curso é obrigatória")
+      .matches(
+        /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(20\d{2}|19\d{2}|18\d{2}|17\d{2}|16\d{2}|15\d{2}|14\d{2}|13\d{2}|12\d{2}|11\d{2}|10\d{2}|09\d{2}|08\d{2}|07\d{2}|06\d{2}|05\d{2}|04\d{2}|03\d{2}|02\d{2}|01\d{2})$/,
+        "A data de expiração do curso é inválida"
+      )
+      .test(
+        "expirationdate",
+        "A data de expiração do curso deve ser posterior à data de conclusão e não pode ser anterior à data atual",
+        function (value) {
+          const currentDate = new Date();
+          const conclusionDate = new Date(
+            this.resolve(Yup.ref("conclusiondate"))
+          );
+          const expirationDate = new Date(value.split("/").reverse().join("/"));
+  
+          return (
+            expirationDate >= conclusionDate && expirationDate <= currentDate
+          );
+        }
+      ),
     info: Yup.string().required("As informações do curso são obrigatórias"),
-    conclusiondate: Yup.string().required(
-      "A data de conclusão do curso é obrigatória"
-    ),
-    expirationdate: Yup.string().required(
-      "A data de expiração do curso é obrigatória"
-    ),
   });
+  
 
   const initialValues = {
     name: "",
@@ -153,7 +187,6 @@ const Course = () => {
 
                     <div className="right-card-add-course">
                       <div className="field-group">
-                        <label>Data de Conclusão</label>
                         <Field
                           className="input-edit"
                           id="inputCreatePost"
@@ -170,7 +203,6 @@ const Course = () => {
                       </div>
 
                       <div className="field-group">
-                        <label>Data de Expiração</label>
                         <Field
                           className="input-edit"
                           id="inputCreatePost"

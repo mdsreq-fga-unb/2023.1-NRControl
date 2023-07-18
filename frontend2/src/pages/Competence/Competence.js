@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Header from "../Header/header";
-
+import "./Competence.css";
 function Competence() {
   const navigateTo = useNavigate();
   const [listOfEmployees, setListOfEmployees] = useState([]);
@@ -74,7 +74,7 @@ function Competence() {
       <div className="header">
         <Header />
       </div>
-      <div className="box">
+      <div className="box-competence">
         <h1>Competências</h1>
         {sortedCompetences.map((competence) => (
           <div key={competence} className="competence-section">

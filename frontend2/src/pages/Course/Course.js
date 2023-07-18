@@ -115,6 +115,7 @@ const Course = () => {
                   <Form className="formContainer">
                     <div className="left-card-add-course">
                       <Field
+                        className="input-edit"
                         type="text"
                         name="name"
                         placeholder="Nome do funcionário"
@@ -124,6 +125,7 @@ const Course = () => {
                       )}
 
                       <Field
+                        className="input-edit"
                         type="text"
                         name="course"
                         placeholder="Código do curso"
@@ -133,6 +135,7 @@ const Course = () => {
                       )}
 
                       <Field
+                        className="input-edit"
                         type="text"
                         name="info"
                         placeholder="Informações do curso"
@@ -152,6 +155,7 @@ const Course = () => {
                       <div className="field-group">
                         <label>Data de Conclusão</label>
                         <Field
+                          className="input-edit"
                           id="inputCreatePost"
                           name="conclusiondate"
                           placeholder="Data de conclusão"
@@ -168,6 +172,7 @@ const Course = () => {
                       <div className="field-group">
                         <label>Data de Expiração</label>
                         <Field
+                          className="input-edit"
                           id="inputCreatePost"
                           name="expirationdate"
                           placeholder="Data de expiração"

@@ -124,13 +124,19 @@ function CourseInfo() {
               Editar
             </button>
             {course && course.fileUrl && (
-              <button onClick={downloadFile} className="download-button">
+              <button onClick={downloadFile} className="bnt-download">
                 Baixar Arquivo
               </button>
             )}
             <div>
-              <input type="file" onChange={handleFileChange} />
-              <button onClick={uploadFile}>Enviar Arquivo</button>
+              <input
+                className="input-editar"
+                type="file"
+                onChange={handleFileChange}
+              />
+              <button className="bnt-arquivo" onClick={uploadFile}>
+                Enviar Arquivo
+              </button>
             </div>
             {successMessage && (
               <div className="success-message">{successMessage}</div>

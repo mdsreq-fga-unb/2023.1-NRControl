@@ -79,6 +79,7 @@ function EditEmployeePage() {
               <label>
                 CPF:
                 <input
+                  className="input-edit"
                   type="text"
                   name="cpf"
                   value={employeeData.cpf}
@@ -90,6 +91,7 @@ function EditEmployeePage() {
               <label>
                 Email:
                 <input
+                  className="input-edit"
                   type="email"
                   name="email"
                   value={employeeData.email}
@@ -101,6 +103,7 @@ function EditEmployeePage() {
               <label>
                 Endereço:
                 <input
+                  className="input-edit"
                   type="text"
                   name="address"
                   value={employeeData.address}
@@ -112,6 +115,7 @@ function EditEmployeePage() {
               <label>
                 Telefone:
                 <input
+                  className="input-edit"
                   type="text"
                   name="phonenumber"
                   value={employeeData.phonenumber}
@@ -123,6 +127,7 @@ function EditEmployeePage() {
               <label>
                 Data de Nascimento:
                 <input
+                  className="input-edit"
                   type="date"
                   name="birthday"
                   value={employeeData.birthday}
@@ -134,6 +139,7 @@ function EditEmployeePage() {
               <label>
                 Data de Admissão:
                 <input
+                  className="input-edit"
                   type="date"
                   name="admissiondate"
                   value={employeeData.admissiondate}
@@ -145,6 +151,7 @@ function EditEmployeePage() {
               <label>
                 Data de ASO:
                 <input
+                  className="input-edit"
                   type="date"
                   name="asodate"
                   value={employeeData.asodate}

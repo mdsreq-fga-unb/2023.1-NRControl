@@ -82,7 +82,7 @@ function CourseInfo() {
   return (
     <div>
       <div className="main-table">
-      <Header />
+        <Header />
         <div className="table-employees">
           <h2>Informações do Curso</h2>
           <table>
@@ -126,18 +126,18 @@ function CourseInfo() {
                 Download do certificado
               </button>
             )}
-              <input
-                className="custom-input-editar"
-                type="file"
-                onChange={handleFileChange}
-              />
-              <button className="custom-bnt-arquivo" onClick={uploadFile}>
-                Enviar certificado
-              </button>
+            <input
+              className="custom-input-editar"
+              type="file"
+              onChange={handleFileChange}
+            />
+            <button className="custom-bnt-arquivo" onClick={uploadFile}>
+              Enviar certificado
+            </button>
           </div>
           {successMessage && (
-              <div className="custom-success-message">{successMessage}</div>
-            )}
+            <div className="custom-success-message">{successMessage}</div>
+          )}
         </div>
       </div>
     </div>

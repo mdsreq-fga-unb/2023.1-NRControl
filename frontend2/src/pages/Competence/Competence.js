@@ -52,7 +52,7 @@ function Competence() {
   const sortedCompetences = Object.keys(employeesByCompetence).sort();
 
   return (
-    <div className="main">
+    <div className="main-competence">
       <div className="header">
         <Header />
       </div>
@@ -65,7 +65,7 @@ function Competence() {
               {employeesByCompetence[competence].map((value, key) => (
                 <div
                   key={key}
-                  className="employee-box"
+                  className="employee-box-competence"
                   onClick={() => navigateTo(`/employee/${value.id}`)}
                 >
                   <div className="name">{value.name}</div>

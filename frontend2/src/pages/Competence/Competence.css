@@ -1,23 +1,22 @@
-.main {
-  height: 160vh;
-  width: 100vw;
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
+}
+.main-competence {
   background-color: #200c02;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.header {
-  width: 100%;
-  padding: 20px;
-}
-
 .box-competence {
-  margin-top: 2%;
-  height: auto;
-
   width: 40vw;
   display: flex;
+  margin-top: 50px;
   flex-direction: column;
   padding: 30px 35px;
   background-color: #4c1d06;
@@ -30,28 +29,26 @@
   color: #f85605;
   font-weight: 400;
   font-size: 3vw;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
 
 .competence-section {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .competence-section h2 {
   color: #ffffff;
   font-size: 2vw;
-  margin-bottom: 10px;
 }
 
 .info-competence {
   width: 100%;
   display: flex;
   flex-direction: column;
-  padding: 30px 20px;
 }
 
-.employee-box {
+.employee-box-competence {
   cursor: pointer;
   background-color: #463026;
   padding: 10px;
@@ -60,12 +57,12 @@
   box-shadow: 0px 10px 40px #020100;
 }
 
-.employee-box .name {
+.employee-box-competence {
   color: #ffffff;
   font-weight: bold;
 }
 
-.employee-box .cpf {
+.eemployee-box-competence .cpf {
   color: #ffffff;
 }
 

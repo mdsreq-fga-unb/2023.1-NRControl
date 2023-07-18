@@ -55,11 +55,11 @@ function Home() {
   const pages = Array.from({ length: pageNumbers }, (_, i) => i + 1);
 
   return (
-    <div className="main">
+    <div className="main-home">
       <div className="header">
         <Header />
       </div>
-      <div className="box">
+      <div className="box-home">
         <h1>Funcionários</h1>
         <div className="info">
           {currentEmployees.map((value, key) => (

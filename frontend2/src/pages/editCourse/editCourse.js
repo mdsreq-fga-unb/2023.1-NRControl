@@ -26,8 +26,12 @@ function EditCoursePage() {
         );
         const formattedData = {
           ...response.data,
-          conclusiondate: moment(response.data.conclusiondate).format("DD/MM/YYYY"),
-          expirationdate: moment(response.data.expirationdate).format("DD/MM/YYYY"),
+          conclusiondate: moment(response.data.conclusiondate).format(
+            "DD/MM/YYYY"
+          ),
+          expirationdate: moment(response.data.expirationdate).format(
+            "DD/MM/YYYY"
+          ),
         };
         setCourseData(formattedData);
       } catch (error) {
@@ -79,8 +83,12 @@ function EditCoursePage() {
       const currentDate = moment();
       const conclusionDate = moment(courseData.conclusiondate, "DD/MM/YYYY");
 
-      if (conclusionDate.isBefore("2010-01-01") || conclusionDate.isAfter(currentDate)) {
-        newErrors.conclusiondate = "A data de conclusão do curso deve estar entre 2010 e a data atual";
+      if (
+        conclusionDate.isBefore("2010-01-01") ||
+        conclusionDate.isAfter(currentDate)
+      ) {
+        newErrors.conclusiondate =
+          "A data de conclusão do curso deve estar entre 2010 e a data atual";
       }
     }
 
@@ -93,15 +101,18 @@ function EditCoursePage() {
       const maxExpirationDate = moment().add(10, "years");
 
       if (expirationDate.isBefore(conclusionDate)) {
-        newErrors.expirationdate = "A data de expiração do curso não pode ser anterior à data de conclusão";
+        newErrors.expirationdate =
+          "A data de expiração do curso não pode ser anterior à data de conclusão";
       }
 
       if (expirationDate.isBefore(currentDate)) {
-        newErrors.expirationdate = "A data de expiração do curso não pode ser anterior à data atual";
+        newErrors.expirationdate =
+          "A data de expiração do curso não pode ser anterior à data atual";
       }
 
       if (expirationDate.isAfter(maxExpirationDate)) {
-        newErrors.expirationdate = "A data de expiração do curso deve ser no máximo 10 anos a partir da data atual";
+        newErrors.expirationdate =
+          "A data de expiração do curso deve ser no máximo 10 anos a partir da data atual";
       }
     }
 
@@ -138,6 +149,7 @@ function EditCoursePage() {
             <label>
               Curso:
               <input
+                className="input-edit"
                 type="text"
                 name="course"
                 value={courseData.course}
@@ -150,6 +162,7 @@ function EditCoursePage() {
             <label>
               Informações:
               <input
+                className="input-edit"
                 type="text"
                 name="info"
                 value={courseData.info}
@@ -162,6 +175,7 @@ function EditCoursePage() {
             <label>
               Data de conclusão:
               <InputMask
+                className="input-edit"
                 mask="99/99/9999"
                 type="text"
                 name="conclusiondate"
@@ -169,13 +183,16 @@ function EditCoursePage() {
                 onChange={changeValue}
                 placeholder="dd/mm/aaaa"
               />
-              {errors.conclusiondate && <span className="error">{errors.conclusiondate}</span>}
+              {errors.conclusiondate && (
+                <span className="error">{errors.conclusiondate}</span>
+              )}
             </label>
           </div>
           <div>
             <label>
               Data de expiração:
               <InputMask
+                className="input-edit"
                 mask="99/99/9999"
                 type="text"
                 name="expirationdate"
@@ -183,7 +200,9 @@ function EditCoursePage() {
                 onChange={changeValue}
                 placeholder="dd/mm/aaaa"
               />
-              {errors.expirationdate && <span className="error">{errors.expirationdate}</span>}
+              {errors.expirationdate && (
+                <span className="error">{errors.expirationdate}</span>
+              )}
             </label>
           </div>
         </div>

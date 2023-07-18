@@ -56,7 +56,9 @@
   text-align: center;
 }
 
-.left-card, .right-card {
+
+.right-card {
+
   width: 50%;
   margin: 0px 10px;
 }
@@ -116,6 +118,11 @@ span {
   align-items: center;
   text-align: center;
 }
+
+.competence-select {
+  margin-top: 20px;
+}
+
 .icons-sidebar {
   width: 20vw;
   color: #f85605;
@@ -147,8 +154,10 @@ span {
 }
 
 .error-container {
-  height: 1px; 
-  margin-top: 8px; 
+
+  height: 1px;
+  margin-top: 8px;
+
 }
 
 .error-message {

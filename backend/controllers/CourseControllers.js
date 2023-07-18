@@ -97,3 +97,4 @@ exports.putCourse = async (req, res) => {
 };
 
 exports.upload = upload;
+

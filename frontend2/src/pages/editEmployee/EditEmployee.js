@@ -422,6 +422,7 @@ function EditEmployeePage() {
                 Data de ASO:
                 <InputMask
                   className="input-edit"
+                  cd
                   mask="99/99/9999"
                   maskPlaceholder="dd/mm/aaaa"
                   type="text"

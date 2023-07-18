@@ -80,7 +80,7 @@ function Competence() {
         {sortedCompetences.map((competence) => (
           <div key={competence} className="competence-section">
             <h2>{competence}</h2>
-            <div className="info">
+            <div className="info-competence">
               {employeesByCompetence[competence].map((value, key) => (
                 <div
                   key={key}

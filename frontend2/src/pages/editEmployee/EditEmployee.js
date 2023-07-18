@@ -31,7 +31,9 @@ function EditEmployeePage() {
         const formattedData = {
           ...response.data,
           birthday: moment(response.data.birthday).format("DD/MM/YYYY"),
-          admissiondate: moment(response.data.admissiondate).format("DD/MM/YYYY"),
+          admissiondate: moment(response.data.admissiondate).format(
+            "DD/MM/YYYY"
+          ),
           asodate: moment(response.data.asodate).format("DD/MM/YYYY"),
         };
         setEmployeeData(formattedData);
@@ -150,94 +152,94 @@ function EditEmployeePage() {
     if (!value) {
       return "A data de nascimento é obrigatória";
     }
-  
+
     const isValidFormat = /^\d{4}-\d{2}-\d{2}$/.test(value);
     if (!isValidFormat) {
       return "Data de nascimento inválida";
     }
-  
+
     const currentDate = moment();
     const selectedDate = moment(value);
     const minAge = 18;
     const maxAge = 80;
-  
+
     if (!selectedDate.isValid()) {
       return "Data de nascimento inválida";
     }
-  
+
     if (selectedDate.isAfter(currentDate)) {
       return "A data de nascimento não pode ser futura";
     }
-  
+
     const age = currentDate.diff(selectedDate, "years");
     if (age < minAge || age > maxAge) {
       return `A idade mínima é de ${minAge} anos e a máxima é de ${maxAge} anos`;
     }
-  
+
     return "";
   };
-  
+
   const validateAdmissionDate = (value) => {
     if (!value) {
       return "A data de admissão é obrigatória";
     }
-  
+
     const isValidFormat = /^\d{4}-\d{2}-\d{2}$/.test(value);
     if (!isValidFormat) {
       return "Data de admissão inválida";
     }
-  
+
     const currentDate = moment();
     const selectedDate = moment(value);
     const minDate = moment("1971-10-01", "YYYY-MM-DD");
     const ageRequirementDate = moment().subtract(18, "years");
-  
+
     if (!selectedDate.isValid()) {
       return "Data de admissão inválida";
     }
-  
+
     if (selectedDate.isBefore(minDate)) {
       return "Data de admissão inválida";
     }
-  
+
     if (selectedDate.isAfter(currentDate)) {
       return "A data de admissão não pode ser futura";
     }
-  
+
     if (selectedDate.isBefore(ageRequirementDate)) {
       return "O funcionário deve ter pelo menos 18 anos na data de admissão";
     }
-  
+
     return "";
   };
-  
+
   const validateASODate = (value) => {
     if (!value) {
       return "A data de ASO é obrigatória";
     }
-  
+
     const isValidFormat = /^\d{4}-\d{2}-\d{2}$/.test(value);
     if (!isValidFormat) {
       return "Data de ASO inválida";
     }
-  
+
     const currentDate = moment();
     const selectedDate = moment(value);
     const maxDate = moment().endOf("day");
     const minDate = moment().subtract(12, "months").startOf("day");
-  
+
     if (!selectedDate.isValid()) {
       return "Data de ASO inválida";
     }
-  
+
     if (selectedDate.isAfter(maxDate)) {
       return "A data de ASO não pode ser futura";
     }
-  
+
     if (selectedDate.isBefore(minDate)) {
       return "A validade do ASO é de 12 meses";
     }
-  
+
     return "";
   };
 
@@ -273,7 +275,9 @@ function EditEmployeePage() {
     const addressError = validateAddress(formattedData.address);
     const phoneNumberError = validatePhoneNumber(formattedData.phonenumber);
     const birthdayError = validateBirthday(formattedData.birthday);
-    const admissionDateError = validateAdmissionDate(formattedData.admissiondate);
+    const admissionDateError = validateAdmissionDate(
+      formattedData.admissiondate
+    );
     const asoDateError = validateASODate(formattedData.asodate);
 
     const formErrors = {
@@ -327,6 +331,7 @@ function EditEmployeePage() {
               <label>
                 CPF:
                 <input
+                  className="input-edit"
                   type="text"
                   name="cpf"
                   value={employeeData.cpf}
@@ -339,6 +344,7 @@ function EditEmployeePage() {
               <label>
                 Email:
                 <input
+                  className="input-edit"
                   type="email"
                   name="email"
                   value={employeeData.email}
@@ -351,18 +357,22 @@ function EditEmployeePage() {
               <label>
                 Endereço:
                 <input
+                  className="input-edit"
                   type="text"
                   name="address"
                   value={employeeData.address}
                   onChange={changeValue}
                 />
-                {errors.address && <div className="error">{errors.address}</div>}
+                {errors.address && (
+                  <div className="error">{errors.address}</div>
+                )}
               </label>
             </div>
             <div>
               <label>
                 Telefone:
                 <input
+                  className="input-edit"
                   type="text"
                   name="phonenumber"
                   value={employeeData.phonenumber}
@@ -377,6 +387,7 @@ function EditEmployeePage() {
               <label>
                 Data de Nascimento:
                 <InputMask
+                  className="input-edit"
                   mask="99/99/9999"
                   maskPlaceholder="dd/mm/aaaa"
                   type="text"
@@ -384,13 +395,16 @@ function EditEmployeePage() {
                   value={employeeData.birthday}
                   onChange={changeValue}
                 />
-                {errors.birthday && <div className="error">{errors.birthday}</div>}
+                {errors.birthday && (
+                  <div className="error">{errors.birthday}</div>
+                )}
               </label>
             </div>
             <div>
               <label>
                 Data de Admissão:
                 <InputMask
+                  className="input-edit"
                   mask="99/99/9999"
                   maskPlaceholder="dd/mm/aaaa"
                   type="text"
@@ -407,6 +421,7 @@ function EditEmployeePage() {
               <label>
                 Data de ASO:
                 <InputMask
+                  className="input-edit"
                   mask="99/99/9999"
                   maskPlaceholder="dd/mm/aaaa"
                   type="text"
@@ -414,7 +429,9 @@ function EditEmployeePage() {
                   value={employeeData.asodate}
                   onChange={changeValue}
                 />
-                {errors.asodate && <div className="error">{errors.asodate}</div>}
+                {errors.asodate && (
+                  <div className="error">{errors.asodate}</div>
+                )}
               </label>
             </div>
             <div>

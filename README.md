@@ -12,7 +12,7 @@ Projeto desenvolvido pela equipe Binary Bandit da *Universidade de Brasília (Un
 
 ## Login
 
-[Clique aqui](http://https://sonda-engenharia-nr.vercel.app/) para acessar o site.
+[Clique aqui](https://sonda-engenharia-nr.vercel.app/) para acessar o site.
 
 Email: adm@gmail.com
 
